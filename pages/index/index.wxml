@@ -7,7 +7,12 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+ <view class="usermotto">
+     <!-- <text class="user-motto">{{motto}}</text> -->
+</view>
+    <!-- <view class="btn-area">
+        <navigator url="/page/navigate/navigate?title=navigate" hover-class="navigator-hover">首页</navigator>
+        <navigator url="../../redirect/redirect/redirect?title=redirect" open-type="redirect" hover-class="other-navigator-hover">排行榜</navigator>
+        <navigator url="/page/index/index" open-type="switchTab" hover-class="other-navigator-hover">我的</navigator>
+    </view> -->
 </view>

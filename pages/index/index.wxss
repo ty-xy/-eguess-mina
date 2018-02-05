@@ -19,3 +19,17 @@
 .usermotto {
   margin-top: 200px;
 }
+.navigator-hover {
+    color:blue;
+}
+/** 自定义其他点击态样式类 **/
+.other-navigator-hover {
+    color:red;
+}
+.btn-area{
+  width:'100%';
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-around;
+}
