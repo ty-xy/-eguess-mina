@@ -4,10 +4,10 @@
     "pages/logs/logs"
   ],
   "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFCE1F",
+    "navigationBarTitleText": "筋灵十三猜",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#a9b7b7",  
@@ -30,6 +30,11 @@
       "selectedIconPath": "images/myownyes.png",  
      "iconPath": "images/myownno.png" 
     }
-]
-  }
+    ]
+  },
+  "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000
+    },
+    "enablePullDownRefresh": true
 }
