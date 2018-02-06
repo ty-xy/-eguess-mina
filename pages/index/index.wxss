@@ -33,3 +33,61 @@
   align-items: center;
   justify-content:space-around;
 }
+
+
+
+.cardlist{
+    background: white;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.card-status{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #FFCF00;
+    height: 140rpx;
+    width: 140rpx;
+    font-size: 12px;
+    /* color: #333333; */
+    transform: translateX(-70rpx) translateY(-70rpx) rotateZ(-45deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    padding-bottom: 2px;
+    font-weight: bold;
+}
+.card-title{
+    font-size: 36rpx;
+    font-weight: bold;
+    letter-spacing: 0.5rpx;
+    padding: 15px 100rpx 10px 100rpx;
+    color: #333333;
+}
+.card-active{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #FAFAFA;
+    padding: 20rpx 0;
+}
+.card-rank{
+    color: #BDBDBD;
+    flex: 1;
+    text-align: center;
+}
+.rank-icon{
+    font-size: 24rpx;
+    margin-right: 10rpx;
+}
+.rank-border{
+    border-right: 1px solid #ddd;
+}
+.card-time{
+    background: #FFCF00;
+    color: #333333;
+}
