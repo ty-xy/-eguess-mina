@@ -10,33 +10,37 @@
     "navigationBarTitleText": "筋灵十三猜",
     "navigationBarTextStyle": "black"
   },
-  "tabBar": {
-    "color": "#a9b7b7",  
-    "selectedColor": "#11cd6e",  
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "selectedIconPath": "images/homeyes.png",  
-     "iconPath": "images/homeno.png" 
+    "tabBar": {
+        "color": "#a9b7b7",
+        "selectedColor": "#11cd6e",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "selectedIconPath": "images/homeyes.png",
+                "iconPath": "images/homeno.png"
+            },
+            {
+                "pagePath": "pages/rank/rank",
+                "text": "排行榜",
+                "selectedIconPath": "images/rankingyes.png",
+                "iconPath": "images/rankingno.png"
+            },
+            {
+                "pagePath": "pages/myown/myown",
+                "text": "我的",
+                "selectedIconPath": "images/myownyes.png",
+                "iconPath": "images/myownno.png"
+            }
+        ]
     },
-     {
-      "pagePath": "pages/rank/rank",
-      "text": "排行榜",
-      "selectedIconPath": "images/rankingyes.png",  
-     "iconPath": "images/rankingno.png" 
-    },
-    {
-      "pagePath": "pages/myown/myown",
-      "text": "我的",
-      "selectedIconPath": "images/myownyes.png",  
-     "iconPath": "images/myownno.png" 
-    }
-    ]
-  },
-  "networkTimeout": {
+    "networkTimeout": {
         "request": 10000,
         "downloadFile": 10000
     },
     "enablePullDownRefresh": true,
-    "component": true
+    "component": true,
+    "usingComponents": {
+        "mycard": "pages/components/mycard"
+    }
 }

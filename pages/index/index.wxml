@@ -14,4 +14,63 @@
         <text class="iconfont icon-weixin">阿里云图标</text>
        
     </view>
+    <view class="cardlist">
+        <text class="card-status">进行中</text>
+        <view class="card-title">有哪些道理，大家不说但心里都明白？</view>
+        <view class="card-active">
+            <view class="card-rank rank-border">
+                <text class="iconfont icon-msnui-more rank-icon"></text>
+                <text>1878</text>
+            </view>
+            <view class="card-rank rank-border">
+                <text class="iconfont icon-msnui-more rank-icon"></text>
+                <text>1878</text>
+            </view>
+            <!-- <block wx:if="{{true}}">
+                <view class="card-rank">
+                    <text class="iconfont icon-weixin rank-icon"></text>
+                    <text>1878</text>
+                </view>
+            </block> -->
+            <!-- <block wx:if="{{isStop === true}}">
+                <view class="card-rank">
+                    <text class="iconfont icon-weixin rank-icon"></text>
+                    <text>1878</text>
+                </view>
+            </block> -->
+            <block wx:if="{{isStop === false}}">
+                <view class="card-rank card-time">
+                    <text class="iconfont icon-msnui-more rank-icon"></text>
+                    <text>1878</text>
+                </view>
+            </block>
+            <!-- <view class="card-rank">
+                <text>1878</text>
+            </view> -->
+        </view>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
+    <view class="cardlist">
+        <text class="card-title">card</text>
+    </view>
 </view>

@@ -5,11 +5,12 @@ var initData = 'this is first line\nthis is second line'
 var extraLine = [];
 Page({
   data: {
-    motto: 'taertawretaq',
+    motto: 'tao',
     userInfo: {},
     text: initData,
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    isStop: false
   },
   //事件处理函数
   bindViewTap: function() {
