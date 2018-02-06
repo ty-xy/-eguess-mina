@@ -2,7 +2,8 @@
     "pages": [
         "pages/index/index",
         "pages/rank/rank",
-        "pages/myown/myown"
+        "pages/myown/myown",
+        "pages/comment/comment"
     ],
     "window": {
         "backgroundTextStyle": "light",
