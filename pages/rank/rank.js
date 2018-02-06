@@ -5,11 +5,15 @@ Page({
   data: {
     logs: []
   },
-  // onLoad: function () {
-  //   this.setData({
-  //     logs: (wx.getStorageSync('logs') || []).map(log => {
-  //       return util.formatTime(new Date(log))
-  //     })
-  //   })
-  // 
+  canvasIdErrorCallback: function (e) {
+    console.error(e.detail.errMsg)
+  },
+  onReady: function (e) {
+    var context = wx.createCanvasContext('firstCanvas')
+    context.setStrokeStyle("#00ff00")
+    context.setLineWidth(5)
+    context.beginPath()
+    context.arc(110,110,100,0,0.5*Math.PI,true);
+    context.stroke();
+  }
 })

@@ -1,6 +1,7 @@
 <!--logs.wxml-->
 <view class="container log-list">
-  <!-- <block wx:for="{{logs}}" wx:for-item="log"> -->
-    <text class="log-item">{{1}}</text>
-  <!-- </block> -->
+    <view class="rank-title">
+        <text>切换好友榜</text>
+    </view>
+    <!-- <canvas style="width: 300px; height: 200px;" canvas-id="firstCanvas"></canvas> -->
 </view>

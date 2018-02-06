@@ -8,6 +8,7 @@ Page({
     userInfo: {},
     
   },
+
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

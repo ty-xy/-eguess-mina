@@ -1,11 +1,16 @@
+page {
+ height:100%;
+}
+.container{
+  justify-content: flex-start;
+}
 .log-list {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   padding: 0rpx;
+  flex:1;
 }
-.log-item {
-  margin: 10rpx;
-}
+
 .myown-title{
    height:244rpx;
    width:100%;
@@ -30,9 +35,44 @@
   }
   .myown-join {
     height:120rpx;
-    width:100%;
+    padding-left:15px;
     display:flex;
     align-items:center;
     background: #FFFFFF;
     box-shadow: 1px 1px 4px 0 rgba(153,153,153,0.10);
+  }
+  .icon-chang{
+    color: #FFB74D;
+    font-size:50rpx;
+    margin-right:32rpx;
+  }
+  .myown-right{
+    display:flex; 
+    justify-content: space-between;
+    flex:1;
+    padding-right:12px;
+    align-items:center;
+  }
+  .myown-text{
+    font-size: 30rpx;
+    color: #333333;
+    letter-spacing: 0.18px;
+  }
+  .icon-jiantou{
+    color:#BDBDBD;
+    font-size:40rpx;
+  }
+  .icon-shou{
+    color:#F48FB1;
+  }
+  .icon-link{
+    color:#9FA8DA;  
+  }
+  .myown-commn{
+    margin-top:38rpx;
+  }
+  .myown-border{
+    height:100%;
+    border-bottom:1px solid#F5F5F5;
+    box-sizing:border-box;
   }
