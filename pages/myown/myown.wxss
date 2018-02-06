@@ -1,8 +1,38 @@
 .log-list {
   display: flex;
   flex-direction: column;
-  padding: 40rpx;
+  padding: 0rpx;
 }
 .log-item {
   margin: 10rpx;
 }
+.myown-title{
+   height:244rpx;
+   width:100%;
+   background:#FDD545;
+}
+.userinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+.userinfo-avatar {
+    width: 150rpx;
+    height: 150rpx;
+    margin: 0rpx 20rpx 30rpx  20rpx;
+    border-radius: 50%;
+  }
+  
+.userinfo-nickname {
+   font-size: 34rpx;
+   color: #333333;
+   letter-spacing: 0.2px;
+  }
+  .myown-join {
+    height:120rpx;
+    width:100%;
+    display:flex;
+    align-items:center;
+    background: #FFFFFF;
+    box-shadow: 1px 1px 4px 0 rgba(153,153,153,0.10);
+  }

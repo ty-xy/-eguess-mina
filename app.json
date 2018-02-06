@@ -6,7 +6,7 @@
   ],
   "window":{
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FFCE1F",
+    "navigationBarBackgroundColor": "#FDD545",
     "navigationBarTitleText": "筋灵十三猜",
     "navigationBarTextStyle": "black"
   },
@@ -37,5 +37,6 @@
         "request": 10000,
         "downloadFile": 10000
     },
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "component": true
 }
