@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/rank/rank",
+    "pages/myown/myown"
   ],
   "window":{
     "backgroundTextStyle": "light",
@@ -19,13 +20,13 @@
      "iconPath": "images/homeno.png" 
     },
      {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/rank/rank",
       "text": "排行榜",
       "selectedIconPath": "images/rankingyes.png",  
      "iconPath": "images/rankingno.png" 
     },
     {
-      "pagePath": "pages/logs/logs",
+      "pagePath": "pages/myown/myown",
       "text": "我的",
       "selectedIconPath": "images/myownyes.png",  
      "iconPath": "images/myownno.png" 
