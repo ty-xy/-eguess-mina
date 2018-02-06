@@ -1,18 +1,20 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
+var initData = 'this is first line\nthis is second line'
+var extraLine = [];
 Page({
   data: {
-    motto: 'Hello World',
+    motto: 'taertawretaq',
     userInfo: {},
+    text: initData,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
-      url: '../logs/logs'
+      url: '../rank/rank'
     })
   },
   onLoad: function () {
@@ -50,5 +52,20 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  add:function(e){
+    extraLine.push('other line')
+    this.setData({
+        text:initData + '\n' + extraLine.join('\n')
+    })
+  },
+  remove:function(e){
+    if(extraLine.length>0){
+        extraLine.pop()
+        extraLine.pop()
+        this.setData({
+          text: initData + '\n' + extraLine.join('\n')
+        })
+      }
+    }
 })
