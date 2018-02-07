@@ -3,7 +3,7 @@
         "pages/index/index",
         "pages/rank/rank",
         "pages/myown/myown",
-        "pages/comment/comment"
+        "pages/detail/detail"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -42,6 +42,6 @@
     "enablePullDownRefresh": true,
     "component": true,
     "usingComponents": {
-        "mycard": "pages/components/mycard"
+        "dialog": "/components/dialog"
     }
 }
