@@ -6,14 +6,13 @@ Page({
         item: {}
     },
     onLoad: function(option) {
-        console.log('option', option)
         const that = this;
-        API.ajax('/topic', '', function (res) {
+        API.ajax('/topic/12', '', function (res) {
             //这里既可以获取模拟的res
-            console.log(res)
+            console.log('option', option, res.data.message, res.data)
             that.setData({
-                list: res.data,
-                item: option,
+                list: res.data.message,
+                item: res.data,
             })
         });
     }

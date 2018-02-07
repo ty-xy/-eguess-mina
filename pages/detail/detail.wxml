@@ -1,4 +1,4 @@
-<view class="container" style="height: 100%">
+<view class="container" style="height: 100%; padding-bottom: 130rpx">
     <view class="count-down">倒计时 7:23</view>
     <view class="cardlist">
         <view class="card-title card-title-detail">
@@ -15,7 +15,7 @@
                 <view class="card-rank card-detail-rank">
                     <view class="card-rank-title">
                         <text class="iconfont icon-pinglun rank-icon"></text>
-                        <text>{{item.message}}</text>
+                        <text>{{item.message.length}}</text>
                     </view>
                 </view>
             </view>
@@ -25,73 +25,59 @@
         </view>
     </view>
     <!-- 评论 -->
-    <view class="cardlist cardlist-detail">
-        <view class="card-title-detail card-avatar">
-            <view class="avatar-name">
-                <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                <text class="name">郭盖</text>
-                <view class="tip">1</view>
-            </view>
-            <view class="">
-                <text class="iconfont icon-shoucang1" style="font-size: 24rpx; color: #FDD545"></text>
-                <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 24rpx; color: #FDD545"></text>
-            </view>
-        </view>
-        <view class="detail-comment">
-            三家分晋卡萨丁看风景阿道夫
-        </view>
-        <view class="message-info">
-            <view class="message-info-time">
-                <text>2018-1-29 13:13</text>
-            </view>
-            <view class="card-detail-message">
+    <block wx:for="{{list}}" wx:key="*this" wx:for-item="msg">
+        <view class="cardlist cardlist-detail">
+            <view class="card-title-detail card-avatar">
+                <view class="avatar-name">
+                    <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.avatar}}"></image>
+                    <text class="name">{{msg.name}}</text>
+                    <view class="tip">{{index + 1}}</view>
+                </view>
                 <view class="">
-                    <text class="iconfont icon-wode" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{item.read}}2342</text>
+                    <text class="iconfont icon-shoucang1" style="font-size: 24rpx; color: #FDD545"></text>
+                    <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 24rpx; color: #FDD545"></text>
                 </view>
-                <view style="margin-left: 30rpx">
-                    <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{item.message}}234</text>
+            </view>
+            <view class="detail-comment">
+                {{msg.comment}}
+            </view>
+            <view class="message-info">
+                <view class="message-info-time">
+                    <text>{{msg.time}}</text>
                 </view>
+                <view class="card-detail-message">
+                    <view class="">
+                        <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx"></text>
+                        <text>{{msg.read}}</text>
+                    </view>
+                    <view style="margin-left: 30rpx">
+                        <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
+                        <text>{{msg.message.length}}</text>
+                    </view>
+                </view>
+            </view>
+            <!--二级评论 -->
+            <view class="m2m">
+                <block wx:for="{{msg.message}}" wx:key="*this" wx:for-item="m2m">
+                    <view class="message-to-message">
+                        <view class="m2m-avatar">
+                            <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatar}}"></image>
+                        </view>
+                        <view class="m2m-info">
+                            <view class="m2m-name">
+                                <view>{{m2m.name}}</view>
+                                <view class="grey">{{m2m.time}}</view>
+                            </view>
+                            <view class="m2m-content">{{m2m.comment}}</view>
+                        </view>
+                    </view>
+                </block>
             </view>
         </view>
-        <view class="m2m">
-            <view class="message-to-message">
-                <view class="m2m-avatar">
-                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                </view>
-                <view class="m2m-info">
-                    <view class="m2m-name">
-                        <view>李伟</view>
-                        <view class="grey">2108-1-29 13:14</view>
-                    </view>
-                    <view class="m2m-content">多少积分就是的积分数据库地方加的快速度讲课费</view>
-                </view>
-            </view>
-            <view class="message-to-message">
-                <view class="m2m-avatar">
-                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                </view>
-                <view class="m2m-info">
-                    <view class="m2m-name">
-                        <view>李伟</view>
-                        <view class="grey">2108-1-29 13:14</view>
-                    </view>
-                    <view class="m2m-content">多少积分就是的积分数据库地方加快速度讲课费</view>
-                </view>
-            </view>
-            <view class="message-to-message">
-                <view class="m2m-avatar">
-                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                </view>
-                <view class="m2m-info">
-                    <view class="m2m-name">
-                        <view>李伟</view>
-                        <view class="grey">2108-1-29 13:14</view>
-                    </view>
-                    <view class="m2m-content">多少积分就是的积分数据库地方加快速度讲课费</view>
-                </view>
-            </view>
-        </view>
+    </block>
+    <!-- 输入框 -->
+    <view class="message-input">
+        <!-- <input placeholder-style="color:#D1D1D1" placeholder="请洒下你的笔墨" /> -->
+        <textarea maxlength='200' auto-height placeholder-style="color:#D1D1D1" fixed placeholder="请洒下你的笔墨" />
     </view>
 </view>
