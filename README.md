@@ -10,7 +10,7 @@
 #### 第一阶段： 
     前台： UI界面， 目前无需使用UI库。
     icon:    iconfont。
-    后台： 设计数据库（MongoDB）表结构，用 EasyMock 伪造数据。
+    后台： 设计数据库（MongoDB）表结构，用 Mock 伪造数据, 参考http://mockjs.com/examples.html
 #### 第二阶段：
     前台：接数据。
     后台： koa2，参考如下：
