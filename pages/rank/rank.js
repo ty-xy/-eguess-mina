@@ -6,6 +6,8 @@ const app = getApp()
 Page({
   data: {
     list: [],
+    worldlist:[],
+    frienlist:[],
     title:"切换好友榜",
     src: '../../images/world@2x.png',
   },
@@ -47,24 +49,33 @@ Page({
         //这里既可以获取模拟的res
         console.log(res)
         that.setData({
-            list: res.data
+            worldlist: res.data,
+            list:res.data,
         })
     });
-    console.log(this.data.list)
-    
+    API.ajax('/friendRanklist', '', function (res) {
+        //这里既可以获取模拟的res
+        that.setData({
+            friendlist: res.data
+        })
+    });
+    console.log(this.data.list,this.data.friendlist)
   },
-  changeRank:function(){
+  changeRank(){
+    const that = this
     if(this.data.title==="切换好友榜"){
-       this.setData({
-           title:"切换世界榜",
-           src:'../../images/world@2x.png',
+          this.setData({
+                title:"切换世界榜",
+                src:'../../images/friend@2x.png',
+                list:that.data.friendlist,
            })
-       }else{
+       }else {
            this.setData({
                title:"切换好友榜",
-               src:'../../images/friend@2x.png',
-               })   
+               src:'../../images/world@2x.png',
+               list:that.data.worldlist
+            })   
+           
        }
-       console.log(this.data.title)
    },
 })
