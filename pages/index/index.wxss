@@ -35,13 +35,16 @@
 }
 
 
-
+.cardlist-container{
+    padding-bottom: 30px;
+}
 .cardlist{
     background: white;
     margin-top: 15px;
     position: relative;
     overflow: hidden;
     border-radius: 10px;
+    box-shadow: 0 2px 6px 0 #DDDDDD;
 }
 .card-status{
     position: absolute;
@@ -50,7 +53,7 @@
     background: #FFCF00;
     height: 140rpx;
     width: 140rpx;
-    font-size: 12px;
+    font-size: 24rpx;
     /* color: #333333; */
     transform: translateX(-70rpx) translateY(-70rpx) rotateZ(-45deg);
     display: flex;
@@ -61,31 +64,48 @@
     padding-bottom: 2px;
     font-weight: bold;
 }
+.card-status-close{
+    background: #666666;
+    color: #FFFFFF;
+}
 .card-title{
     font-size: 36rpx;
     font-weight: bold;
     letter-spacing: 0.5rpx;
-    padding: 15px 100rpx 10px 100rpx;
+    padding: 15px 100rpx;
     color: #333333;
+    line-height: 1.5;
 }
 .card-active{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background: #FAFAFA;
-    padding: 20rpx 0;
+    /* padding: 20rpx 0; */
 }
 .card-rank{
     color: #BDBDBD;
     flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
     text-align: center;
+    padding: 20rpx 0;
+}
+.card-rank-title{
+    flex: 1;
 }
 .rank-icon{
+    flex: 1;
     font-size: 24rpx;
     margin-right: 10rpx;
 }
 .rank-border{
     border-right: 1px solid #ddd;
+}
+.no-border > .rank-border{
+    border: none;
 }
 .card-time{
     background: #FFCF00;

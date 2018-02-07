@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+const API = require('../../utils/api.js')
 const app = getApp()
 var initData = 'this is first line\nthis is second line'
 var extraLine = [];
@@ -10,7 +11,9 @@ Page({
     text: initData,
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    isStop: false
+
+    list: [],
+    isStop: true
   },
   //事件处理函数
   bindViewTap: function() {
@@ -45,6 +48,17 @@ Page({
         }
       })
     }
+    const that = this
+
+    // 使用 Mock
+    API.ajax('/topic', '', function (res) {
+        //这里既可以获取模拟的res
+        console.log(res)
+        that.setData({
+            list: res.data
+        })
+    });
+    console.log(this.data.list)
   },
   getUserInfo: function(e) {
     console.log(e)
