@@ -1,0 +1,129 @@
+
+.count-down{
+    margin-top: 15px;
+    background: #FDD545;
+    border-radius: 60rpx;
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    width: 212rpx;
+    font-size: 14px;
+    color: #333333;
+}
+.card-title-detail{
+    padding: 15px;
+}
+.card-detail-active{
+    padding: 0 15px;
+    background: #fff;
+}
+.card-detail-message{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card-detail-rank{
+    margin-right: 30rpx;
+}
+.card-answer-button{
+    font-size: 28rpx;
+    align-self: center;
+    width: 152rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    background: #FDD545;
+    border-radius: 8rpx;
+    text-align: center;
+}
+
+
+.cardlist-detail{
+    margin-bottom: 15px;
+}
+.card-avatar{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 20rpx;
+}
+.avatar-name{
+    position: relative;
+}
+.name{
+    margin-left: 30rpx;
+    font-size: 32rpx;
+    color: #333333;
+}
+.tip{
+    position: absolute;
+    left: -10rpx;
+    top: -10rpx;
+    border-radius: 17rpx;
+    width: 34rpx;
+    text-align: center;
+    height: 34rpx;
+    line-break: 34rpx;   
+    background: #FDD545;
+    font-size: 24rpx;
+}
+.card-detail-avatar{
+    width: 64rpx; 
+    height: 64rpx; 
+    border-radius: 32rpx;
+    background-color: #eeeeee;
+    vertical-align: middle;
+}
+.detail-icon{
+    margin-left: 20rpx;
+}
+.detail-comment{
+    padding: 0 0 30rpx 15px;
+    font-size: 28rpx;
+    color: #666666;
+    margin-left: 90rpx;
+}
+
+.message-info{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    margin-bottom: 30rpx;
+    font-size: 24rpx;
+    color: #BDBDBD;
+}
+.message-info-time{
+    margin-left: 90rpx;
+}
+
+
+.message-to-message{
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    flex: 1;
+}
+.m2m{
+    background: #FAFAFA;
+}
+.m2m-avatar{
+    width: 64rpx;
+    height: 64rpx;
+}
+.m2m-info{
+    margin-left: 30rpx;
+    flex: 1;
+}
+.m2m-name{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24rpx;
+    color: #333333;
+}
+.m2m-content{
+    font-size: 24rpx;
+    color: #666666;
+    margin-top: 8rpx;
+}

@@ -1,0 +1,47 @@
+<template name="card">
+    <view class="cardlist">
+        <block wx:if="{{status === false}}">
+            <text class="card-status">进行中</text>
+        </block>
+        <block wx:if="{{status === true}}">
+            <text class="card-status card-status-close">已结束</text>
+        </block>
+        <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}" class="card-title"
+            hover-class="weui-grid_active">
+            {{title}}
+        </navigator>
+        <view class="card-active">
+            <block wx:if="{{status === true}}">
+                <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
+                    class="card-rank">
+                    <view class="card-rank-title rank-border">
+                        <text class="iconfont icon-paihangbang rank-icon"></text>
+                        <text>排行榜</text>
+                    </view>
+                </navigator>
+            </block>
+            <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
+                class="card-rank">
+                <view class="card-rank-title rank-border">
+                    <text class="iconfont icon-wode rank-icon"></text>
+                    <text>{{read}}</text>
+                </view>
+            </navigator>
+            <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
+                class="card-rank no-border">
+                <view class="card-rank-title rank-border">
+                    <text class="iconfont icon-pinglun rank-icon"></text>
+                    <text>{{message}}</text>
+                </view>
+            </navigator>
+            <block wx:if="{{status === false}}">
+                <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
+                    class="card-rank card-time">
+                    <view class="card-rank-title">
+                        <text style='font-size: 28rpx'>倒计时 12:34</text>
+                    </view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+</template>

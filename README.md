@@ -20,3 +20,18 @@
 
 
 
+---
+
+
+### 搭建 mock 数据
+
+#### 下载mock.js
+
+    在GitHub下载mock文件： https://github.com/nuysoft/Mock ，保存在项目`/utils`目录下；然后创建api文件，用来定义不通接口,详j见`api.js`.
+```
+    const Mock = require('mock.js');
+    Mock.mock({...}); // 生成模拟的数据
+    
+```
+
+
