@@ -44,6 +44,6 @@
     "enablePullDownRefresh": true,
     "component": true,
     "usingComponents": {
-        "mycard": "pages/components/mycard"
+        "dialog": "/components/dialog"
     }
 }

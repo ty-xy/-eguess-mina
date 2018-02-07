@@ -1,6 +1,6 @@
-let API_HOST = "https://xxx.com/xxx";
-let DEBUG = true;//切换数据入口
-var Mock = require('mock.js')
+const API_HOST = "https://xxx.com/xxx";
+const DEBUG = true;//切换数据入口
+const Mock = require('mock.js')
 
 const apis = {
     '/topic': {
@@ -8,7 +8,7 @@ const apis = {
         'data|10': [{
             'id|+1': 1,
             'status|1': [true, false],
-            'title': '@cparagraph(1, 20)',
+            'title': '@cparagraph(1, 3)',
             'message': '@integer(100,2000)',//现价，单位：分  
             'read': '@integer(100,3000)'
         }]  

@@ -1,0 +1,97 @@
+<view class="container" style="height: 100%">
+    <view class="count-down">倒计时 7:23</view>
+    <view class="cardlist">
+        <view class="card-title card-title-detail">
+            {{item.title}}
+        </view>
+        <view class="card-active card-detail-active">
+            <view class="card-detail-message">
+                <view class="card-rank">
+                    <view class="card-rank-title card-detail-rank">
+                        <text class="iconfont icon-wode rank-icon"></text>
+                        <text>{{item.read}}</text>
+                    </view>
+                </view>
+                <view class="card-rank card-detail-rank">
+                    <view class="card-rank-title">
+                        <text class="iconfont icon-pinglun rank-icon"></text>
+                        <text>{{item.message}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="card-detail-message">
+                <text class="card-answer-button">立即抢答</text>
+            </view>
+        </view>
+    </view>
+    <!-- 评论 -->
+    <view class="cardlist cardlist-detail">
+        <view class="card-title-detail card-avatar">
+            <view class="avatar-name">
+                <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
+                <text class="name">郭盖</text>
+                <view class="tip">1</view>
+            </view>
+            <view class="">
+                <text class="iconfont icon-shoucang1" style="font-size: 24rpx; color: #FDD545"></text>
+                <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 24rpx; color: #FDD545"></text>
+            </view>
+        </view>
+        <view class="detail-comment">
+            三家分晋卡萨丁看风景阿道夫
+        </view>
+        <view class="message-info">
+            <view class="message-info-time">
+                <text>2018-1-29 13:13</text>
+            </view>
+            <view class="card-detail-message">
+                <view class="">
+                    <text class="iconfont icon-wode" style="margin-right: 10rpx; font-size: 24rpx"></text>
+                    <text>{{item.read}}2342</text>
+                </view>
+                <view style="margin-left: 30rpx">
+                    <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
+                    <text>{{item.message}}234</text>
+                </view>
+            </view>
+        </view>
+        <view class="m2m">
+            <view class="message-to-message">
+                <view class="m2m-avatar">
+                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
+                </view>
+                <view class="m2m-info">
+                    <view class="m2m-name">
+                        <view>李伟</view>
+                        <view class="grey">2108-1-29 13:14</view>
+                    </view>
+                    <view class="m2m-content">多少积分就是的积分数据库地方加的快速度讲课费</view>
+                </view>
+            </view>
+            <view class="message-to-message">
+                <view class="m2m-avatar">
+                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
+                </view>
+                <view class="m2m-info">
+                    <view class="m2m-name">
+                        <view>李伟</view>
+                        <view class="grey">2108-1-29 13:14</view>
+                    </view>
+                    <view class="m2m-content">多少积分就是的积分数据库地方加快速度讲课费</view>
+                </view>
+            </view>
+            <view class="message-to-message">
+                <view class="m2m-avatar">
+                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
+                </view>
+                <view class="m2m-info">
+                    <view class="m2m-name">
+                        <view>李伟</view>
+                        <view class="grey">2108-1-29 13:14</view>
+                    </view>
+                    <view class="m2m-content">多少积分就是的积分数据库地方加快速度讲课费</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
