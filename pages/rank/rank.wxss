@@ -5,13 +5,102 @@
   background:#fff;
 }
 .rank-title{
-    /* height:228rpx;
-    background:#FDD545; */
-    /* border-bottom-left-radius:60%;
-    border-bottom-right-radius:60%; */
+    height:232rpx;
+    background:#FDD545;
     width: 100%;
-    height: 20px;
-    /* margin: 50px; */
-    background: #FDD545;
-    border-radius:50%/0 0 100% 100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:flex-start;
+    border-bottom-left-radius: 35%;
+    border-bottom-right-radius: 35%; 
+    /* border-radius:50%/0 0 100% 100%;*/
 }
+
+.rank-name{
+    border: 1px solid #333333;
+    border-radius: 100px;
+    height:40rpx;
+    width:160rpx;
+    box-sizing: border-box;
+    font-size:18rpx;
+    text-align: center;
+    line-height:38rpx;
+    background:#FDD545;
+}
+
+.rank-card{
+   height:116rpx;
+   padding-left:30px;
+   padding-right:30px;
+   display:flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content:space-between;
+   margin-top:20rpx;
+  
+   /* background:	#9370DB; */
+   /* margin-bottom:10rpx; */
+}
+.rank-card-left{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    height:100%;
+    /* justify-content: space-between; */
+}
+.rank-card-right{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+.rank-avatar{
+   margin:0 30rpx;
+    width:96rpx;
+    height:96rpx;
+    border-radius:50%;
+    vertical-align: middle;
+    /* background: #4169E1; */
+    /* line-height:96rpx; */
+}
+.rank-image{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height:100%;
+    vertical-align: middle;
+}
+.rank-common{
+    line-height:10rpx;
+    width:40rpx;
+    text-align:center;
+}
+.icon-right{
+   margin-right:20rpx;
+   color: #FDD545;
+}
+ .myown-rank{
+     display:flex;
+     flex-direction: row;
+    height:160rpx;
+    /* width:100%;     */
+    align-items: center;
+    /* align-items: stretch; */
+    margin:0 30rpx;
+    /* flex:1; */
+    padding: 0 30rpx;
+    background: #FDD545;
+    box-shadow: 0 2px 6px 0 #DDDDDD;
+    border-radius: 10px;
+    z-index: 1000;
+    position:fixed;
+    bottom:20rpx;
+    left:0;
+    right:0;
+    justify-content:space-between;
+ }
+ .icon-right1{
+    color: #FFFFFF;
+    margin-right:30rpx;
+ }
