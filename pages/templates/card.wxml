@@ -12,7 +12,7 @@
         </navigator>
         <view class="card-active">
             <block wx:if="{{status === true}}">
-                <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
+                <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}" hover-class="weui-grid_active"
                     class="card-rank">
                     <view class="card-rank-title rank-border">
                         <text class="iconfont icon-paihangbang rank-icon"></text>
@@ -23,7 +23,7 @@
             <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
                 class="card-rank">
                 <view class="card-rank-title rank-border">
-                    <text class="iconfont icon-wode rank-icon"></text>
+                    <text class="iconfont icon-dianzan rank-icon"></text>
                     <text>{{read}}</text>
                 </view>
             </navigator>

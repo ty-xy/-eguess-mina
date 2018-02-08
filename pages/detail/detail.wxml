@@ -1,4 +1,4 @@
-<view class="container" style="height: 100%">
+<view class="container" style="height: 100%; padding-bottom: 130rpx">
     <view class="count-down">倒计时 7:23</view>
     <view class="cardlist">
         <view class="card-title card-title-detail">
@@ -15,7 +15,7 @@
                 <view class="card-rank card-detail-rank">
                     <view class="card-rank-title">
                         <text class="iconfont icon-pinglun rank-icon"></text>
-                        <text>{{item.message}}</text>
+                        <text>{{item.message.length}}</text>
                     </view>
                 </view>
             </view>
@@ -25,72 +25,60 @@
         </view>
     </view>
     <!-- 评论 -->
-    <view class="cardlist cardlist-detail">
-        <view class="card-title-detail card-avatar">
-            <view class="avatar-name">
-                <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                <text class="name">郭盖</text>
-                <view class="tip">1</view>
+    <block wx:for="{{list}}" wx:key="*this" wx:for-item="msg">
+        <view class="cardlist cardlist-detail">
+            <view class="card-title-detail card-avatar">
+                <view class="avatar-name">
+                    <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.avatar}}"></image>
+                    <text class="name">{{msg.name}}</text>
+                    <view class="tip">{{index + 1}}</view>
+                </view>
+                <view class="share-icon">
+                    <text class="iconfont icon-shoucang1" style="font-size: 36rpx; color: #FDD545"></text>
+                    <button data-name="shareBtn" open-type="share" class="button-share">
+                        <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 36rpx; color: #FDD545"></text>
+                    </button>
+                </view>
             </view>
-            <view class="">
-                <text class="iconfont icon-shoucang1" style="font-size: 24rpx; color: #FDD545"></text>
-                <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 24rpx; color: #FDD545"></text>
+            <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}&id={{msg.id}}"
+                class="detail-comment" hover-class="navigator-hover">
+                {{msg.comment}}
+            </navigator>
+            <view class="message-info">
+                <view class="message-info-time">
+                    <text>{{msg.time}}</text>
+                </view>
+                <view class="card-detail-message">
+                    <view class="">
+                        <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx"></text>
+                        <text>{{msg.linkNum}}</text>
+                    </view>
+                    <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}&id={{msg.id}}"
+                        style="margin-left: 30rpx" hover-class="navigator-hover">
+                        <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
+                        <text>{{msg.message}}</text>
+                    </navigator>
+                </view>
             </view>
         </view>
-        <view class="detail-comment">
-            三家分晋卡萨丁看风景阿道夫
+    </block>
+    <!-- 排行榜 -->
+    <view class="message-range">
+        <view class="message-range-flex message-range-left">
+            <view>
+                <text class="iconfont icon-suoding" style="font-size: 48rpx"></text>
+            </view>
+            <view>123</view>
+            <view>我的排名</view>
         </view>
-        <view class="message-info">
-            <view class="message-info-time">
-                <text>2018-1-29 13:13</text>
+        <view class="message-range-flex message-range-right">
+            <view>
+                <text class="iconfont icon-dianzan" style="margin-right: 10rpx"></text>
+                <text>23</text>
             </view>
-            <view class="card-detail-message">
-                <view class="">
-                    <text class="iconfont icon-wode" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{item.read}}2342</text>
-                </view>
-                <view style="margin-left: 30rpx">
-                    <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{item.message}}234</text>
-                </view>
-            </view>
-        </view>
-        <view class="m2m">
-            <view class="message-to-message">
-                <view class="m2m-avatar">
-                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                </view>
-                <view class="m2m-info">
-                    <view class="m2m-name">
-                        <view>李伟</view>
-                        <view class="grey">2108-1-29 13:14</view>
-                    </view>
-                    <view class="m2m-content">多少积分就是的积分数据库地方加的快速度讲课费</view>
-                </view>
-            </view>
-            <view class="message-to-message">
-                <view class="m2m-avatar">
-                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                </view>
-                <view class="m2m-info">
-                    <view class="m2m-name">
-                        <view>李伟</view>
-                        <view class="grey">2108-1-29 13:14</view>
-                    </view>
-                    <view class="m2m-content">多少积分就是的积分数据库地方加快速度讲课费</view>
-                </view>
-            </view>
-            <view class="message-to-message">
-                <view class="m2m-avatar">
-                    <image class="card-detail-avatar" mode="{{item.mode}}" src="{{src}}"></image>
-                </view>
-                <view class="m2m-info">
-                    <view class="m2m-name">
-                        <view>李伟</view>
-                        <view class="grey">2108-1-29 13:14</view>
-                    </view>
-                    <view class="m2m-content">多少积分就是的积分数据库地方加快速度讲课费</view>
-                </view>
+            <view style="margin-left: 40rpx">
+                <text class="iconfont icon-pinglun" style="margin-right: 10rpx"></text>
+                <text>23</text>
             </view>
         </view>
     </view>
