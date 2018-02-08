@@ -1,11 +1,10 @@
 {
   "pages":[
+    "pages/myown/myown",
+    "pages/store/store",
     "pages/index/index",
     "pages/rank/rank",
-    "pages/myown/myown",
     "pages/partake/partake",
-    "pages/store/store",
-    "pages/linkus/linkus",
     "pages/detail/detail"
   ],
   "window":{

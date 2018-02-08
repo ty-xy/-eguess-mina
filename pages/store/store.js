@@ -1,19 +1,48 @@
-Page({
-    data: {
-       marklist:[
-            {image:"../../images/1518001134227.png",name:"李晓雨",
-            commark:"开场白？耳光太响没听清。",createTime:"2108-1-29 13:13",
-            title:"你妈打你前，都说什么开…"
-            },
-            {image:"../../images/1518001134227.png",name:"唐艳",
-            commark:"Perfume Tips Tricks",createTime:"2108-1-29 13:13",
-            title:"你妈打你前，都说什么开…"
-            },
-            {image:"../../images/1518001134227.png",name:"李成盛",
-            commark:"Dealing With Dandruff",createTime:"2108-1-29 13:13",
-            title:"你妈打你前，都说什么开…"
-            }
-       ]
-    },
 
+const API = require('../../utils/api.js')
+const app = getApp()
+
+Page({
+  data: {
+    userInfo: {},
+    // text: initData,
+    left:'rank-color',
+    right:"",
+    list: [],
+    isStop: true,
+    change:true,
+  },
+  //事件处理函数
+ 
+  onLoad: function () {
+    
+    const that = this
+
+    // 使用 Mock
+    API.ajax('/topic', '', function (res) {
+        //这里既可以获取模拟的res
+        console.log(res)
+        that.setData({
+            list: res.data
+        })
+    });
+    console.log(this.data.list)
+  },
+  changeView(e){
+     console.log(e.target.id)
+     const that = this
+     if(e.target.id==="qusetion"){
+        that.setData({
+            change:true,
+            left:'rank-color',
+            right:''
+        })  
+     }else{
+        that.setData({
+            change:false,
+            left:'',
+            right:'rank-color'
+        })  
+     }
+   }
 })
