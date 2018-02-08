@@ -1,0 +1,17 @@
+<view class="container  store-log">
+    <block wx:for="{{marklist}}" wx:key="item">
+        <view class="marklist-card">
+            <view class="card-left">
+                <image src="{{item.image}}" class="store-image"></image>
+                <view class="card-left-right">
+                    <text class="card-name">{{item.name}}</text>
+                    <text class="card-mark">{{item.commark}}</text>
+                    <text class="card-time-list">{{item.createTime}}</text>
+                </view>
+           </view>
+           <view class="card-right">
+                    {{item.title}}
+           </view>
+        </view>
+     </block>
+</view>

@@ -1,13 +1,13 @@
 {
     "pages": [
+        "pages/myown/myown",
         "pages/index/index",
         "pages/detail/detail",
         "pages/answer/answer",
         "pages/rank/rank",
-        "pages/myown/myown",
+       
         "pages/partake/partake",
         "pages/store/store",
-        "pages/linkus/linkus",
         "pages/m2m/m2m"
     ],
     "window": {

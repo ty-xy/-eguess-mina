@@ -19,12 +19,12 @@
                 <text class="iconfont icon-youjiantou icon-jiantou"></text>
             </view>
         </navigator>
-        <navigator class="myown-join"  url= '../linkus/linkus'>
+        <button class="cs_button myown-join" open-type="contact" session-from="weapp">
             <text class="iconfont icon-kefu-xuanzhong icon-chang icon-link"></text>
             <view class="myown-right">
                 <text class="myown-text">联系我们</text>
                 <text class="iconfont icon-youjiantou icon-jiantou"></text>
             </view>
-        </navigator>
+        </button> 
     </view>
 </view>
