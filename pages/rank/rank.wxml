@@ -1,6 +1,49 @@
 <!--logs.wxml-->
 <view class="container log-list">
-  <!-- <block wx:for="{{logs}}" wx:for-item="log"> -->
-    <text class="log-item">{{1}}</text>
-  <!-- </block> -->
+    <view class="rank-title">
+        <image style="height:88rpx;width:372rpx;padding:10px;padding-top:16px;"  src="{{src}}" mode="aspectFit"></image>
+        <button class="rank-name" bindtap="changeRank">{{title}}</button> 
+        <text class="tuoyuan"></text>   
+    </view>
+    <block wx:for="{{list}}" wx:key="item">
+         <view class="rank-card">
+             <view class="rank-card-left">
+               <block wx:if="{{item.id===1}}">
+                   <image style="height:64rpx;width:40rpx" src="../../images/gold-medal-1@2x.png"></image>
+               </block>
+               <block wx:elif="{{item.id===2}}">
+                    <image style="height:64rpx;width:40rpx" src="../../images/silver-medal-1@2x.png"></image>
+               </block>
+               <block wx:elif="{{item.id===3}}">
+                    <image style="height:64rpx;width:40rpx" src="../../images/bronze-medal-1@2x.png"></image>
+               </block>
+               <block wx:else>
+                    <text class="rank-common">
+                            {{item.id}}
+                    </text>
+               </block>   
+                  <image  class="rank-avatar" src="{{item.image}}"></image>
+                <text class="rank-common" style="width:100rpx; text-align:left">
+                 {{item.name}}
+                </text>
+             </view>
+             <view class="rank-card-right">
+                 <text class="iconfont  icon-dianzan1 icon-right"></text>
+                 <text class="rank-common">
+                     {{item.read}}
+                 </text>
+             </view>
+         </view>
+    </block>
+    <view  class="myown-rank">
+            <view class="rank-card-left">
+                <text class="rank-common">7</text>
+                <image class="rank-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+                <text class="rank-common" style="width:100rpx; text-align:left">我的排名</text>
+            </view>
+            <view class="rank-card-right">
+                <text class="iconfont  icon-dianzan1 icon-right1"></text>
+                <text>12</text>
+            </view>
+    </view>
 </view>

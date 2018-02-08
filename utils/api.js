@@ -42,6 +42,16 @@ const apis = {
                 }
             ]
         }
+    },
+    '/ranklist':{
+        'success': true,
+        'data|10': [{
+            'id|+1': 1,
+            'status|1': [true, false],
+            'image': '@image(200x200)',
+            'name': '@cname()',//现价，单位：分  
+            'read': '@increment(100,3000)'
+        }]  
     }
 };
 function ajax(url = '/', data = '', fn, method = "get", header = {}) {
