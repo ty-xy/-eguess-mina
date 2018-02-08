@@ -90,6 +90,19 @@ text{
     align-self: center;
 }
 
+/* 倒计时 */
+.count-down{
+    margin-top: 15px;
+    background: #FDD545;
+    border-radius: 60rpx;
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    width: 212rpx;
+    font-size: 14px;
+    color: #333333;
+}
+
 /* card template */
 .cardlist-container{
     padding-bottom: 30px;

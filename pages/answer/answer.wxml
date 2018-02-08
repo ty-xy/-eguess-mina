@@ -1,0 +1,28 @@
+<view class="container">
+    <view class="count-down">倒计时 3:34</view>
+    <view class="cardlist">
+        <view class="card-title card-title-detail">
+            {{item.title}}J色的发斯蒂芬可视对讲开放空间撒
+        </view>
+        <view class="card-active card-detail-active">
+            <view class="card-detail-message">
+                <view class="card-rank">
+                    <view class="card-rank-title card-detail-rank">
+                        <text class="iconfont icon-wode rank-icon"></text>
+                        <text>{{item.read}}678</text>
+                    </view>
+                </view>
+                <view class="card-rank card-detail-rank">
+                    <view class="card-rank-title">
+                        <text class="iconfont icon-pinglun rank-icon"></text>
+                        <text>{{item.message.length}}5678</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <form bindsubmit="bindFormSubmit" class="textarea">
+        <textarea name='textarea' maxlength="200" placeholder="请挥洒你的笔墨..." placeholder-style="color:BDBDBD; font-size: 28rpx" />
+        <button form-type="submit" class="btn">提交</button>
+    </form>
+</view>

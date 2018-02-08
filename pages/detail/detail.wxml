@@ -71,7 +71,7 @@
             <view>123</view>
             <view>我的排名</view>
         </view>
-        <view class="message-range-flex message-range-right">
+        <!-- <view class="message-range-flex message-range-right">
             <view>
                 <text class="iconfont icon-dianzan" style="margin-right: 10rpx"></text>
                 <text>23</text>
@@ -80,6 +80,10 @@
                 <text class="iconfont icon-pinglun" style="margin-right: 10rpx"></text>
                 <text>23</text>
             </view>
-        </view>
+        </view> -->
+        <navigator url="/pages/answer/answer?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}&id={{msg.id}}"
+            hover-class="go-navigator-hover" class="message-range-flex message-range-right">
+            <text style="font-size: 28rpx;">立即抢答</text>
+        </navigator>
     </view>
 </view>

@@ -1,0 +1,47 @@
+.card-title-detail{
+    padding: 15rpx 15px 0rpx 15px;
+}
+.card-detail-active{
+    padding: 0 15px;
+    background: #fff;
+}
+.card-detail-message{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card-detail-rank{
+    margin-right: 30rpx;
+    color: #BDBDBD;
+}
+.card-detail-rank text{
+    color: #BDBDBD;
+}
+.card-answer-button{
+    font-size: 28rpx;
+    align-self: center;
+    width: 152rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    background: #FDD545;
+    border-radius: 8rpx;
+    text-align: center;
+}
+.textarea {
+    width: 100%;
+    margin-top: 15px;
+}
+.textarea textarea{
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px 0 #DDDDDD;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.btn{
+    margin-top: 15px;
+    background: #FDD545;
+    border-radius: 4px; 
+    border: none;
+}

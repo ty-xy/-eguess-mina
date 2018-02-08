@@ -2,6 +2,7 @@
     "pages": [
         "pages/index/index",
         "pages/detail/detail",
+        "pages/answer/answer",
         "pages/rank/rank",
         "pages/myown/myown",
         "pages/partake/partake",
