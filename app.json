@@ -1,14 +1,13 @@
 {
     "pages": [
-        "pages/myown/myown",
         "pages/index/index",
         "pages/detail/detail",
         "pages/answer/answer",
         "pages/rank/rank",
-       
         "pages/partake/partake",
         "pages/store/store",
-        "pages/m2m/m2m"
+        "pages/m2m/m2m",
+        "pages/myown/myown"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -18,7 +17,7 @@
     },
     "tabBar": {
         "color": "#a9b7b7",
-        "selectedColor": "#11cd6e",
+        "selectedColor": "#666666",
         "list": [
             {
                 "pagePath": "pages/index/index",
