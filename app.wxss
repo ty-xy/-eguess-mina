@@ -73,7 +73,22 @@ text{
 .grey{
     color: #BDBDBD;
 }
-
+.navigator-hover{
+    color: #FFD654;
+    background: #FFFFFF;
+}
+/* 分享按钮 */
+.button-share{
+    background: #FFFFFF;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    padding: 0;
+    line-height: normal;
+    width: 60rpx;
+    height: 36rpx;
+    align-self: center;
+}
 
 /* card template */
 .cardlist-container{

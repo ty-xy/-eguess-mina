@@ -13,13 +13,34 @@ const apis = {
             'read': '@integer(100,3000)'
         }]  
     },
+    '/topic/12': {
+        'success': true,
+        'data|3': [
+            {
+                'id|+1': 1,
+                'nameId': '@string("lower", 5, 10)',
+                'name': '@cname()',
+                'comment': '@cparagraph(1, 2)',
+                'like|1': [false, true],
+                'linkNum|1-200': 30,
+                'read|1': [false, true],
+                'readNum|3-200': 10,
+                'time|1': '@now()',
+                'message|8-200': 8,
+                'avatar': '@image(80*80)',
+                'from|1': [1, 2, 3, '']
+            }
+        ]
+    },
     '/ranklist':{
         'success': true,
-        'data|10': [{
+        'data|10': [
+            {
             'id|+1': 1,
             'status|1': [true, false],
             'image': '@image(200x200)',
             'name': '@cname()',//现价，单位：分  
+            'like': '@increment(100,3000)',
             'read': '@increment(100,3000)'
         }]  
     },

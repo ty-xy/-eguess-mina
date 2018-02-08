@@ -1,19 +1,20 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/rank/rank",
-    "pages/myown/myown",
-    "pages/partake/partake",
-    "pages/store/store",
-    "pages/linkus/linkus",
-    "pages/detail/detail"
-  ],
-  "window":{
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FDD545",
-    "navigationBarTitleText": "筋灵十三猜",
-    "navigationBarTextStyle": "black"
-  },
+    "pages": [
+        "pages/index/index",
+        "pages/detail/detail",
+        "pages/rank/rank",
+        "pages/myown/myown",
+        "pages/partake/partake",
+        "pages/store/store",
+        "pages/linkus/linkus",
+        "pages/m2m/m2m"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#FDD545",
+        "navigationBarTitleText": "筋灵十三猜",
+        "navigationBarTextStyle": "black"
+    },
     "tabBar": {
         "color": "#a9b7b7",
         "selectedColor": "#11cd6e",

@@ -129,43 +129,19 @@
     margin-top: 8rpx;
 }
 
-.message-range{
-    background: #FDD545;
-    box-shadow: 0 2px 6px 0 #DDDDDD;
-    border-radius: 10px;
-    display: flex;
-    position: fixed;
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    padding: 32rpx 20rpx;
-}
-.message-range-flex{
-    flex: 1;
-    display: flex;
-    justify-content: space-around;
-    color: #333333;
-    align-items: center;
-}
-.message-range-left{
-    font-size: 28rpx;
-}
-.message-range-right{
-    justify-content: flex-end;
+.message-input{
     font-size: 24rpx;
-}
-
-.share-icon{
-    display: flex;
-    width: 120rpx;
-    justify-content: flex-end;
-}
-.icon-fenxiang{
-    position: absolute;
-    top: -2rpx;
-    bottom: -4rpx;
-    right: -4rpx;
-    left: -24rpx;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: #fff;
-    z-index: 2;
+    padding: 16rpx 15px;
+}
+.message-input textarea{
+    background: #f4f4f4;
+    padding: 20rpx 40rpx;
+    border-radius: 40rpx;
+    max-height: 200rpx;
+    font-size: 32rpx;
 }
