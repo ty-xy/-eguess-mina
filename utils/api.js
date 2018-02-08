@@ -41,7 +41,18 @@ const apis = {
             'image': '@image(200x200)',
             'name': '@cname()',//现价，单位：分  
             'like': '@increment(100,3000)',
-        }] 
+            'read': '@increment(100,3000)'
+        }]  
+    },
+    '/friendRanklist':{
+        'success': true,
+        'data|10': [{
+            'id|+1': 1,
+            'status|1': [true, false],
+            'image': '@image(100x100)',
+            'name': '@cname()',//现价，单位：分  
+            'read': '@increment(2000,3000)'
+        }]  
     }
 };
 function ajax(url = '/', data = '', fn, method = "get", header = {}) {

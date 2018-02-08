@@ -1,3 +1,9 @@
-<view>
-    <text>12312468u6</text>
+<!-- <import src="../templates/card.wxml" /> -->
+
+<import src="../templates/card.wxml" />
+
+<view class="container cardlist-container">
+    <block wx:for="{{list}}" wx:key="item">
+        <template is="card" data="{{...item}}" />
+    </block>
 </view>
