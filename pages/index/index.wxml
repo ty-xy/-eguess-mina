@@ -12,4 +12,7 @@
     <block wx:for="{{list}}" wx:key="item">
         <template is="card" data="{{...item}}" />
     </block>
+    <navigator url="/pages/store/store" class="jump-store" hover-class="navigator-hover">
+        <text class="iconfont icon-xiaoxi"></text>
+    </navigator>
 </view>

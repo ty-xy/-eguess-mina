@@ -169,3 +169,6 @@
     background: #fff;
     z-index: 2;
 }
+.go-navigator-hover{
+    background: #FDD545;
+}
