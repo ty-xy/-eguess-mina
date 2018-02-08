@@ -1,17 +1,63 @@
-<view class="container  store-log">
-    <block wx:for="{{marklist}}" wx:key="item">
-        <view class="marklist-card">
-            <view class="card-left">
-                <image src="{{item.image}}" class="store-image"></image>
-                <view class="card-left-right">
-                    <text class="card-name">{{item.name}}</text>
-                    <text class="card-mark">{{item.commark}}</text>
-                    <text class="card-time-list">{{item.createTime}}</text>
-                </view>
-           </view>
-           <view class="card-right">
+<view class="container">
+    <view class="commn-title">
+        <view class="title-left {{left}}"  bindtap="changeView" id="qusetion">问题</view>
+        <view class="title-right {{right}}"  bindtap="changeView" id="answer">回答</view>
+    </view>
+    <block wx:for="{{list}}" wx:key="item">
+        <block wx:if="{{change===true}}">
+            <view class="cardlist">
+                <block wx:if="{{item.status === false}}">
+                    <text class="card-status">进行中</text>
+                </block>
+                <block wx:if="{{item.status === true}}">
+                    <text class="card-status card-status-close">已结束</text>
+                </block>
+                <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}" class="card-title"
+                    hover-class="weui-grid_active">
                     {{item.title}}
-           </view>
-        </view>
-     </block>
+                </navigator>
+                <view class="card-bottom">
+                    <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
+                        class="card-rankb no-border card-left-rank">
+                        <view class="card-rank-title rank-border">
+                            <text class="iconfont icon-wode rank-icon"></text>
+                            <text>{{item.read}}</text>
+                        </view>
+                    </navigator>
+                    <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
+                        class="card-rankb no-border">
+                        <view class="card-rank-title rank-border">
+                            <text class="iconfont icon-pinglun rank-icon"></text>
+                            <text>{{item.message}}</text>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+        </block>
+        <block wx:else>
+            <view class="cardlist">
+                <navigator url="/pages/detail/detail?id={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}" class="card-title"
+                    hover-class="weui-grid_active" style="padding:15px;">
+                     {{item.title}}
+                </navigator>
+                <view class="card-comment" style="margin-top:-10rpx">
+                     {{item.comment}}
+                </view>
+                <view class="card-bottom" style="margin-top:20rpx">
+                    <view class="card-rankc no-border card-left-commark">
+                        <view class="card-rank-title rank-border">
+                            <text class= "rank-icon">{{item.read}}</text>
+                            <text class="rank-icon">回答</text>
+                        </view>
+                    </view>
+                    <view class="card-rankc no-border card-left-commark" style="margin-left:-40rpx">
+                        <view class="card-rank-title rank-border ">
+                            <text class="rank-icon">{{item.message}}</text>
+                            <text class="rank-icon">收藏</text>
+                        </view>
+                   </view>
+                 </view>
+            </view>
+        </block>
+    </block>
 </view>
