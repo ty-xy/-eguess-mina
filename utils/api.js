@@ -7,6 +7,7 @@ const apis = {
         'success': true,
         'data|10': [{
             'id|+1': 1,
+            'comment': '@cparagraph(1, 2)',
             'status|1': [true, false],
             'title': '@cparagraph(1, 3)',
             'message': '@integer(100,2000)',//现价，单位：分  

@@ -39,12 +39,38 @@
 .card-rankb{
     color: #BDBDBD;
     padding-right:30rpx;
-    
     padding-bottom:42rpx;
+}
+.card-rankc{
+    font-family: STHeitiSC-Medium;
+    font-size: 12px;
+    color: #BDBDBD;
+    letter-spacing: 0.14px;
+    padding-right:30rpx;
+    padding-bottom:30rpx;
 }
 .card-left-rank{
     padding-left:90rpx;
 }
+.card-left-commark{
+    padding-left:15px;
+    padding-top:20rpx;
+    font-family: STHeitiSC-Medium;
+    font-size: 12px;
+    color: #BDBDBD;
+    letter-spacing: 0.14px;
+    /* padding-bottom:30rpx; */
+}
 .rank-color{
     background: #FDD545;
+}
+.card-comment{
+    font-family: STHeitiSC-Medium;
+    font-size: 14px;
+    color: #666666;
+    letter-spacing: 0.17px;
+    padding:0 15px;
+}
+ .rank-icon{
+    color: #BDBDBD;
 }

@@ -36,8 +36,27 @@
         </block>
         <block wx:else>
             <view class="cardlist">
-                 <view class="card-title">{{item.title}}</view>
-                 
+                <navigator url="/pages/detail/detail?id={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}" class="card-title"
+                    hover-class="weui-grid_active" style="padding:15px;">
+                     {{item.title}}
+                </navigator>
+                <view class="card-comment" style="margin-top:-10rpx">
+                     {{item.comment}}
+                </view>
+                <view class="card-bottom" style="margin-top:20rpx">
+                    <view class="card-rankc no-border card-left-commark">
+                        <view class="card-rank-title rank-border">
+                            <text class= "rank-icon">{{item.read}}</text>
+                            <text class="rank-icon">回答</text>
+                        </view>
+                    </view>
+                    <view class="card-rankc no-border card-left-commark" style="margin-left:-40rpx">
+                        <view class="card-rank-title rank-border ">
+                            <text class="rank-icon">{{item.message}}</text>
+                            <text class="rank-icon">收藏</text>
+                        </view>
+                   </view>
+                 </view>
             </view>
         </block>
     </block>

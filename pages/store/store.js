@@ -11,6 +11,8 @@ Page({
     list: [],
     isStop: true,
     change:true,
+    x: 0,
+    y: 0
   },
   //事件处理函数
  
@@ -44,5 +46,11 @@ Page({
             right:'rank-color'
         })  
      }
-   }
+   },
+   tap: function(e) {
+    this.setData({
+      x: 30,
+      y: 30
+    });
+  }
 })
