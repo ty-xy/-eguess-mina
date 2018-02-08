@@ -12,7 +12,7 @@ Page({
   canvasIdErrorCallback: function (e) {
     console.error(e.detail.errMsg)
   },
- 
+  onShareAppMessage: function (res) {},
   onLoad: function () {
     if (app.globalData.userInfo) {
         this.setData({

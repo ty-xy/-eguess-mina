@@ -33,14 +33,17 @@
                     <text class="name">{{msg.name}}</text>
                     <view class="tip">{{index + 1}}</view>
                 </view>
-                <view class="">
-                    <text class="iconfont icon-shoucang1" style="font-size: 24rpx; color: #FDD545"></text>
-                    <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 24rpx; color: #FDD545"></text>
+                <view class="share-icon">
+                    <text class="iconfont icon-shoucang1" style="font-size: 36rpx; color: #FDD545"></text>
+                    <button data-name="shareBtn" open-type="share" class="button-share">
+                        <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 36rpx; color: #FDD545"></text>
+                    </button>
                 </view>
             </view>
-            <view class="detail-comment">
+            <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}&id={{msg.id}}"
+                class="detail-comment" hover-class="navigator-hover">
                 {{msg.comment}}
-            </view>
+            </navigator>
             <view class="message-info">
                 <view class="message-info-time">
                     <text>{{msg.time}}</text>
@@ -48,36 +51,35 @@
                 <view class="card-detail-message">
                     <view class="">
                         <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                        <text>{{msg.read}}</text>
+                        <text>{{msg.linkNum}}</text>
                     </view>
-                    <view style="margin-left: 30rpx">
+                    <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}&id={{msg.id}}"
+                        style="margin-left: 30rpx" hover-class="navigator-hover">
                         <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                        <text>{{msg.message.length}}</text>
-                    </view>
+                        <text>{{msg.message}}</text>
+                    </navigator>
                 </view>
-            </view>
-            <!--二级评论 -->
-            <view class="m2m">
-                <block wx:for="{{msg.message}}" wx:key="*this" wx:for-item="m2m">
-                    <view class="message-to-message">
-                        <view class="m2m-avatar">
-                            <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatar}}"></image>
-                        </view>
-                        <view class="m2m-info">
-                            <view class="m2m-name">
-                                <view>{{m2m.name}}</view>
-                                <view class="grey">{{m2m.time}}</view>
-                            </view>
-                            <view class="m2m-content">{{m2m.comment}}</view>
-                        </view>
-                    </view>
-                </block>
             </view>
         </view>
     </block>
-    <!-- 输入框 -->
-    <view class="message-input">
-        <!-- <input placeholder-style="color:#D1D1D1" placeholder="请洒下你的笔墨" /> -->
-        <textarea maxlength='200' auto-height placeholder-style="color:#D1D1D1" fixed placeholder="请洒下你的笔墨" />
+    <!-- 排行榜 -->
+    <view class="message-range">
+        <view class="message-range-flex message-range-left">
+            <view>
+                <text class="iconfont icon-suoding" style="font-size: 48rpx"></text>
+            </view>
+            <view>123</view>
+            <view>我的排名</view>
+        </view>
+        <view class="message-range-flex message-range-right">
+            <view>
+                <text class="iconfont icon-dianzan" style="margin-right: 10rpx"></text>
+                <text>23</text>
+            </view>
+            <view style="margin-left: 40rpx">
+                <text class="iconfont icon-pinglun" style="margin-right: 10rpx"></text>
+                <text>23</text>
+            </view>
+        </view>
     </view>
 </view>

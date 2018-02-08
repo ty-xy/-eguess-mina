@@ -1,11 +1,13 @@
 {
     "pages": [
+        "pages/detail/detail",
         "pages/index/index",
         "pages/rank/rank",
         "pages/myown/myown",
         "pages/partake/partake",
         "pages/store/store",
-        "pages/linkus/linkus"
+        "pages/linkus/linkus",
+        "pages/m2m/m2m"
     ],
     "window": {
         "backgroundTextStyle": "light",
