@@ -1,5 +1,5 @@
 const API_HOST = "https://xxx.com/xxx";
-const DEBUG = true;//切换数据入口
+const debugs = true;//切换数据入口
 const Mock = require('mock.js')
 
 const apis = {
@@ -54,10 +54,21 @@ const apis = {
             'name': '@cname()',//现价，单位：分  
             'read': '@increment(2000,3000)'
         }]  
+    },
+    '/message': {
+        'success': true,
+        'data|10': [{
+            'id|+1': 1,
+            'comment': '@cparagraph(1, 2)',
+            'avatar': '@image(100x100)',
+            'name': '@cname()',//现价，单位：分  
+            'title': '@cparagraph(1, 3)',
+            'time|1': '@now()',
+        }]  
     }
 };
 function ajax(url = '/', data = '', fn, method = "get", header = {}) {
-    if (!DEBUG) {
+    if (!debugs) {
         wx.request({
             url: config.API_HOST + url + data,
             method: method ? method : 'get',
