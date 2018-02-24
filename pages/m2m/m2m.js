@@ -16,7 +16,7 @@ Page({
             //这里既可以获取模拟的res
             const m2m = res.data[0] || res.data.filter((item) => (item.id == option.id));
             const list =  res.data || res.data.filter((item) => (item.from == option.id));      
-            console.log('m2m', m2m)
+            console.log('m2m', m2m, option)
             that.setData({
                 list,
                 m2m,

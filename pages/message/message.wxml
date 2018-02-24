@@ -1,0 +1,17 @@
+<!--message.wxml-->
+<view class="container mag-container">
+    <navigator wx:for="{{list}}" wx:key="item" wx:for-item="msg" url="/pages/m2m/m2m?topicId={{msg.id}}&title={{msg.title}}&status={{msg.status}}&read={{msg.read}}&message={{msg.message}}&id={{msg.id}}"
+        class="msg-card" hover-class="navigator-hover">
+        <view class="msg-avatar">
+            <image class="msg-avatar" mode="scaleToFill" src="{{msg.avatar}}"></image>
+        </view>
+        <view class="msg-title">
+            <text class="name">{{msg.name}}</text>
+            <text class="title">{{msg.title}}</text>
+            <text class="time">{{msg.time}}</text>
+        </view>
+        <view class="msg-comment">
+            <text>{{msg.comment}}</text>
+        </view>
+    </navigator>
+</view>

@@ -2,17 +2,17 @@
 <import src="../templates/card.wxml" />
 
 <view class="container cardlist-container">
-    <view class="userinfo">
+    <!-- <view class="userinfo">
         <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
         <block wx:else>
             <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
             <text class="userinfo-nickname">{{userInfo.nickName}}</text>
         </block>
-    </view>
+    </view> -->
     <block wx:for="{{list}}" wx:key="item">
         <template is="card" data="{{...item}}" />
     </block>
-    <navigator url="/pages/store/store" class="jump-store" hover-class="navigator-hover">
+    <navigator url="/pages/message/message" class="jump-store" hover-class="navigator-hover">
         <text class="iconfont icon-xiaoxi"></text>
     </navigator>
 </view>

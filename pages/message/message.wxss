@@ -1,0 +1,51 @@
+.mag-container{
+    padding-top: 15px;
+}
+.msg-card{
+    background: #FFFFFF;
+    box-shadow: 0 2px 6px 0 #DDDDDD;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 34rpx 30rpx 30rpx 36rpx;
+    display: flex;
+}
+.msg-avatar{
+    width: 64rpx;
+    height: 64rpx;
+    border-radius: 32rpx;
+}
+.msg-title{
+    margin: 0 30rpx;
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* height: 180rpx; */
+}
+.name{
+    font-size: 28rpx;
+    color: #333333;
+}
+.title{
+    font-size: 24rpx;
+    color: #666666;
+    padding: 16rpx 0;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.time{
+    font-size: 24rpx;
+    color: #BDBDBD;
+}
+.msg-comment{
+    width: 100rpx;
+    height: 60px;
+    font-size: 12px;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    color: #666666;
+}
