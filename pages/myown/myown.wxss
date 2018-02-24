@@ -76,3 +76,11 @@ page {
     border-bottom:1px solid#F5F5F5;
     box-sizing:border-box;
   }
+  button{
+    position:static;
+    border-radius:0;
+    padding-right:0;
+  }
+  button::after{
+      border:0;
+  }
