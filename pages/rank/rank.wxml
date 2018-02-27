@@ -1,9 +1,11 @@
 <!--logs.wxml-->
 <view class="container log-list">
     <view class="rank-title">
-        <image style="height:88rpx;width:372rpx;padding:10px;padding-top:16px;"  src="{{src}}" mode="aspectFit"></image>
+        <!-- <view class="tuoyuan"> -->
+        <image style="height:88rpx;width:372rpx;padding:10px;padding-top:16px;z-index:100;"  src="{{src}}" mode="aspectFit"></image>
         <button class="rank-name" bindtap="changeRank">{{title}}</button> 
-        <text class="tuoyuan"></text>   
+         <text class="tuoyuan"></text>  
+       <!-- </view>  -->
     </view>
     <block wx:for="{{list}}" wx:key="item">
          <view class="rank-card">
@@ -46,4 +48,5 @@
                 <text>12</text>
             </view>
     </view>
+    <!-- <text class="tuoyuan"></text>   -->
 </view>

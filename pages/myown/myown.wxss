@@ -77,7 +77,7 @@ page {
     box-sizing:border-box;
   }
   button{
-    position:static;
+    /* position:static; */
     border-radius:0;
     padding-right:0;
   }
