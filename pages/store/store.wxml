@@ -12,7 +12,7 @@
                 <block wx:if="{{item.status === true}}">
                     <text class="card-status card-status-close">已结束</text>
                 </block>
-                <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}" class="card-title"
+                <navigator url="/pages/detail/detail?id={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}" class="card-title"
                     hover-class="weui-grid_active">
                     {{item.title}}
                 </navigator>
@@ -36,7 +36,7 @@
         </block>
         <block wx:else>
             <view class="cardlist">
-                <navigator url="/pages/detail/detail?id={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}" class="card-title"
+                <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}&id={{msg.id}}" class="card-title"
                     hover-class="weui-grid_active" style="padding:15px;">
                      {{item.title}}
                 </navigator>

@@ -3,6 +3,7 @@
   flex-direction: column;
   padding: 0;
   background:#fff;
+  position: relative;
 }
 .rank-title{
     height:232rpx;
@@ -12,8 +13,8 @@
     flex-direction: column;
     align-items: center;
     justify-content:flex-start;
-    border-bottom-left-radius: 35%;
-    border-bottom-right-radius: 35%; 
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%; 
     /* border-radius:50%/0 0 100% 100%;*/
 }
 
@@ -27,6 +28,7 @@
     text-align: center;
     line-height:38rpx;
     background:#FDD545;
+    z-index:100;
 }
 
 .rank-card{
@@ -103,4 +105,14 @@
  .icon-right1{
     color: #FFFFFF;
     margin-right:30rpx;
+ }
+ .tuoyuan{
+    background:#FDD545;
+   height:307px;
+   width:614px;
+   position: absolute;
+   top:-184px;
+   left:-120px;
+   border-radius:50%;
+   z-index: 1;
  }
