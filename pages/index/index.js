@@ -11,7 +11,6 @@ Page({
         text: initData,
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
         list: [],
         isStop: true
     },
