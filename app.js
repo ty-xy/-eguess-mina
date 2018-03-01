@@ -8,7 +8,7 @@ const API= require("utils/api.js")
 
 App({
     data:{
-      userInfo:''
+        userInfo:''
     },
     onLaunch: function () {
         // 展示本地存储能力
@@ -69,9 +69,9 @@ App({
                         res.data.map((item)=>{
                             if(!item.userInfo){
                                 console.log(that.data.userInfo, that.globalData)
-                                API.ajax('/user',json.stringy(that.globalData),function(res){
+                                API.ajax('/user',JSON.stringify(that.globalData),function(res){
                                      console.log(res)
-                                },'post')
+                                },'put')
                             }
                         })
                     });
@@ -83,7 +83,7 @@ App({
      
     },
     globalData: {
-        userInfo: null,
+        userInfo: {},
         openid:null,
     }
 })
