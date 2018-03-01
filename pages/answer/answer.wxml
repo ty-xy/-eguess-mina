@@ -2,20 +2,20 @@
     <view class="count-down">倒计时 3:34</view>
     <view class="cardlist">
         <view class="card-title card-title-detail">
-            {{item.title}}J色的发斯蒂芬可视对讲开放空间撒
+            {{item.title}}
         </view>
         <view class="card-active card-detail-active">
             <view class="card-detail-message">
                 <view class="card-rank">
                     <view class="card-rank-title card-detail-rank">
                         <text class="iconfont icon-wode rank-icon"></text>
-                        <text>{{item.read}}678</text>
+                        <text>{{item.readNum || 0}}</text>
                     </view>
                 </view>
                 <view class="card-rank card-detail-rank">
                     <view class="card-rank-title">
                         <text class="iconfont icon-pinglun rank-icon"></text>
-                        <text>{{item.message.length}}5678</text>
+                        <text>{{item.messageNum || 0}}</text>
                     </view>
                 </view>
             </view>
