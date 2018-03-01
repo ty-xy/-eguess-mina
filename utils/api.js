@@ -1,5 +1,3 @@
-const API_HOST = "https://xxx.com/xxx";
-const debugs = false;//切换数据入口
 const Mock = require('mock.js')
 const config = require('./config');
 
@@ -69,11 +67,11 @@ const apis = {
     }
 };
 function ajax(url = '/', data = '', fn, method = "get", header = {}) {
-    if (!debugs) {
+    if (!config.debugs) {
         wx.request({
-            url: config.API_HOST + url + data,
+            url: config.API_HOST + url,
             method: method ? method : 'get',
-            data: {},
+            data,
             header: header ? header : { "Content-Type": "application/json" },
             success: function (res) {
                 fn(res);

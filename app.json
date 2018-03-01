@@ -44,5 +44,6 @@
         "request": 10000,
         "downloadFile": 10000
     },
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50
 }
