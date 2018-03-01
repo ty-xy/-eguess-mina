@@ -5,7 +5,7 @@ Page({
     },
     onLoad(){
         const that = this
-        API.ajax('/user/oR7BM5bSwd0SssGhYVs162zKxefQ', '', function (res) {
+        API.ajax('/topic', '', function (res) {
             //这里既可以获取模拟的res
             console.log(res)
             that.setData({
