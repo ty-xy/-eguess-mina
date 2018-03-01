@@ -42,20 +42,20 @@
                         </button>
                     </view>
                 </view>
-                <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&readNum={{item.readNum}}&messageNum={{item.messageNum}}&id={{msg.id}}"
+                <navigator url="/pages/m2m/m2m?topicId={{item.id}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeNum={{msg.likeNum}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
                     class="detail-comment" hover-class="navigator-hover">
                     {{msg.comment}}
                 </navigator>
                 <view class="message-info">
                     <view class="message-info-time">
-                        <text>{{msg.time}}</text>
+                        <text>{{msg.createdAt}}</text>
                     </view>
                     <view class="card-detail-message">
                         <view class="">
                             <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx"></text>
                             <text>{{msg.linkNum || 0}}</text>
                         </view>
-                        <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&readNum={{item.readNum}}&messageNum={{item.messageNum}}&id={{msg.id}}"
+                        <navigator url="/pages/m2m/m2m?topicId={{item.id}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeNum={{msg.likeNum}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
                             style="margin-left: 30rpx" hover-class="navigator-hover">
                             <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
                             <text>{{msg.messageNum || 0}}</text>

@@ -10,7 +10,7 @@ Page({
         const t = encodeURIComponent(title);
         return {
             title: '一起来竞猜吧',
-            url: `/pages/detail/detail?id=${id}&title=${encodeURIComponent(title)}&status=${status}&readNum=${readNum}&message=${messageNum}`
+            url: `/pages/detail/detail?id=${id}&title=${encodeURIComponent(title)}&status=${status}&readNum=${readNum}&messageNum=${messageNum}`
         };
     },
     onLoad(option) {
@@ -24,8 +24,9 @@ Page({
                 // const list = res.data.filter((item) => item.from === '');
                 option.title = decodeURIComponent(option.title);
                 console.log('detail', res.data);
+                const list = res.data.answers.filter((item) => (!item.messageId));
                 that.setData({
-                    list: res.data.answers,
+                    list,
                     item: res.data,
                 })
             }
