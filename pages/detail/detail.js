@@ -19,14 +19,17 @@ Page({
             title: '答题详情'
         })
         const that = this;
-        API.ajax('/topic/12', '', function (res) {
+        const topicId=option.id;
+        console.log(option.id)
+        API.ajax(`/topic/${topicId}`, '', function (res) {
             //这里既可以获取模拟的res
-            if (res.success) {
-                const list = res.data.filter((item) => item.from === '');
-                option.title = decodeURIComponent(option.title);
-                console.log('detail', option, list);
+            // console.log(res)
+            if (res) {
+                // const list = res.data.filter((item) => item.from === '');
+                // option.title = decodeURIComponent(option.title);
+                console.log('detail', option);
                 that.setData({
-                    list,
+                    // list,
                     item: option,
                 })
             }

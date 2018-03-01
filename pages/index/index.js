@@ -70,8 +70,9 @@ Page({
             that.setData({
                 list: res.data
             })
+            console.log(that.data.list)
         });
-        console.log(this.data.list)
+     
     },
     getUserInfo: function(e) {
         console.log("getUserInfo", e)
