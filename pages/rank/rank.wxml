@@ -2,7 +2,9 @@
 <view class="container log-list">
     <view class="rank-title">
         <!-- <view class="tuoyuan"> -->
-        <image style="height:88rpx;width:372rpx;padding:10px;padding-top:16px;z-index:100;"  src="{{src}}" mode="aspectFit"></image>
+        <view style="z-index:1000">
+        <image style="height:88rpx;width:372rpx;padding:10px;padding-top:16px;"  src="{{src}}" mode="aspectFit"></image>
+        </view>
         <button class="rank-name" bindtap="changeRank">{{title}}</button> 
          <text class="tuoyuan"></text>  
        <!-- </view>  -->

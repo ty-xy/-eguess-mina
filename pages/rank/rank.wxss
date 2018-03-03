@@ -3,18 +3,20 @@
   flex-direction: column;
   padding: 0;
   background:#fff;
-  position: relative;
+  
 }
 .rank-title{
     height:232rpx;
-    background:#FDD545;
+    /* background:#FDD545; */
+    position: relative;
     width: 100%;
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content:flex-start;
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%; 
+    /* border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;  */
+    overflow: hidden;
     /* border-radius:50%/0 0 100% 100%;*/
 }
 
@@ -108,11 +110,13 @@
  }
  .tuoyuan{
     background:#FDD545;
+    /* background: red; */
    height:307px;
-   width:614px;
+   width:200%;
    position: absolute;
    top:-184px;
-   left:-120px;
+   left:-50%;
    border-radius:50%;
    z-index: 1;
+   /* overflow: hidden; */
  }
