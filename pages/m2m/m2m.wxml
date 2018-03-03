@@ -9,13 +9,13 @@
                 <view class="card-rank">
                     <view class="card-rank-title card-detail-rank">
                         <text class="iconfont icon-wode rank-icon"></text>
-                        <text>{{item.read}}</text>
+                        <text>{{item.readNum}}</text>
                     </view>
                 </view>
                 <view class="card-rank card-detail-rank">
                     <view class="card-rank-title">
                         <text class="iconfont icon-pinglun rank-icon"></text>
-                        <text>{{item.message.length}}</text>
+                        <text>{{item.messageNum}}</text>
                     </view>
                 </view>
             </view>
@@ -28,13 +28,13 @@
     <view class="cardlist cardlist-detail">
         <view class="card-title-detail card-avatar">
             <view class="avatar-name">
-                <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatar}}"></image>
-                <text class="name">{{m2m.name}}</text>
+                <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatarUrl}}"></image>
+                <text class="name">{{m2m.nickName}}</text>
                 <view class="tip">{{m2m.index}}</view>
             </view>
             <view class="">
-                <text class="iconfont icon-shoucang1" style="font-size: 24rpx; color: #FDD545"></text>
-                <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 24rpx; color: #FDD545"></text>
+                <text class="iconfont icon-shoucang1" style="font-size: 36rpx; color: #FDD545"></text>
+                <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 36rpx; color: #FDD545"></text>
             </view>
         </view>
         <view class="detail-comment">
@@ -42,16 +42,16 @@
         </view>
         <view class="message-info">
             <view class="message-info-time">
-                <text>{{m2m.time}}</text>
+                <text>{{m2m.createdAt}}</text>
             </view>
             <view class="card-detail-message">
                 <view class="">
                     <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{m2m.linkNum}}</text>
+                    <text>{{m2m.linkNum || 0}}</text>
                 </view>
                 <view style="margin-left: 30rpx">
                     <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{m2m.message}}</text>
+                    <text>{{m2m.messageNum || 0}}</text>
                 </view>
             </view>
         </view>
@@ -60,22 +60,26 @@
             <block wx:for="{{list}}" wx:key="*this" wx:for-item="m2m">
                 <view class="message-to-message">
                     <view class="m2m-avatar">
-                        <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatar}}"></image>
+                        <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatarUrl}}"></image>
                     </view>
                     <view class="m2m-info">
                         <view class="m2m-name">
-                            <view>{{m2m.name}}</view>
-                            <view class="grey">{{m2m.time}}</view>
+                            <view>{{m2m.nickName}}</view>
+                            <view class="grey" style="font-size: 26rpx">{{m2m.createdAt}}</view>
                         </view>
                         <view class="m2m-content">{{m2m.comment}}</view>
                     </view>
                 </view>
             </block>
+            <view class="no-message" wx:if="{{list.length === 0}}">
+                <text>无评价</text>
+            </view>
         </view>
     </view>
     <!-- 输入框 -->
     <view class="message-input">
         <!-- <input placeholder-style="color:#D1D1D1" placeholder="请洒下你的笔墨" /> -->
-        <textarea maxlength='200' auto-height placeholder-style="color:#D1D1D1" fixed placeholder="请洒下你的笔墨" />
+        <textarea bindconfirm="bindFormSubmit" bindinput="bindTextAreaChange" value="{{textarea}}" maxlength='200' auto-height placeholder-style="color:#D1D1D1" fixed placeholder="请洒下你的笔墨"
+        />
     </view>
 </view>

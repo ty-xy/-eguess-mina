@@ -34,6 +34,11 @@ Page({
                 API.ajax(`/topic/${that.data.item.id}`, '', function (result) {
                     //这里既可以获取模拟的res
                     if (result.statusCode === 200) {
+                        wx.showToast({
+                            title: '抢答成功',
+                            icon: 'success',
+                            duration: 1500
+                        })
                         const pages = getCurrentPages();
                         const currPage = pages[pages.length - 1];   //当前页面
                         const prevPage = pages[pages.length - 2];  //上一个页面
@@ -42,7 +47,9 @@ Page({
                             list: result.data.answers,
                             item: result.data,
                         })
-                        wx.navigateBack();
+                        setTimeout(function(){
+                            wx.navigateBack();
+                        },2000)
                     }
                 });
             }

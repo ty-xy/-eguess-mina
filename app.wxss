@@ -180,3 +180,11 @@ text{
     background: #FFCF00;
     color: #333333;
 }
+
+/* 暂无消息 */
+.no-message{
+    font-size: 26rpx;
+    color: #666666;
+    text-align: center;
+    padding: 30rpx 0;
+}
