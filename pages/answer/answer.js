@@ -25,7 +25,7 @@ Page({
         const newMsg = {
             comment: e.detail.value.textarea,
             ...this.data.userInfo,
-            topicId: this.data.item.id,
+            topicInfo: this.data.item.id,
         };
         const that = this;
         API.ajax('/message', JSON.stringify(newMsg), function (res) {

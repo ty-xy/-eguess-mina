@@ -35,7 +35,7 @@ Page({
         const newMsg = {
             comment: e.detail.value,
             ...this.data.userInfo,
-            topicId: this.data.item.id,
+            topicInfo: this.data.m2m.topicId,
             messageId: this.data.m2m.id,
         };
         const that = this;
