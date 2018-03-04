@@ -1,0 +1,8 @@
+<template name="toast">
+    <view class="my_toast" wx:if="{{ isHide }}">
+        <view class="my_toast_view_icon">
+            <text class="iconfont icon-{{icon}} my_toast_icon" style="font-size: 50rpx; color: {{ iconColor }};"></text>
+        </view>
+        <text class="my_toast_text">{{content}}</text>
+    </view>
+</template>

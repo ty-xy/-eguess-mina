@@ -1,4 +1,4 @@
-
+@import "../../components/my-toast/my-toast.wxss";
 .count-down{
     margin-top: 15px;
     background: #FDD545;
