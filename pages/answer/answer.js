@@ -20,7 +20,6 @@ Page({
         })
     },
     bindFormSubmit(e) {
-        console.log('bindFormSubmit', e.detail.value.textarea, this.data.item.id);
         const { avatarUrl, gender } = this.data.userInfo;
         const newMsg = {
             comment: e.detail.value.textarea,

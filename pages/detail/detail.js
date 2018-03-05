@@ -92,7 +92,7 @@ Page({
         }
         const that = this;
         const { option } = this.data;
-        API.ajax(`/message/${message.id}`, JSON.stringify({ bookMarks, isBookMark: isLike }), function (res) {
+        API.ajax(`/message/${message.id}`, JSON.stringify({ bookMarks }), function (res) {
             if (res.statusCode == 200) {
                 API.ajax(`/topic/${option.id}`, '', function (res) {
                     //这里既可以获取模拟的res
@@ -100,8 +100,15 @@ Page({
                         // const list = res.data.filter((item) => item.from === '');
                         option.title = decodeURIComponent(option.title);
                         const list = res.data.answers.filter((item) => (!item.messageId));
+                        const resList = [];
+                        list.forEach((item) => {
+                            if (item.bookMarks.indexOf(app.globalData.openid) > -1) {
+                                item.isBookMark = true;
+                            }
+                            resList.push(item);
+                        });
                         that.setData({
-                            list,
+                            list: resList,
                             item: res.data,
                             option,
                         })
