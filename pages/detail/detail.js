@@ -36,10 +36,10 @@ Page({
         });
     },
     handlelike(e) {
-        console.log('handlelike', e);
+        console.log('handlelike', e, app.globalData.openid);
         const { message } = e.currentTarget.dataset;
-        const num = message.likeNum + 1;
-        console.log('num', num);
+        const num = message.likeArr.indexOf();
+        console.log('message', message);
         const that = this;
         const { option } = this.data;
         API.ajax(`/message/${message.id}`, JSON.stringify({ likeNum: num }), function (res) {
