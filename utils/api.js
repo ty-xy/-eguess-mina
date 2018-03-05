@@ -13,7 +13,7 @@ const apis = {
             'read': '@integer(100,3000)'
         }]  
     },
-    '/topic/12': {
+    '/topic/:id': {
         'success': true,
         'data|3': [
             {

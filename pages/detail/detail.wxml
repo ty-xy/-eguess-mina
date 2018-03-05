@@ -29,7 +29,7 @@
     </view>
     <!-- 评论 -->
     <view style="margin-bottom: 80rpx">
-        <block wx:for="{{list}}" wx:key="*this" wx:for-item="msg">
+        <view wx:for="{{list}}" wx:key="*this" wx:for-item="msg">
             <view class="cardlist cardlist-detail">
                 <view class="card-title-detail card-avatar">
                     <view class="avatar-name">
@@ -38,7 +38,12 @@
                         <view class="tip">{{index + 1}}</view>
                     </view>
                     <view class="share-icon">
-                        <text class="iconfont icon-shoucang1" style="font-size: 36rpx; color: #FDD545"></text>
+                        <view wx:if="{{msg.isBookMark}}">
+                            <text class="iconfont icon-shoucang" data-message="{{msg}}" bindtap="handleMark" style="font-size: 36rpx; color: #FDD545"></text>
+                        </view>
+                        <view wx:else>
+                            <text class="iconfont icon-shoucang1" data-message="{{msg}}" bindtap="handleMark" style="font-size: 36rpx; color: #FDD545"></text>
+                        </view>
                         <button data-name="shareBtn" open-type="share" class="button-share">
                             <text class="iconfont icon-fenxiang" style="margin-left: 20rpx; font-size: 36rpx; color: #FDD545"></text>
                         </button>
@@ -55,7 +60,7 @@
                     <view class="card-detail-message">
                         <view class="" data-message="{{msg}}" bindtap="handlelike">
                             <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                            <text>{{msg.likeNum || 0}}</text>
+                            <text>{{(msg.likeArr && msg.likeArr.length) || 0}}</text>
                         </view>
                         <navigator url="/pages/m2m/m2m?topicId={{item.id}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeNum={{msg.likeNum}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
                             style="margin-left: 30rpx" hover-class="navigator-hover">
@@ -65,21 +70,21 @@
                     </view>
                 </view>
             </view>
-        </block>
-    </view>
-    <!-- 排行榜 -->
-    <view class="message-range">
-        <view class="message-range-flex message-range-left">
-            <view>
-                <text class="iconfont icon-suoding" style="font-size: 48rpx"></text>
-            </view>
-            <view>123</view>
-            <view>我的排名</view>
         </view>
-        <navigator url="/pages/answer/answer?title={{item.title}}&status={{item.status}}&readNum={{item.readNum}}&messageNum={{item.messageNum}}&id={{item.id}}"
-            hover-class="go-navigator-hover" class="message-range-flex message-range-right">
-            <text style="font-size: 28rpx;">立即抢答</text>
-        </navigator>
+        <!-- 排行榜 -->
+        <view class="message-range">
+            <view class="message-range-flex message-range-left">
+                <view>
+                    <text class="iconfont icon-suoding" style="font-size: 48rpx"></text>
+                </view>
+                <view>123</view>
+                <view>我的排名</view>
+            </view>
+            <navigator url="/pages/answer/answer?title={{item.title}}&status={{item.status}}&readNum={{item.readNum}}&messageNum={{item.messageNum}}&id={{item.id}}"
+                hover-class="go-navigator-hover" class="message-range-flex message-range-right">
+                <text style="font-size: 28rpx;">立即抢答</text>
+            </navigator>
+        </view>
+        <template is="toast" data="{{ ..._toast_ }}" />
     </view>
-    <template is="toast" data="{{ ..._toast_ }}" />
 </view>
