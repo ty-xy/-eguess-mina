@@ -63,7 +63,7 @@ Page({
         }
         const that = this
 
-        // 使用 Mock
+        // 获取首页数据
         API.ajax('/topic', '', function (res) {
             //这里既可以获取模拟的res
             if (res.statusCode === 200) {
@@ -72,7 +72,6 @@ Page({
                     list: res.data
                 })
             }
-            
         });
     },
     getUserInfo: function(e) {
@@ -117,5 +116,29 @@ Page({
             text: initData + '\n' + extraLine.join('\n')
             })
         }
+    },
+    // 阅读量记录
+    handleClick(e) {
+        console.log('handleClick', e);
+        const { msg } = e.currentTarget.dataset;
+        const that = this;
+        const readNum = msg.readNum + 1;
+        API.ajax(`/topic/${msg.id}`, JSON.stringify({ ...msg, readNum }), function (res) {
+            //这里既可以获取模拟的res
+            if (res.statusCode === 200) {
+                API.ajax('/topic', '', function (res) {
+                    //这里既可以获取模拟的res
+                    if (res.statusCode === 200) {
+                        console.log('index', res.data);
+                        that.setData({
+                            list: res.data
+                        })
+                    }
+                });
+            }
+        }, 'PUT');
+        wx.navigateTo({
+            url: `/pages/detail/detail?id=${msg.id}&title={msg.title}&status=${msg.status}&readNum=${msg.readNum}&messageNum={msg.messageNum}`,
+        })
     }
 })

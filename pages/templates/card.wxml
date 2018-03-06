@@ -1,20 +1,19 @@
 <template name="card">
     <view class="cardlist">
-        <block wx:if="{{status === 0}}">
+        <block wx:if="{{item.status === 0}}">
             <text class="card-status">待审核</text>
         </block>
-        <block wx:if="{{status === 1}}">
+        <block wx:if="{{item.status === 1}}">
             <text class="card-status card-status-close">进行中</text>
         </block>
-        <block wx:if="{{status === 2}}">
+        <block wx:if="{{item.status === 2}}">
             <text class="card-status">已结束</text>
         </block>
-        <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&readNum={{readNum}}&messageNum={{messageNum}}"
-            class="card-title" hover-class="weui-grid_active">
-            {{title}}
-        </navigator>
+        <view bindtap="handleClick" data-msg="{{item}}" class="card-title">
+            {{item.title}}
+        </view>
         <view class="card-active">
-            <block wx:if="{{status !== 0}}">
+            <block wx:if="{{item.status === 2}}">
                 <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&readNum={{readNum}}&messageNum={{messageNum}}"
                     hover-class="weui-grid_active" class="card-rank">
                     <view class="card-rank-title rank-border">
@@ -23,27 +22,24 @@
                     </view>
                 </navigator>
             </block>
-            <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&readNum={{readNum}}&messageNum={{messageNum}}t"
-                hover-class="weui-grid_active" class="card-rank">
+            <view bindtap="handleClick" data-msg="{{item}}" class="card-rank">
                 <view class="card-rank-title rank-border">
                     <text class="iconfont icon-xianshimima rank-icon"></text>
-                    <text>{{readNum || 0}}</text>
+                    <text>{{item.readNum || 0}}</text>
                 </view>
-            </navigator>
-            <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&readNum={{readNum}}&messageNum={{messageNum}}t"
-                hover-class="weui-grid_active" class="card-rank no-border">
+            </view>
+            <view bindtap="handleClick" data-msg="{{item}}" class="card-rank no-border">
                 <view class="card-rank-title rank-border">
                     <text class="iconfont icon-pinglun rank-icon"></text>
-                    <text>{{messageNum || 0}}</text>
+                    <text>{{item.messageNum || 0}}</text>
                 </view>
-            </navigator>
-            <block wx:if="{{status === false}}">
-                <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&readNum={{readNum}}&messageNum={{messageNum}}t"
-                    hover-class="weui-grid_active" class="card-rank card-time">
+            </view>
+            <block wx:if="{{item.status === 1}}">
+                <view bindtap="handleClick" data-msg="{{item}}" class="card-rank card-time">
                     <view class="card-rank-title">
                         <text style='font-size: 28rpx'>倒计时 12:34</text>
                     </view>
-                </navigator>
+                </view>
             </block>
         </view>
     </view>

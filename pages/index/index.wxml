@@ -10,7 +10,7 @@
         </block>
     </view> -->
     <block wx:for="{{list}}" wx:key="item">
-        <template is="card" data="{{...item}}" />
+        <template is="card" data="{{item}}" />
     </block>
     <navigator url="/pages/message/message" class="jump-store" hover-class="navigator-hover">
         <text class="iconfont icon-xiaoxi"></text>
