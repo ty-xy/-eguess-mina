@@ -19,17 +19,29 @@ Page({
         new app.MyToast();
         wx.setNavigationBarTitle({
             title: '答题详情'
-        })
+        });
         const that = this;
         API.ajax(`/topic/${option.id}`, '', function (res) {
             //这里既可以获取模拟的res
             if (res.statusCode === 200) {
                 // const list = res.data.filter((item) => item.from === '');
                 option.title = decodeURIComponent(option.title);
-                console.log('detail', res.data);
                 const list = res.data.answers.filter((item) => (!item.messageId));
+                const resList = [];
+                list.forEach((item) => {
+                    if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
+                        item.isBookMark = true;
+                    }
+                    if (item.likeArr.indexOf(app.globalData.openid) === -1) {
+                        item.isKikeArr = false;
+                    } else {
+                        item.isLikeArr = true;
+                    }
+                    resList.push(item);
+                });
+                console.log('resList', resList);
                 that.setData({
-                    list,
+                    list: resList,
                     item: res.data,
                     option,
                     openid: app.globalData.openid,
@@ -39,7 +51,6 @@ Page({
     },
     // 点赞
     handlelike(e) {
-        console.log('data', this.data);
         const { message } = e.currentTarget.dataset;
         const openid = app.globalData.openid;
         const likeArr = message.likeArr || [];
@@ -60,8 +71,20 @@ Page({
                         // const list = res.data.filter((item) => item.from === '');
                         option.title = decodeURIComponent(option.title);
                         const list = res.data.answers.filter((item) => (!item.messageId));
+                        const resList = [];
+                        list.forEach((item) => {
+                            if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
+                                item.isBookMark = true;
+                            }
+                            if (item.likeArr.indexOf(app.globalData.openid) === -1) {
+                                item.isKikeArr = false;
+                            } else {
+                                item.isLikeArr = true;
+                            }
+                            resList.push(item);
+                        });
                         that.setData({
-                            list,
+                            list: resList,
                             item: res.data,
                             option,
                         })
@@ -80,7 +103,6 @@ Page({
     // 收藏
     handleMark(e) {
         const { message } = e.currentTarget.dataset;
-        console.log('handleMark', message, this.data);
         const openid = app.globalData.openid;
         const bookMarks = message.bookMarks || [];
         let isLike = false;
@@ -102,7 +124,7 @@ Page({
                         const list = res.data.answers.filter((item) => (!item.messageId));
                         const resList = [];
                         list.forEach((item) => {
-                            if (item.bookMarks.indexOf(app.globalData.openid) > -1) {
+                            if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
                                 item.isBookMark = true;
                             }
                             resList.push(item);

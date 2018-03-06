@@ -49,7 +49,7 @@
                         </button>
                     </view>
                 </view>
-                <navigator url="/pages/m2m/m2m?topicId={{item.id}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeNum={{msg.likeNum}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
+                <navigator url="/pages/m2m/m2m?topicId={{item.id}}&bookMarks={{msg.bookMarks}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeArr={{msg.likeArr}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
                     class="detail-comment" hover-class="navigator-hover">
                     {{msg.comment}}
                 </navigator>
@@ -59,10 +59,15 @@
                     </view>
                     <view class="card-detail-message">
                         <view class="" data-message="{{msg}}" bindtap="handlelike">
-                            <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx"></text>
+                            <block wx:if="{{msg.isLikeArr}}">
+                                <text class="iconfont icon-dianzan1" style="margin-right: 10rpx; font-size: 24rpx; color: #FDD545"></text>
+                            </block>
+                            <block wx:else>
+                                <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx;"></text>
+                            </block>
                             <text>{{(msg.likeArr && msg.likeArr.length) || 0}}</text>
                         </view>
-                        <navigator url="/pages/m2m/m2m?topicId={{item.id}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeNum={{msg.likeNum}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
+                        <navigator url="/pages/m2m/m2m?topicId={{item.id}}&bookMarks={{msg.bookMarks}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeArr={{msg.likeArr}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
                             style="margin-left: 30rpx" hover-class="navigator-hover">
                             <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
                             <text>{{msg.messageNum || 0}}</text>

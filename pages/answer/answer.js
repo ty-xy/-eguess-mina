@@ -25,6 +25,8 @@ Page({
             comment: e.detail.value.textarea,
             ...this.data.userInfo,
             topicInfo: this.data.item.id,
+            bookMarks: [],
+            likeArr: [],
         };
         const that = this;
         API.ajax('/message', JSON.stringify(newMsg), function (res) {
@@ -48,7 +50,7 @@ Page({
                         })
                         setTimeout(function(){
                             wx.navigateBack();
-                        },2000)
+                        }, 2000)
                     }
                 });
             }
