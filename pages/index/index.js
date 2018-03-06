@@ -2,13 +2,41 @@
 //获取应用实例
 const API = require('../../utils/api.js')
 const app = getApp()
-var initData = 'this is first line\nthis is second line'
-var extraLine = [];
+const loadMore = function(that){
+    that.setData({
+        hidden:false
+    });
+    // wx.request({
+    //     url: url,
+    //     data:{
+    //         page : page,
+    //         page_size : page_size,
+    //         sort : sort,
+    //         is_easy : is_easy,
+    //         lange_id : lange_id,
+    //         pos_id : pos_id,
+    //         unlearn : unlearn
+    //     },
+    //     success:function(res){
+    //         //console.info(that.data.list);
+    //         var list = that.data.list;
+    //         for(var i = 0; i < res.data.list.length; i++){
+    //             list.push(res.data.list[i]);
+    //         }
+    //         that.setData({
+    //             list : list
+    //         });
+    //         page ++;
+    //         that.setData({
+    //             hidden:true
+    //         });
+    //     }
+    // });
+};
 Page({
     data: {
         motto: 'tao',
         userInfo: {},
-        text: initData,
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         list: [],
@@ -61,8 +89,15 @@ Page({
                 }
             })
         }
-        const that = this
-
+        const that = this;
+        wx.getSystemInfo({
+            success: function (res) {
+              that.setData({
+                // second部分高度 = 利用窗口可使用高度 - first部分高度（这里的高度单位为px，所有利用比例将300rpx转换为px）
+                    viewHeight: res.windowHeight,
+              })
+            }
+        })
         // 获取首页数据
         API.ajax('/topic', '', function (res) {
             //这里既可以获取模拟的res
@@ -102,21 +137,6 @@ Page({
             })  
         }  
     },
-    add:function(e){
-        extraLine.push('other line')
-        this.setData({
-            text:initData + '\n' + extraLine.join('\n')
-        })
-    },
-    remove:function(e){
-        if(extraLine.length>0){
-            extraLine.pop()
-            extraLine.pop()
-            this.setData({
-            text: initData + '\n' + extraLine.join('\n')
-            })
-        }
-    },
     // 阅读量记录
     handleClick(e) {
         console.log('handleClick', e);
@@ -140,5 +160,12 @@ Page({
         wx.navigateTo({
             url: `/pages/detail/detail?id=${msg.id}&title={msg.title}&status=${msg.status}&readNum=${msg.readNum}&messageNum={msg.messageNum}`,
         })
-    }
+    },
+       //页面滑动到底部
+    bindDownLoad() {   
+        var that = this;
+        // loadMore(that);
+        console.log("lower");
+    },
+
 })

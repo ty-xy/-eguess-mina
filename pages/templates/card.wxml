@@ -4,10 +4,10 @@
             <text class="card-status">待审核</text>
         </block>
         <block wx:if="{{item.status === 1}}">
-            <text class="card-status card-status-close">进行中</text>
+            <text class="card-status">进行中</text>
         </block>
         <block wx:if="{{item.status === 2}}">
-            <text class="card-status">已结束</text>
+            <text class="card-status card-status-close">已结束</text>
         </block>
         <view bindtap="handleClick" data-msg="{{item}}" class="card-title">
             {{item.title}}
