@@ -20,12 +20,13 @@ Page({
         })
     },
     bindFormSubmit(e) {
-        console.log('bindFormSubmit', e.detail.value.textarea, this.data.item.id);
         const { avatarUrl, gender } = this.data.userInfo;
         const newMsg = {
             comment: e.detail.value.textarea,
             ...this.data.userInfo,
-            topicId: this.data.item.id,
+            topicInfo: this.data.item.id,
+            bookMarks: [],
+            likeArr: [],
         };
         const that = this;
         API.ajax('/message', JSON.stringify(newMsg), function (res) {
@@ -49,7 +50,7 @@ Page({
                         })
                         setTimeout(function(){
                             wx.navigateBack();
-                        },2000)
+                        }, 2000)
                     }
                 });
             }

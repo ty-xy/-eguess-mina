@@ -1,3 +1,6 @@
+@import "../../components/my-toast/my-toast.wxss";
+
+
 .card-title-detail{
     padding: 15px;
 }

@@ -1,3 +1,5 @@
+import { MyToast } from './components/my-toast/my-toast'
+
 //app.js
 
 const APP_ID ='wx9e3ef944fc45397f';//输入小程序appid  
@@ -7,10 +9,8 @@ let SESSION_KEY=''//储存获取到session_key
 const API= require("utils/api.js")
 
 App({
-    data:{
-        userInfo:{}
-    },
-    onLaunch:  function () {
+    MyToast,
+    onLaunch: function () {
         // 展示本地存储能力
         var logs = wx.getStorageSync('logs') || []
         logs.unshift(Date.now())
@@ -71,7 +71,7 @@ App({
                                                 };
                                                 let isOpenid = false;
                                                 let itemId='';         
-                                                userRes.data.forEach((item)=>{
+                                                (userRes.data || []).forEach((item)=>{
                                                     if (item.openid === that.globalData.openid) {
                                                         isOpenid = true;
                                                         itemId = item.id;

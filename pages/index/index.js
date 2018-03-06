@@ -30,20 +30,10 @@ Page({
     //事件处理函数
     bindViewTap: function() {
         wx.navigateTo({
-        url: '../rank/rank'
+            url: '../rank/rank'
         })
     },
     onLoad: function (option) {
-        // wx.getUserInfo({
-        //     success: res => {
-        //         console.log('getUserInfo', res)
-        //         app.globalData.userInfo = res.userInfo
-        //         this.setData({
-        //             userInfo: res.userInfo,
-        //             hasUserInfo: true
-        //         })
-        //     }
-        // })
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
