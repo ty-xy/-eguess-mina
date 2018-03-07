@@ -1,18 +1,12 @@
 <!--index.wxml-->
 <import src="../templates/card.wxml" />
 
-<view class="container cardlist-container">
-    <!-- <view class="userinfo">
-        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getPhoneNumber" bindgetuserinfo="getPhoneNumber"> 获取头像昵称 </button>
-        <block wx:else>
-            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-            <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-        </block>
-    </view> -->
+<scroll-view scroll-y="true" scroll-with-animation="true" bindscrolltolower="bindDownLoad" style="height: {{ viewHeight }}px;"
+    class="cardlist-container">
     <block wx:for="{{list}}" wx:key="item">
-        <template is="card" data="{{...item}}" />
+        <template is="card" data="{{item}}" />
     </block>
     <navigator url="/pages/message/message" class="jump-store" hover-class="navigator-hover">
         <text class="iconfont icon-xiaoxi"></text>
     </navigator>
-</view>
+</scroll-view>
