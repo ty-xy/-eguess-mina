@@ -99,7 +99,7 @@ Page({
             }
         })
         // 获取首页数据
-        API.ajax('/topic', '', function (res) {
+        API.ajax('/topic', {pageNo: 1}, function (res) {
             //这里既可以获取模拟的res
             if (res.statusCode === 200) {
                 console.log('index', res.data);

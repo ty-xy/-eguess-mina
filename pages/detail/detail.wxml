@@ -21,6 +21,7 @@
                     </view>
                 </view>
             </view>
+            <text class="card-answer-button">收藏</text>
             <navigator url="/pages/answer/answer?title={{item.title}}&status={{item.status}}&readNum={{item.readNum}}&messageNum={{item.messageNum}}&id={{item.id}}"
                 class="card-detail-message">
                 <text class="card-answer-button">立即抢答</text>
