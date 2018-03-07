@@ -3,7 +3,16 @@
 <import src="../templates/card.wxml" />
 
 <view class="container cardlist-container">
-    <block wx:for="{{list}}" wx:key="item">
-        <template is="card" data="{{...item}}" />
-    </block>
+    <view wx:if="{{condition}}">
+        <block wx:for="{{list}}" wx:key="item">
+            <template is="card" data="{{...item}}" />
+        </block>
+    </view>
+    <view wx:else class="empty-topic">
+        <image style="height:176rpx;width:322rpx" src="../../images/canyuchang@2x.png"></image>
+            <view class="empty-title ">您还没有参与的场次</view>
+        <navigator  url="/pages/index/index" open-type="switchTab">
+            <view class="go-play">去逛逛</view>
+        </navigator>
+    </view>
 </view>
