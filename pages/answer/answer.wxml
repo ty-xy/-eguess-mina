@@ -22,7 +22,8 @@
         </view>
     </view>
     <form bindsubmit="bindFormSubmit" class="textarea">
-        <textarea show-confirm-bar="{{false}}" name='textarea' maxlength="200" placeholder="请挥洒你的笔墨..." placeholder-style="color:BDBDBD; font-size: 28rpx" />
+        <textarea show-confirm-bar="{{false}}" name='textarea' maxlength="200" placeholder="请挥洒你的笔墨..." placeholder-style="color:BDBDBD; font-size: 28rpx"
+        />
         <button form-type="submit" class="btn">提交</button>
     </form>
 </view>

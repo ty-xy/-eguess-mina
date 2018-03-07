@@ -11,7 +11,7 @@
     url('//at.alicdn.com/t/font_565417_z0n3uo4749ozuxr.svg#iconfont') format('svg');
   }
   
-.iconfont {
+  .iconfont {
     font-family:"iconfont" !important;
     font-size:16px;
     font-style:normal;
@@ -61,7 +61,33 @@
 
 .icon-wode:before { content: "\e642"; }
 
-.icon-shoucang2:before { content: "\e643"; }
+  .icon-cuowu:before { content: "\e615"; }
+  
+  .icon-qianbao:before { content: "\e672"; }
+  
+  .icon-xianshimima:before { content: "\e62b"; }
+  
+  .icon-youjiantou:before { content: "\e631"; }
+  
+  .icon-zuojiantou:before { content: "\e632"; }
+  
+  .icon-paihangbang:before { content: "\e63b"; }
+  
+  .icon-dianzan:before { content: "\e63c"; }
+  
+  .icon-dianzan1:before { content: "\e63d"; }
+  
+  .icon-fenxiang:before { content: "\e63e"; }
+  
+  .icon-shoucang1:before { content: "\e63f"; }
+  
+  .icon-pinglun:before { content: "\e640"; }
+  
+  .icon-suoding:before { content: "\e641"; }
+  
+  .icon-wode:before { content: "\e642"; }
+  
+  .icon-shoucang2:before { content: "\e643"; }
 
 
 

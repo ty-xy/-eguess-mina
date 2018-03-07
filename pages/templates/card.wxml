@@ -26,7 +26,7 @@
             <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&readNum={{readNum}}&messageNum={{messageNum}}t"
                 hover-class="weui-grid_active" class="card-rank">
                 <view class="card-rank-title rank-border">
-                    <text class="iconfont icon-dianzan rank-icon"></text>
+                    <text class="iconfont icon-xianshimima rank-icon"></text>
                     <text>{{readNum || 0}}</text>
                 </view>
             </navigator>
