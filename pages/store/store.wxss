@@ -19,6 +19,10 @@
     width:160rpx;
     text-align:center;
     line-height:80rpx;
+    font-family: STHeitiSC-Medium;
+    font-size: 14px;
+    color: #BDBDBD;
+    letter-spacing: 0.17px;
 }
 .title-right{
     background: #FFFFFF;
@@ -29,6 +33,10 @@
     width:160rpx;
     text-align:center;
     line-height:80rpx;
+    font-family: STHeitiSC-Medium;
+    font-size: 14px;
+    color:#BDBDBD;
+    letter-spacing: 0.17px;
 }
 .card-bottom{
     display:flex;
@@ -63,6 +71,7 @@
 }
 .rank-color{
     background: #FDD545;
+    color: #333333;
 }
 .card-comment{
     font-family: STHeitiSC-Medium;
@@ -73,4 +82,62 @@
 }
  .rank-icon{
     color: #BDBDBD;
+}
+.cardlist .remove{  
+    width: 64rpx;  
+    height: 100%;  
+    background-color: red;  
+    position: absolute;  
+    top: 0;  
+    right:-60px;
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+}  
+.inner{  
+    position: absolute;  
+   
+}  
+.delete-icon{
+    color: #fff;
+    font-size:32px;
+}
+.del{  
+    background-color: #e64340;  
+    width: 64rpx; 
+    height:64rpx;
+    /* top:0;   */
+    border-radius:50%;
+    /* height:100%; */
+    text-align: center;  
+    z-index: 4;  
+    right: 0;  
+    top:40%;
+    color: #fff;
+    position:absolute;
+    display: flex;  
+    justify-content: center;  
+    align-items: center
+} 
+
+.text{
+    background:#F4F4F4;
+    margin-top: 15px;
+    position: relative;
+    overflow: hidden;
+    width:100%;
+    border-radius: 10px;
+}
+.cardlists{
+    background-color: #fff;  
+    position: relative;  
+    width: 100%;  
+    z-index: 5; 
+    transition: left 0.2s ease-in-out;  
+    white-space:wrap;  
+    overflow:hidden;  
+    text-overflow:ellipsis; 
+}
+page{
+    height:100%;
 }

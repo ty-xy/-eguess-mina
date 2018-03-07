@@ -75,12 +75,14 @@ App({
                                                     if (item.openid === that.globalData.openid) {
                                                         isOpenid = true;
                                                         itemId = item.id;
+                                                        that.globalData.userId= item.id; 
                                                     }
                                                 })
                                                 if(!isOpenid){
                                                     console.log(that.globalData)
                                                     API.ajax('/user',JSON.stringify(updateData),function(res){
                                                         console.log(res)
+                                                        that.globalData.userId= res.data.id; 
                                                     },'post')
                                                 } else {
                                                     API.ajax(`/user/${itemId}`,JSON.stringify(updateData),function(opres){
@@ -104,5 +106,6 @@ App({
     globalData: {
         userInfo: {},
         openid:null,
+        userId:null,
     }
 })
