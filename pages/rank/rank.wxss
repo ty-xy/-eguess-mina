@@ -1,9 +1,12 @@
 .log-list {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  background:#fff;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    background:#fff;
   
+}
+page{
+    background: #fff;
 }
 .rank-title{
     height:232rpx;
@@ -114,7 +117,7 @@
    height:307px;
    width:200%;
    position: absolute;
-   top:-184px;
+   top:-190px;
    left:-50%;
    border-radius:50%;
    z-index: 1;

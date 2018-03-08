@@ -5,7 +5,7 @@
 <view class="container cardlist-container">
     <view wx:if="{{condition}}">
         <block wx:for="{{list}}" wx:key="item">
-            <template is="card" data="{{...item}}" />
+            <template is="card" data="{{item}}" />
         </block>
     </view>
     <view wx:else class="empty-topic">

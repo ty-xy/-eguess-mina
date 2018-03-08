@@ -60,7 +60,7 @@ App({
                                             // API.ajax('/usermessage','',function(umres){
                                             //      console.log("/usermessage",umres.data)
                                             // })
-                                            API.ajax('/user', '', function (userRes) {
+                                            API.ajax('/wxuserinfo', '', function (userRes) {
                                                 //这里既可以获取模拟的res
                                                 console.log('API--openid', userRes,that.globalData.openid)
                                                 const updateData = {
@@ -80,15 +80,16 @@ App({
                                                 })
                                                 if(!isOpenid){
                                                     console.log(that.globalData)
-                                                    API.ajax('/user',JSON.stringify(updateData),function(res){
+                                                    API.ajax('/wxuserinfo',JSON.stringify(updateData),function(res){
                                                         console.log(res)
                                                         that.globalData.userId= res.data.id; 
                                                     },'post')
-                                                } else {
-                                                    API.ajax(`/user/${itemId}`,JSON.stringify(updateData),function(opres){
-                                                        console.log('rtrt', opres)
-                                                    },'PUT')
-                                                }
+                                                } 
+                                                // else {
+                                                //     API.ajax(`/user/${itemId}`,JSON.stringify(updateData),function(opres){
+                                                //         console.log('rtrt', opres)
+                                                //     },'PUT')
+                                                // }
                                             });
                                         
                                         }
