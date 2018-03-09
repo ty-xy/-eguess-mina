@@ -1,11 +1,43 @@
 const API = require('../../utils/api.js')
 const app = getApp();
+const size = 5;
+let page = 1;
+const loadMore = function(that, option){
+    API.ajax(`/topic/${option.id}`, '', function (res) {
+        //这里既可以获取模拟的res
+        if (res.statusCode === 200) {
+            // const list = res.data.filter((item) => item.from === '');
+            option.title = decodeURIComponent(option.title);
+            const list = res.data.answers.filter((item) => (!item.messageId));
+            const resList = [];
+            list.forEach((item) => {
+                if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
+                    item.isBookMark = true;
+                }
+                if (item.likeArr.indexOf(app.globalData.openid) === -1) {
+                    item.isKikeArr = false;
+                } else {
+                    item.isLikeArr = true;
+                }
+                resList.push(item);
+            });
+            console.log('resList', resList);
+            that.setData({
+                list: resList,
+                item: res.data,
+                option,
+                openid: app.globalData.openid,
+            })
+        }
+    });
+};
 
 Page({
     data: {
         list: [],
         item: {},
         openid: '',
+        viewHeight: '500px',
     },
     onShareAppMessage(res) {
         const { id, status, title, readNum, messageNum } = this.data.item;
@@ -21,33 +53,41 @@ Page({
             title: '答题详情'
         });
         const that = this;
-        API.ajax(`/topic/${option.id}`, '', function (res) {
-            //这里既可以获取模拟的res
-            if (res.statusCode === 200) {
-                // const list = res.data.filter((item) => item.from === '');
-                option.title = decodeURIComponent(option.title);
-                const list = res.data.answers.filter((item) => (!item.messageId));
-                const resList = [];
-                list.forEach((item) => {
-                    if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
-                        item.isBookMark = true;
-                    }
-                    if (item.likeArr.indexOf(app.globalData.openid) === -1) {
-                        item.isKikeArr = false;
-                    } else {
-                        item.isLikeArr = true;
-                    }
-                    resList.push(item);
-                });
-                console.log('resList', resList);
-                that.setData({
-                    list: resList,
-                    item: res.data,
-                    option,
-                    openid: app.globalData.openid,
-                })
+        wx.getSystemInfo({
+            success: function (res) {
+              that.setData({
+                    viewHeight: res.windowHeight,
+              })
             }
-        });
+        })
+        loadMore(that, option);
+        // API.ajax(`/topic/${option.id}`, '', function (res) {
+        //     //这里既可以获取模拟的res
+        //     if (res.statusCode === 200) {
+        //         // const list = res.data.filter((item) => item.from === '');
+        //         option.title = decodeURIComponent(option.title);
+        //         const list = res.data.answers.filter((item) => (!item.messageId));
+        //         const resList = [];
+        //         list.forEach((item) => {
+        //             if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
+        //                 item.isBookMark = true;
+        //             }
+        //             if (item.likeArr.indexOf(app.globalData.openid) === -1) {
+        //                 item.isKikeArr = false;
+        //             } else {
+        //                 item.isLikeArr = true;
+        //             }
+        //             resList.push(item);
+        //         });
+        //         console.log('resList', resList);
+        //         that.setData({
+        //             list: resList,
+        //             item: res.data,
+        //             option,
+        //             openid: app.globalData.openid,
+        //         })
+        //     }
+        // });
     },
     // 点赞
     handlelike(e) {
@@ -145,6 +185,11 @@ Page({
                 that.show('收藏失败', 'cuowu', '#F45353');
             }
         }, 'PUT');
-    }
+    },
+    //页面滑动到底部
+    bindDownLoad() {   
+        const that = this;
+        console.log("lower");
+    },
 })
   

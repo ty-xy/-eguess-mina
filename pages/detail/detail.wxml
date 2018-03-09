@@ -1,6 +1,6 @@
 <import src="../../components/my-toast/my-toast.wxml" />
 
-<view class="container" style="height: 100%; padding-bottom: 130rpx">
+<scroll-view scroll-y="true" scroll-with-animation="true" bindscrolltolower="bindDownLoad" class="container" style="height: {{viewHeight}}px; padding-bottom: 130rpx">
     <view class="count-down">倒计时 7:23</view>
     <view class="cardlist">
         <view class="card-title card-title-detail">
@@ -93,4 +93,4 @@
         </view>
         <template is="toast" data="{{ ..._toast_ }}" />
     </view>
-</view>
+</scroll-view>

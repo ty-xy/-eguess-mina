@@ -3,61 +3,87 @@
         <view class="title-left {{left}}"  bindtap="changeView" id="qusetion">问题</view>
         <view class="title-right {{right}}"  bindtap="changeView" id="answer">回答</view>
     </view>
-    <block wx:for="{{list}}" wx:key="item">
-        <block wx:if="{{change===true}}">
-            <view class="cardlist">
-                <block wx:if="{{item.status === false}}">
-                    <text class="card-status">进行中</text>
-                </block>
-                <block wx:if="{{item.status === true}}">
-                    <text class="card-status card-status-close">已结束</text>
-                </block>
-                <navigator url="/pages/detail/detail?id={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}" class="card-title"
-                    hover-class="weui-grid_active">
-                    {{item.title}}
-                </navigator>
-                <view class="card-bottom">
-                    <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
-                        class="card-rankb no-border card-left-rank">
-                        <view class="card-rank-title rank-border">
-                            <text class="iconfont icon-wode rank-icon"></text>
-                            <text>{{item.read}}</text>
-                        </view>
-                    </navigator>
-                    <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}t" hover-class="weui-grid_active"
-                        class="card-rankb no-border">
-                        <view class="card-rank-title rank-border">
-                            <text class="iconfont icon-pinglun rank-icon"></text>
-                            <text>{{item.message}}</text>
-                        </view>
-                    </navigator>
+    <block wx:if="{{change===true}}">
+        <view wx:if="{{showTopic}}">
+            <view wx:for="{{list}}" wx:key="item"  class="text">
+                <view class="cardlists " id="{{item.id}}" bindtouchstart="drawStart" 
+                bindtouchmove="drawMove" bindtouchend="drawEnd" data-index="{{index}}" 
+                style="{{item.txtStyle}}">
+                        <block wx:if="{{item.status === 0}}">
+                            <text class="card-status">待审核</text>
+                        </block>
+                        <block wx:if="{{item.status === 1}}">
+                            <text class="card-status ">进行中</text>
+                        </block>
+                        <block wx:if="{{item.status === 2}}">
+                            <text class="card-status card-status-close">已结束</text>
+                        </block>
+                        <navigator url="/pages/detail/detail?id={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}" class="card-title"
+                            hover-class="weui-grid_active">
+                            {{item.title}}
+                        </navigator>
+                        <view class="card-bottom">
+                            <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}" hover-class="weui-grid_active"
+                                class="card-rankb no-border card-left-rank">
+                                <view class="card-rank-title rank-border">
+                                    <text class="iconfont icon-wode rank-icon"></text>
+                                    <text>{{item.readNum||0}}</text>
+                                </view>
+                            </navigator>
+                            <navigator url="/pages/detail/detail?id={{id}}&title={{title}}&status={{status}}&read={{read}}&message={{message}}" hover-class="weui-grid_active"
+                                class="card-rankb no-border">
+                                <view class="card-rank-title rank-border">
+                                    <text class="iconfont icon-pinglun rank-icon"></text>
+                                    <text>{{item.messageNum}}</text>
+                                </view>
+                            </navigator>
+                        </view>  
+                </view>
+                <view class="inner del" data-id="{{item.id}}" bindtap="delItem">
+                    <text class="iconfont icon-shanchu delete-icon"></text>
                 </view>
             </view>
-        </block>
-        <block wx:else>
-            <view class="cardlist">
-                <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.read}}&message={{item.message}}&id={{msg.id}}" class="card-title"
-                    hover-class="weui-grid_active" style="padding:15px;">
-                     {{item.title}}
-                </navigator>
-                <view class="card-comment" style="margin-top:-10rpx">
-                     {{item.comment}}
-                </view>
-                <view class="card-bottom" style="margin-top:20rpx">
-                    <view class="card-rankc no-border card-left-commark">
-                        <view class="card-rank-title rank-border">
-                            <text class= "rank-icon">{{item.read}}</text>
-                            <text class="rank-icon">回答</text>
-                        </view>
-                    </view>
-                    <view class="card-rankc no-border card-left-commark" style="margin-left:-40rpx">
-                        <view class="card-rank-title rank-border ">
-                            <text class="rank-icon">{{item.message}}</text>
-                            <text class="rank-icon">收藏</text>
-                        </view>
-                   </view>
-                 </view>
-            </view>
-        </block>
+        </view>
+        <view class="empty-topic" wx:else>
+            <image style="height:238rpx;width:264rpx" src="../../images/shoucang@2x.png"></image>
+                <view class="empty-title ">您还没有参与的场次</view>
+            <navigator  url="/pages/index/index" open-type="switchTab">
+                <view class="go-play">去逛逛</view>
+            </navigator>
+        </view>
     </block>
+    <block wx:else>
+        <view wx:if="{{showComment}}">
+            <block wx:for="{{commentList}}" wx:key="item">
+                <view class="cardlist">
+                    <navigator url="/pages/m2m/m2m?topicId={{item.id}}&title={{item.title}}&status={{item.status}}&read={{item.readNum}}&message={{item.messageNum}}&id={{msg.id}}" class="card-title"
+                        hover-class="weui-grid_active" style="padding:15px;">
+                            {{item.topicInfo.title}}
+                    </navigator>
+                    <view class="card-comment" style="margin-top:-10rpx">
+                            {{item.comment}}
+                    </view>
+                    <view class="card-bottom" style="margin-top:20rpx">
+                        <view class="card-rankc no-border card-left-commark">
+                            <view class="card-rank-title rank-border">
+                                <text class= "rank-icon">{{item.messageNum}}</text>
+                                <text class="rank-icon">回答</text>
+                            </view>
+                        </view>
+                        <view class="card-rankc no-border card-left-commark" style="margin-left:-40rpx">
+                            <view class="card-rank-title rank-border ">
+                                <text class="rank-icon">{{item.likeNum}}</text>
+                                <text class="rank-icon">收藏</text>
+                            </view>
+                        </view>
+                        </view>
+                </view>
+            </block>
+        </view>
+        <view wx:else class="empty-topic" >
+            <image style="height:238rpx;width:264rpx" src="../../images/shoucang@2x.png"></image>
+            <view class="empty-title ">您还没有参与的场次</view>
+        </view>
+    </block>
+    <!-- </block> -->
 </view>

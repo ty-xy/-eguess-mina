@@ -171,3 +171,6 @@
 .go-navigator-hover{
     background: #FDD545;
 }
+.detail-container{
+    height: 400px;
+}

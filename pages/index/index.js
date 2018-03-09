@@ -2,36 +2,32 @@
 //获取应用实例
 const API = require('../../utils/api.js')
 const app = getApp()
+const size = 5;
+let page = 1;
 const loadMore = function(that){
     that.setData({
-        hidden:false
+        isLoading: true,
+        noMore: false,
+    })
+    API.ajax('/topic', { page, size }, function (res) {
+        //这里既可以获取模拟的res
+        if (res.statusCode === 200) {
+            if (res.data.length === that.data.list.length) {
+                that.setData({
+                    list: res.data,
+                    isLoading: false,
+                    noMore: true,
+                })
+            } else {
+                page++;
+                that.setData({
+                    list: res.data,
+                    noMore: false,
+                    isLoading: false,
+                })
+            }
+        }
     });
-    // wx.request({
-    //     url: url,
-    //     data:{
-    //         page : page,
-    //         page_size : page_size,
-    //         sort : sort,
-    //         is_easy : is_easy,
-    //         lange_id : lange_id,
-    //         pos_id : pos_id,
-    //         unlearn : unlearn
-    //     },
-    //     success:function(res){
-    //         //console.info(that.data.list);
-    //         var list = that.data.list;
-    //         for(var i = 0; i < res.data.list.length; i++){
-    //             list.push(res.data.list[i]);
-    //         }
-    //         that.setData({
-    //             list : list
-    //         });
-    //         page ++;
-    //         that.setData({
-    //             hidden:true
-    //         });
-    //     }
-    // });
 };
 Page({
     data: {
@@ -40,7 +36,9 @@ Page({
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         list: [],
-        isStop: true
+        isStop: true,
+        noMore: false,
+        isLoading: true,
     },
     onShareAppMessage: function (res) {
         console.log('share', getCurrentPages()); 
@@ -93,21 +91,12 @@ Page({
         wx.getSystemInfo({
             success: function (res) {
               that.setData({
-                // second部分高度 = 利用窗口可使用高度 - first部分高度（这里的高度单位为px，所有利用比例将300rpx转换为px）
                     viewHeight: res.windowHeight,
               })
             }
         })
         // 获取首页数据
-        API.ajax('/topic', {pageNo: 1}, function (res) {
-            //这里既可以获取模拟的res
-            if (res.statusCode === 200) {
-                console.log('index', res.data);
-                that.setData({
-                    list: res.data
-                })
-            }
-        });
+        loadMore(that);
     },
     getUserInfo: function(e) {
         console.log("getUserInfo", e)
@@ -163,9 +152,9 @@ Page({
     },
        //页面滑动到底部
     bindDownLoad() {   
-        var that = this;
-        // loadMore(that);
-        console.log("lower");
+        const that = this;
+        loadMore(that);
+        console.log("lower", page);
     },
 
 })

@@ -67,7 +67,6 @@ const apis = {
     }
 };
 function ajax(url = '/', data = '', fn, method = "get", header = {}) {
-    console.log('params', data);
     if (!config.debugs) {
         wx.request({
             url: config.API_HOST + url,
