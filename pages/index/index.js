@@ -11,6 +11,7 @@ const loadMore = function(that){
     })
     API.ajax('/topic', { page, size }, function (res) {
         //这里既可以获取模拟的res
+        console.log('topic', res.data)
         if (res.statusCode === 200) {
             if (res.data.length === that.data.list.length) {
                 that.setData({
@@ -78,7 +79,6 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    console.log('getUserInfo', res)
                     app.globalData.userInfo = res.userInfo
                     this.setData({
                         userInfo: res.userInfo,
@@ -99,17 +99,13 @@ Page({
         loadMore(that);
     },
     getUserInfo: function(e) {
-        console.log("getUserInfo", e)
         app.globalData.userInfo = e.detail.userInfo
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         });  
     },
-    getPhoneNumber: function(e) {   
-        console.log(e.detail.errMsg)   
-        console.log(e.detail.iv)   
-        console.log(e.detail.encryptedData)   
+    getPhoneNumber: function(e) {      
         if (e.detail.errMsg == 'getPhoneNumber:fail user deny'){  
             wx.showModal({  
                 title: '提示',  
@@ -128,7 +124,6 @@ Page({
     },
     // 阅读量记录
     handleClick(e) {
-        console.log('handleClick', e);
         const { msg } = e.currentTarget.dataset;
         const that = this;
         const readNum = msg.readNum + 1;
@@ -138,7 +133,6 @@ Page({
                 API.ajax('/topic', '', function (res) {
                     //这里既可以获取模拟的res
                     if (res.statusCode === 200) {
-                        console.log('index', res.data);
                         that.setData({
                             list: res.data
                         })
@@ -147,7 +141,7 @@ Page({
             }
         }, 'PUT');
         wx.navigateTo({
-            url: `/pages/detail/detail?id=${msg.id}&title={msg.title}&status=${msg.status}&readNum=${msg.readNum}&messageNum={msg.messageNum}`,
+            url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${msg.readNum}&messageNum=${msg.answer.length}`,
         })
     },
        //页面滑动到底部

@@ -4,25 +4,25 @@
     <view class="count-down">倒计时 7:23</view>
     <view class="cardlist">
         <view class="card-title card-title-detail">
-            {{item.title}}
+            {{option.title}}
         </view>
         <view class="card-active card-detail-active">
             <view class="card-detail-message">
                 <view class="card-rank">
                     <view class="card-rank-title card-detail-rank">
                         <text class="iconfont icon-xianshimima rank-icon"></text>
-                        <text>{{item.readNum || 0}}</text>
+                        <text>{{option.readNum || 0}}</text>
                     </view>
                 </view>
                 <view class="card-rank card-detail-rank">
                     <view class="card-rank-title">
                         <text class="iconfont icon-pinglun rank-icon"></text>
-                        <text>{{item.messageNum || 0}}</text>
+                        <text>{{option.messageNum}}</text>
                     </view>
                 </view>
             </view>
             <text class="card-answer-button">收藏</text>
-            <navigator url="/pages/answer/answer?title={{item.title}}&status={{item.status}}&readNum={{item.readNum}}&messageNum={{item.messageNum}}&id={{item.id}}"
+            <navigator url="/pages/answer/answer?title={{option.title}}&status={{option.status}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&id={{option.id}}"
                 class="card-detail-message">
                 <text class="card-answer-button">立即抢答</text>
             </navigator>
@@ -34,8 +34,8 @@
             <view class="cardlist cardlist-detail">
                 <view class="card-title-detail card-avatar">
                     <view class="avatar-name">
-                        <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.avatarUrl}}"></image>
-                        <text class="name">{{msg.nickName}}</text>
+                        <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.user.avatarUrl}}"></image>
+                        <text class="name">{{msg.user.nickName}}</text>
                         <view class="tip">{{index + 1}}</view>
                     </view>
                     <view class="share-icon">
@@ -52,7 +52,7 @@
                 </view>
                 <navigator url="/pages/m2m/m2m?topicId={{item.id}}&bookMarks={{msg.bookMarks}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeArr={{msg.likeArr}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
                     class="detail-comment" hover-class="navigator-hover">
-                    {{msg.comment}}
+                    {{msg.body}}
                 </navigator>
                 <view class="message-info">
                     <view class="message-info-time">
@@ -66,12 +66,12 @@
                             <block wx:else>
                                 <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx;"></text>
                             </block>
-                            <text>{{(msg.likeArr && msg.likeArr.length) || 0}}</text>
+                            <text>{{(msg.like && msg.like.length) || 0}}</text>
                         </view>
                         <navigator url="/pages/m2m/m2m?topicId={{item.id}}&bookMarks={{msg.bookMarks}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeArr={{msg.likeArr}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
                             style="margin-left: 30rpx" hover-class="navigator-hover">
                             <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                            <text>{{msg.messageNum || 0}}</text>
+                            <text>{{(msg.comment && msg.comment.length) || 0}}</text>
                         </navigator>
                     </view>
                 </view>

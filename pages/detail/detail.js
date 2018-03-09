@@ -3,30 +3,14 @@ const app = getApp();
 const size = 5;
 let page = 1;
 const loadMore = function(that, option){
-    API.ajax(`/topic/${option.id}`, '', function (res) {
+    API.ajax('/answer', { topicid: option.id }, function (res) {
+        console.log('answer', res)
         //这里既可以获取模拟的res
         if (res.statusCode === 200) {
-            // const list = res.data.filter((item) => item.from === '');
-            option.title = decodeURIComponent(option.title);
-            const list = res.data.answers.filter((item) => (!item.messageId));
-            const resList = [];
-            list.forEach((item) => {
-                if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
-                    item.isBookMark = true;
-                }
-                if (item.likeArr.indexOf(app.globalData.openid) === -1) {
-                    item.isKikeArr = false;
-                } else {
-                    item.isLikeArr = true;
-                }
-                resList.push(item);
-            });
-            console.log('resList', resList);
             that.setData({
-                list: resList,
-                item: res.data,
+                list: res.data,
+                userid: app.globalData.userid,
                 option,
-                openid: app.globalData.openid,
             })
         }
     });
@@ -34,8 +18,7 @@ const loadMore = function(that, option){
 
 Page({
     data: {
-        list: [],
-        item: {},
+        list: {},
         openid: '',
         viewHeight: '500px',
     },
@@ -61,130 +44,83 @@ Page({
             }
         })
         loadMore(that, option);
-        // API.ajax(`/topic/${option.id}`, '', function (res) {
-        //     //这里既可以获取模拟的res
-        //     if (res.statusCode === 200) {
-        //         // const list = res.data.filter((item) => item.from === '');
-        //         option.title = decodeURIComponent(option.title);
-        //         const list = res.data.answers.filter((item) => (!item.messageId));
-        //         const resList = [];
-        //         list.forEach((item) => {
-        //             if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
-        //                 item.isBookMark = true;
-        //             }
-        //             if (item.likeArr.indexOf(app.globalData.openid) === -1) {
-        //                 item.isKikeArr = false;
-        //             } else {
-        //                 item.isLikeArr = true;
-        //             }
-        //             resList.push(item);
-        //         });
-        //         console.log('resList', resList);
-        //         that.setData({
-        //             list: resList,
-        //             item: res.data,
-        //             option,
-        //             openid: app.globalData.openid,
-        //         })
-        //     }
-        // });
+        console.log('detail', this.data);
     },
     // 点赞
     handlelike(e) {
         const { message } = e.currentTarget.dataset;
-        const openid = app.globalData.openid;
-        const likeArr = message.likeArr || [];
-        let isLike = false;
-        if (likeArr.indexOf(openid) === -1) {
-            likeArr.push(openid);
-            isLike = true;
-        } else {
-            likeArr.splice(likeArr.indexOf(openid), 1);
-        }
+        const userid = app.globalData.userid;
         const that = this;
+        
         const { option } = this.data;
-        API.ajax(`/message/${message.id}`, JSON.stringify({ likeArr }), function (res) {
-            if (res.statusCode == 200) {
-                API.ajax(`/topic/${option.id}`, '', function (res) {
-                    //这里既可以获取模拟的res
-                    if (res.statusCode === 200) {
-                        // const list = res.data.filter((item) => item.from === '');
-                        option.title = decodeURIComponent(option.title);
-                        const list = res.data.answers.filter((item) => (!item.messageId));
-                        const resList = [];
-                        list.forEach((item) => {
-                            if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
-                                item.isBookMark = true;
-                            }
-                            if (item.likeArr.indexOf(app.globalData.openid) === -1) {
-                                item.isKikeArr = false;
-                            } else {
-                                item.isLikeArr = true;
-                            }
-                            resList.push(item);
-                        });
-                        that.setData({
-                            list: resList,
-                            item: res.data,
-                            option,
-                        })
-                    }
-                });
-                if (isLike) {
+        const likes = message.like;
+        let method = 'post';
+        let likeId = '';
+        for (let i = 0; i < likes.length; i++) {
+            if (message.id === likes[i].answerid) {
+                method = 'delete';
+                likeId = likes[i].id;
+                break;
+            }
+        }
+        if (method === 'post') {
+            API.ajax('/like', JSON.stringify({ userid: '5a9a46834aff491a7530becd', answerid: message.id, user: '5a9a46834aff491a7530becd', answer: message.id }), function (res) {
+                if (res.statusCode == 200 || res.statusCode == 201) {
+                    loadMore(that, option)
                     that.show('点赞成功', 'dianzan1', '#FFD62D');
                 } else {
-                    that.show('取消点赞', 'dianzan', '#666');
+                    that.show('点赞失败', 'cuowu', '#F45353');
                 }
-            } else {
-                that.show('点赞失败', 'cuowu', '#F45353');
-            }
-        }, 'PUT');
+            }, method);
+        } else {
+            API.ajax(`/like/${likeId}`, '', function (res) {
+                console.log('res', res)
+                if (res.statusCode === 200) {
+                    loadMore(that, option)
+                    that.show('点赞已取消', 'dianzan', '#666');
+                } else {
+                    that.show('操作失败', 'cuowu', '#F45353');
+                }
+            }, method);
+        }
+        
     },
     // 收藏
     handleMark(e) {
         const { message } = e.currentTarget.dataset;
-        const openid = app.globalData.openid;
-        const bookMarks = message.bookMarks || [];
-        let isLike = false;
-        if (bookMarks.indexOf(openid) === -1) {
-            bookMarks.push(openid);
-            isLike = true;
-        } else {
-            bookMarks.splice(bookMarks.indexOf(openid), 1);
-        }
+        const userid = app.globalData.userid;
         const that = this;
         const { option } = this.data;
-        API.ajax(`/message/${message.id}`, JSON.stringify({ bookMarks }), function (res) {
-            if (res.statusCode == 200) {
-                API.ajax(`/topic/${option.id}`, '', function (res) {
-                    //这里既可以获取模拟的res
-                    if (res.statusCode === 200) {
-                        // const list = res.data.filter((item) => item.from === '');
-                        option.title = decodeURIComponent(option.title);
-                        const list = res.data.answers.filter((item) => (!item.messageId));
-                        const resList = [];
-                        list.forEach((item) => {
-                            if ((item.bookMarks || []).indexOf(app.globalData.openid) > -1) {
-                                item.isBookMark = true;
-                            }
-                            resList.push(item);
-                        });
-                        that.setData({
-                            list: resList,
-                            item: res.data,
-                            option,
-                        })
-                    }
-                });
-                if (isLike) {
-                    that.show('收藏成功', 'shoucang', '#FFD62D');
-                } else {
-                    that.show('取消收藏', 'shoucang1', '#666');
-                }
-            } else {
-                that.show('收藏失败', 'cuowu', '#F45353');
+        const likes = message.like;
+        let method = 'post';
+        let likeId = '';
+        for (let i = 0; i < likes.length; i++) {
+            if (message.id === likes[i].answerid) {
+                method = 'delete';
+                likeId = likes[i].id;
+                break;
             }
-        }, 'PUT');
+        }
+        if (method === 'post') {
+            API.ajax('/like', JSON.stringify({ userid: '5a9a46834aff491a7530becd', answerid: message.id, user: '5a9a46834aff491a7530becd', answer: message.id }), function (res) {
+                if (res.statusCode == 200 || res.statusCode == 201) {
+                    loadMore(that, option)
+                    that.show('点赞成功', 'dianzan1', '#FFD62D');
+                } else {
+                    that.show('点赞失败', 'cuowu', '#F45353');
+                }
+            }, method);
+        } else {
+            API.ajax(`/like/${likeId}`, '', function (res) {
+                console.log('res', res)
+                if (res.statusCode === 200) {
+                    loadMore(that, option)
+                    that.show('点赞已取消', 'dianzan', '#666');
+                } else {
+                    that.show('操作失败', 'cuowu', '#F45353');
+                }
+            }, method);
+        }
     },
     //页面滑动到底部
     bindDownLoad() {   
