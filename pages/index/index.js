@@ -1,9 +1,11 @@
 //index.js
 //获取应用实例
-const API = require('../../utils/api.js')
+import API from '../../utils/api.js';
+import format from '../../utils/util';
 const app = getApp()
 const size = 5;
 let page = 1;
+
 const loadMore = function(that){
     that.setData({
         isLoading: true,
@@ -30,6 +32,10 @@ const loadMore = function(that){
         }
     });
 };
+
+const totalTime = 15 * 60 * 1000;
+
+
 Page({
     data: {
         motto: 'tao',
@@ -40,6 +46,7 @@ Page({
         isStop: true,
         noMore: false,
         isLoading: true,
+        timer: '00: 00',
     },
     onShareAppMessage: function (res) {
         console.log('share', getCurrentPages()); 
@@ -97,6 +104,10 @@ Page({
         })
         // 获取首页数据
         loadMore(that);
+        const tim = format.countdown(this, totalTime)
+        console.log('data', tim);
+        format.countdown(this, totalTime);
+        
     },
     getUserInfo: function(e) {
         app.globalData.userInfo = e.detail.userInfo
@@ -130,6 +141,9 @@ Page({
         API.ajax(`/topic/${msg.id}`, JSON.stringify({ ...msg, readNum }), function (res) {
             //这里既可以获取模拟的res
             if (res.statusCode === 200) {
+                wx.navigateTo({
+                    url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${readNum}&messageNum=${msg.toAnswer.length}`,
+                })
                 API.ajax('/topic', '', function (res) {
                     //这里既可以获取模拟的res
                     if (res.statusCode === 200) {
@@ -140,9 +154,6 @@ Page({
                 });
             }
         }, 'PUT');
-        wx.navigateTo({
-            url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${msg.readNum}&messageNum=${msg.answer.length}`,
-        })
     },
        //页面滑动到底部
     bindDownLoad() {   

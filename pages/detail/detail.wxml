@@ -22,7 +22,7 @@
                 </view>
             </view>
             <text class="card-answer-button">收藏</text>
-            <navigator url="/pages/answer/answer?title={{option.title}}&status={{option.status}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&id={{option.id}}"
+            <navigator url="/pages/answer/answer?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&topicid={{option.id}}"
                 class="card-detail-message">
                 <text class="card-answer-button">立即抢答</text>
             </navigator>
@@ -50,7 +50,7 @@
                         </button>
                     </view>
                 </view>
-                <navigator url="/pages/m2m/m2m?topicId={{item.id}}&bookMarks={{msg.bookMarks}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeArr={{msg.likeArr}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
+                <navigator url="/pages/m2m/m2m?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.body}}&answerid={{msg.id}}&star2={{msg.upVotes.length}}&messageNum2={{msg.commments.length}}&createdAt={{msg.createdAt}}"
                     class="detail-comment" hover-class="navigator-hover">
                     {{msg.body}}
                 </navigator>
@@ -66,12 +66,12 @@
                             <block wx:else>
                                 <text class="iconfont icon-dianzan" style="margin-right: 10rpx; font-size: 24rpx;"></text>
                             </block>
-                            <text>{{(msg.like && msg.like.length) || 0}}</text>
+                            <text>{{(msg.upVotes && msg.upVotes.length) || 0}}</text>
                         </view>
-                        <navigator url="/pages/m2m/m2m?topicId={{item.id}}&bookMarks={{msg.bookMarks}}&createdAt={{msg.createdAt}}&name={{msg.nickName}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.comment}}&status={{msg.status}}&likeArr={{msg.likeArr}}&messageNum={{msg.messageNum}}&id={{msg.id}}"
+                        <navigator url="/pages/m2m/m2m?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.body}}&answerid={{msg.id}}&star2={{msg.upVotes.length}}&messageNum2={{msg.commments.length}}&createdAt={{msg.createdAt}}"
                             style="margin-left: 30rpx" hover-class="navigator-hover">
                             <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                            <text>{{(msg.comment && msg.comment.length) || 0}}</text>
+                            <text>{{(msg.comments && msg.comments.length) || 0}}</text>
                         </navigator>
                     </view>
                 </view>
@@ -86,7 +86,7 @@
                 <view>123</view>
                 <view>我的排名</view>
             </view>
-            <navigator url="/pages/answer/answer?title={{item.title}}&status={{item.status}}&readNum={{item.readNum}}&messageNum={{item.messageNum}}&id={{item.id}}"
+            <navigator url="/pages/answer/answer?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&topicid={{option.id}}"
                 hover-class="go-navigator-hover" class="message-range-flex message-range-right">
                 <text style="font-size: 28rpx;">立即抢答</text>
             </navigator>

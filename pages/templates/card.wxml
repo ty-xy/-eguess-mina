@@ -31,13 +31,13 @@
             <view bindtap="handleClick" data-msg="{{item}}" class="card-rank no-border">
                 <view class="card-rank-title rank-border">
                     <text class="iconfont icon-pinglun rank-icon"></text>
-                    <text>{{item.answer.length || 0}}</text>
+                    <text>{{item.toAnswer.length || 0}}</text>
                 </view>
             </view>
             <block wx:if="{{item.status === 1}}">
                 <view bindtap="handleClick" data-msg="{{item}}" class="card-rank card-time">
                     <view class="card-rank-title">
-                        <text style='font-size: 28rpx'>倒计时 12:34</text>
+                        <text style='font-size: 28rpx'>{{item.timer}}</text>
                     </view>
                 </view>
             </block>

@@ -44,7 +44,7 @@ Page({
             }
         })
         loadMore(that, option);
-        console.log('detail', this.data);
+        console.log('detail', option);
     },
     // 点赞
     handlelike(e) {

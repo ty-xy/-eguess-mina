@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <import src="../templates/card.wxml" />
-
+<text>{{timer}}</text>
 <scroll-view scroll-y="true" scroll-with-animation="true" bindscrolltolower="bindDownLoad" style="height: {{ viewHeight }}px;"
     class="cardlist-container">
     <block wx:for="{{list}}" wx:key="item">
