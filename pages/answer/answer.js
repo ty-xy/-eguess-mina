@@ -22,17 +22,14 @@ Page({
     bindFormSubmit(e) {
         const { avatarUrl, gender } = this.data.userInfo;
         const newMsg = {
-            comment: e.detail.value.textarea,
-            ...this.data.userInfo,
-            topicInfo: this.data.item.id,
-            bookMarks: [],
-            likeArr: [],
+            body: e.detail.value.textarea,
+            topic: this.data.item.topicid,
         };
         const that = this;
-        API.ajax('/message', JSON.stringify(newMsg), function (res) {
+        API.ajax('/answer', JSON.stringify(newMsg), function (res) {
             console.log('answer', res);
             if (res.statusCode === 200 || res.statusCode === 201) {
-                API.ajax(`/topic/${that.data.item.id}`, '', function (result) {
+                API.ajax('/answer', { topicid: that.data.item.topicid }, function (result) {
                     //这里既可以获取模拟的res
                     if (result.statusCode === 200) {
                         wx.showToast({
@@ -45,12 +42,11 @@ Page({
                         const prevPage = pages[pages.length - 2];  //上一个页面
                         //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
                         prevPage.setData({
-                            list: result.data.answers,
-                            item: result.data,
+                            list: result.data,
                         })
                         setTimeout(function(){
                             wx.navigateBack();
-                        }, 2000)
+                        }, 1500)
                     }
                 });
             }

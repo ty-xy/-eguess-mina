@@ -26,14 +26,14 @@
     margin-right: 30rpx;
 }
 .card-answer-button{
+    height: 64rpx;
     font-size: 28rpx;
     align-self: center;
-    width: 152rpx;
-    height: 48rpx;
-    line-height: 48rpx;
+    line-height: 64rpx;
     background: #FDD545;
     border-radius: 8rpx;
     text-align: center;
+    margin-top: 20rpx;
 }
 .card-avatar{
     display: flex;
@@ -170,4 +170,7 @@
 }
 .go-navigator-hover{
     background: #FDD545;
+}
+.detail-container{
+    height: 400px;
 }

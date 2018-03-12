@@ -19,7 +19,6 @@ App({
         // 登录
          wx.login({
             success: res => {
-                console.log('login', res);
                 // 获取用户信息
                 wx.getSetting({
                     success: () => {
@@ -30,7 +29,6 @@ App({
                                     // 可以将 res 发送给后台解码出 unionId
                                     // UPNrb/+climLJBbA6PyzwQ==
                                     that.globalData.userInfo = result.userInfo
-                                    console.log("getSetting", result)
                                     // this.setData({
                                     //     userInfo:res.userInfo
                                     // })
@@ -51,7 +49,6 @@ App({
                                         },
                                         method:'GET', 
                                         success: function(appid){  
-                                            console.log('appid', appid.data)  
                                             OPEN_ID = appid.data.openid;//获取到的openid
                                             that.globalData.openid= appid.data.openid; 
                                         
@@ -62,7 +59,6 @@ App({
                                             // })
                                             API.ajax('/user', '', function (userRes) {
                                                 //这里既可以获取模拟的res
-                                                console.log('API--openid', userRes,that.globalData.openid)
                                                 const updateData = {
                                                     openid: that.globalData.openid,
                                                     ...that.globalData.userInfo,
@@ -79,14 +75,12 @@ App({
                                                     }
                                                 })
                                                 if(!isOpenid){
-                                                    console.log(that.globalData)
                                                     API.ajax('/user',JSON.stringify(updateData),function(res){
-                                                        console.log(res)
                                                         that.globalData.userId= res.data.id; 
                                                     },'post')
                                                 } else {
                                                     API.ajax(`/user/${itemId}`,JSON.stringify(updateData),function(opres){
-                                                        console.log('rtrt', opres)
+                                                        // console.log('rtrt', opres)
                                                     },'PUT')
                                                 }
                                             });

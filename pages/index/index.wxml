@@ -1,11 +1,15 @@
 <!--index.wxml-->
 <import src="../templates/card.wxml" />
-
+<!-- <text>{{timer}}</text> -->
 <scroll-view scroll-y="true" scroll-with-animation="true" bindscrolltolower="bindDownLoad" style="height: {{ viewHeight }}px;"
     class="cardlist-container">
     <block wx:for="{{list}}" wx:key="item">
         <template is="card" data="{{item}}" />
     </block>
+    <view class="loading">
+        <text wx:if="{{isLoading}}">正在加载...</text>
+        <text wx:if="{{noMore}}">已加载全部</text>
+    </view>
     <navigator url="/pages/message/message" class="jump-store" hover-class="navigator-hover">
         <text class="iconfont icon-xiaoxi"></text>
     </navigator>

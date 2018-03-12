@@ -4,20 +4,20 @@
     <view class="count-down">倒计时 7:23</view>
     <view class="cardlist">
         <view class="card-title card-title-detail">
-            {{item.title}}
+            {{option.title}}
         </view>
         <view class="card-active card-detail-active">
             <view class="card-detail-message">
                 <view class="card-rank">
                     <view class="card-rank-title card-detail-rank">
                         <text class="iconfont icon-wode rank-icon"></text>
-                        <text>{{item.readNum}}</text>
+                        <text>{{option.readNum}}</text>
                     </view>
                 </view>
                 <view class="card-rank card-detail-rank">
                     <view class="card-rank-title">
                         <text class="iconfont icon-pinglun rank-icon"></text>
-                        <text>{{item.messageNum}}</text>
+                        <text>{{option.messageNum}}</text>
                     </view>
                 </view>
             </view>
@@ -30,12 +30,12 @@
     <view class="cardlist cardlist-detail">
         <view class="card-title-detail card-avatar">
             <view class="avatar-name">
-                <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatarUrl}}"></image>
-                <text class="name">{{m2m.nickName}}</text>
-                <view class="tip">{{m2m.index}}</view>
+                <image class="card-detail-avatar" mode="scaleToFill" src="{{option.avatarUrl}}"></image>
+                <text class="name">{{option.nickName}}</text>
+                <view class="tip">{{option.index}}</view>
             </view>
             <view class="">
-                <block wx:if="{{m2m.isBookMark}}">
+                <block wx:if="{{option.isBookMark}}">
                     <text class="iconfont icon-shoucang" bindtap="handleMark" style="font-size: 36rpx; color: #FDD545"></text>
                 </block>
                 <block wx:else>
@@ -45,26 +45,26 @@
             </view>
         </view>
         <view class="detail-comment">
-            {{m2m.comment}}
+            {{option.comment}}
         </view>
         <view class="message-info">
             <view class="message-info-time">
-                <text>{{m2m.createdAt}}</text>
+                <text>{{option.createdAt}}</text>
             </view>
             <view class="card-detail-message">
                 <view class="">
-                    <block wx:if="{{m2m.isLikeArr}}">
+                    <block wx:if="{{option.isLikeArr}}">
                         <text class="iconfont icon-dianzan1" bindtap="handlelike" style="margin-right: 10rpx; font-size: 24rpx; color: #FDD545"></text>
                     </block>
                     <block wx:else>
                         <text class="iconfont icon-dianzan" bindtap="handlelike" style="margin-right: 10rpx; font-size: 24rpx; color: #FDD545"></text>
                     </block>
                     <!-- <text class="iconfont icon-dianzan" bindtap="handlelike" style="margin-right: 10rpx; font-size: 24rpx"></text> -->
-                    <text>{{(m2m.likeArr && m2m.likeArr.length) || 0}}</text>
+                    <text>{{option.star2 || 0}}</text>
                 </view>
                 <view style="margin-left: 30rpx">
                     <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{m2m.messageNum || 0}}</text>
+                    <text>{{option.messageNum2 || 0}}</text>
                 </view>
             </view>
         </view>
@@ -80,7 +80,7 @@
                             <view>{{m2m.nickName}}</view>
                             <view class="grey" style="font-size: 26rpx">{{m2m.createdAt}}</view>
                         </view>
-                        <view class="m2m-content">{{m2m.comment}}</view>
+                        <view class="m2m-content">{{m2m.body}}</view>
                     </view>
                 </view>
             </block>
