@@ -104,9 +104,8 @@ Page({
         })
         // 获取首页数据
         loadMore(that);
-        const tim = format.countdown(this, totalTime)
-        console.log('data', tim);
-        format.countdown(this, totalTime);
+        // const tim = format.countdown(this, totalTime)
+        // format.countdown(this, totalTime);
         
     },
     getUserInfo: function(e) {
@@ -142,7 +141,7 @@ Page({
             //这里既可以获取模拟的res
             if (res.statusCode === 200) {
                 wx.navigateTo({
-                    url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${readNum}&messageNum=${msg.toAnswer.length}`,
+                    url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${readNum}&messageNum=${(msg.toAnswer && msg.toAnswer.length) || 0}`,
                 })
                 API.ajax('/topic', '', function (res) {
                     //这里既可以获取模拟的res

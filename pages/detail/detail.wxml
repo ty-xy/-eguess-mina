@@ -21,13 +21,15 @@
                     </view>
                 </view>
             </view>
-            <text class="card-answer-button">收藏</text>
-            <navigator url="/pages/answer/answer?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&topicid={{option.id}}"
-                class="card-detail-message">
-                <text class="card-answer-button">立即抢答</text>
-            </navigator>
+            <view class="card-rank" style="justify-content: flex-end">
+                <text class="iconfont icon-shoucang1"></text>
+                <text style="margin-left: 8rpx; font-size: 28rpx;">收藏</text>
+            </view>
         </view>
     </view>
+    <navigator hover-class="none" url="/pages/answer/answer?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&topicid={{option.id}}"
+        class="card-answer-button">立即抢答
+    </navigator>
     <!-- 评论 -->
     <view style="margin-bottom: 80rpx">
         <view wx:for="{{list}}" wx:key="*this" wx:for-item="msg">
