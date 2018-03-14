@@ -66,3 +66,9 @@
     top: 8rpx;
     background: red;
 }
+.loading{
+    text-align: center;
+    color: #666;
+    font-size: 20rpx;
+    margin-bottom: 3px;
+}

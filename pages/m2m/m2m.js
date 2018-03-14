@@ -16,56 +16,43 @@ Page({
         })
         this.setData({
             userInfo: app.globalData.userInfo,
+            option,
         })
         console.log('答题详情', option);
         const that = this;
-        option.likeArr = (option.likeArr && option.likeArr.split(',')) || [];
-        option.bookMarks = (option.bookMarks && option.bookMarks.split(',')) || [];
-        if (option.bookMarks.indexOf(app.globalData.openid) === -1) {
-            option.isBookMark = false;
-        } else {
-            option.isBookMark = true;
-        }
-        if (option.likeArr.indexOf(app.globalData.openid) === -1) {
-            option.isKikeArr = false;
-        } else {
-            option.isLikeArr = true;
-        }
-        API.ajax(`/topic/${option.topicId}`, '', function (res) {
+        API.ajax('/comment', { answerid: option.answerid }, function (res) {
             //这里既可以获取模拟的res
             if (res.statusCode === 200) {
-                const list = res.data.answers.filter((item) => (item.messageId === option.id))
+                // const list = res.data.answers.filter((item) => (item.messageId === option.id))
                 that.setData({
-                    list,
-                    item: res.data,
-                    m2m: option,
+                    list: res.data,
                 })
             }
         });
     },
     bindFormSubmit: function(e) {
         const { avatarUrl, gender } = this.data.userInfo;
+        const { option } = this.data;
         const newMsg = {
-            comment: e.detail.value,
-            ...this.data.userInfo,
-            topicInfo: this.data.m2m.topicId,
-            messageId: this.data.m2m.id,
+            body: e.detail.value,
+            answer: option.answerid,
+            createdAt: app.globalData.userid,
         };
         const that = this;
-        API.ajax('/message', JSON.stringify(newMsg), function (res) {
+        console.log('newMsg', newMsg)
+        API.ajax('/comment', JSON.stringify(newMsg), function (res) {
             if (res.statusCode === 200 || res.statusCode === 201) {
                 wx.showToast({
                     title: '评论成功',
                     icon: 'success',
                     duration: 1500
                 })
-                API.ajax(`/topic/${that.data.m2m.topicId}`, '', function (result) {
+                API.ajax('/comment', { answerid: option.answerid }, function (res) {
                     //这里既可以获取模拟的res
-                    if (result.statusCode === 200) {
-                        const list = result.data.answers.filter((item) => (item.messageId === that.data.m2m.id));
+                    if (res.statusCode === 200) {
+                        // const list = res.data.answers.filter((item) => (item.messageId === option.id))
                         that.setData({
-                            list,
-                            item: result.data,
+                            list: res.data,
                             textarea: null,
                         })
                     }

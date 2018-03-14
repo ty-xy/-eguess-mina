@@ -1,38 +1,41 @@
 //index.js
 //获取应用实例
-const API = require('../../utils/api.js')
+import API from '../../utils/api.js';
+import format from '../../utils/util';
 const app = getApp()
+const size = 5;
+let page = 1;
+
 const loadMore = function(that){
     that.setData({
-        hidden:false
+        isLoading: true,
+        noMore: false,
+    })
+    API.ajax('/topic', { page, size }, function (res) {
+        //这里既可以获取模拟的res
+        console.log('topic', res.data)
+        if (res.statusCode === 200) {
+            if (res.data.length === that.data.list.length) {
+                that.setData({
+                    list: res.data,
+                    isLoading: false,
+                    noMore: true,
+                })
+            } else {
+                page++;
+                that.setData({
+                    list: res.data,
+                    noMore: false,
+                    isLoading: false,
+                })
+            }
+        }
     });
-    // wx.request({
-    //     url: url,
-    //     data:{
-    //         page : page,
-    //         page_size : page_size,
-    //         sort : sort,
-    //         is_easy : is_easy,
-    //         lange_id : lange_id,
-    //         pos_id : pos_id,
-    //         unlearn : unlearn
-    //     },
-    //     success:function(res){
-    //         //console.info(that.data.list);
-    //         var list = that.data.list;
-    //         for(var i = 0; i < res.data.list.length; i++){
-    //             list.push(res.data.list[i]);
-    //         }
-    //         that.setData({
-    //             list : list
-    //         });
-    //         page ++;
-    //         that.setData({
-    //             hidden:true
-    //         });
-    //     }
-    // });
 };
+
+const totalTime = 15 * 60 * 1000;
+
+
 Page({
     data: {
         motto: 'tao',
@@ -40,7 +43,10 @@ Page({
         hasUserInfo: false,
         canIUse: wx.canIUse('button.open-type.getUserInfo'),
         list: [],
-        isStop: true
+        isStop: true,
+        noMore: false,
+        isLoading: true,
+        timer: '00: 00',
     },
     onShareAppMessage: function (res) {
         console.log('share', getCurrentPages()); 
@@ -81,7 +87,6 @@ Page({
             // 在没有 open-type=getUserInfo 版本的兼容处理
             wx.getUserInfo({
                 success: res => {
-                    console.log('getUserInfo', res)
                     app.globalData.userInfo = res.userInfo
                     this.setData({
                         userInfo: res.userInfo,
@@ -94,34 +99,24 @@ Page({
         wx.getSystemInfo({
             success: function (res) {
               that.setData({
-                // second部分高度 = 利用窗口可使用高度 - first部分高度（这里的高度单位为px，所有利用比例将300rpx转换为px）
                     viewHeight: res.windowHeight,
               })
             }
         })
         // 获取首页数据
-        API.ajax('/topic', '', function (res) {
-            //这里既可以获取模拟的res
-            if (res.statusCode === 200) {
-                console.log('index', res.data);
-                that.setData({
-                    list: res.data
-                })
-            }
-        });
+        loadMore(that);
+        // const tim = format.countdown(this, totalTime)
+        // format.countdown(this, totalTime);
+        
     },
     getUserInfo: function(e) {
-        console.log("getUserInfo", e)
         app.globalData.userInfo = e.detail.userInfo
         this.setData({
             userInfo: e.detail.userInfo,
             hasUserInfo: true
         });  
     },
-    getPhoneNumber: function(e) {   
-        console.log(e.detail.errMsg)   
-        console.log(e.detail.iv)   
-        console.log(e.detail.encryptedData)   
+    getPhoneNumber: function(e) {      
         if (e.detail.errMsg == 'getPhoneNumber:fail user deny'){  
             wx.showModal({  
                 title: '提示',  
@@ -140,17 +135,18 @@ Page({
     },
     // 阅读量记录
     handleClick(e) {
-        console.log('handleClick', e);
         const { msg } = e.currentTarget.dataset;
         const that = this;
         const readNum = msg.readNum + 1;
         API.ajax(`/topic/${msg.id}`, JSON.stringify({ ...msg, readNum }), function (res) {
             //这里既可以获取模拟的res
             if (res.statusCode === 200) {
+                wx.navigateTo({
+                    url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${readNum}&messageNum=${(msg.toAnswer && msg.toAnswer.length) || 0}`,
+                })
                 API.ajax('/topic', '', function (res) {
                     //这里既可以获取模拟的res
                     if (res.statusCode === 200) {
-                        console.log('index', res.data);
                         that.setData({
                             list: res.data
                         })
@@ -158,15 +154,12 @@ Page({
                 });
             }
         }, 'PUT');
-        wx.navigateTo({
-            url: `/pages/detail/detail?id=${msg.id}&title={msg.title}&status=${msg.status}&readNum=${msg.readNum}&messageNum={msg.messageNum}`,
-        })
     },
        //页面滑动到底部
     bindDownLoad() {   
-        var that = this;
-        // loadMore(that);
-        console.log("lower");
+        const that = this;
+        loadMore(that);
+        console.log("lower", page);
     },
 
 })

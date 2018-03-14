@@ -32,7 +32,6 @@ App({
         // 登录
          wx.login({
             success: res => {
-                console.log('login', res);
                 // 获取用户信息
                 wx.getSetting({
                     success: () => {
@@ -65,7 +64,6 @@ App({
                                         },
                                         method:'GET', 
                                         success: function(appid){  
-                                            console.log('appid', appid.data)  
                                             OPEN_ID = appid.data.openid;//获取到的openid
                                             that.globalData.openid= appid.data.openid; 
                                         
