@@ -9,33 +9,51 @@ Page({
         const that = this;
         console.log(app.globalData.userId)
         const userid = app.globalData.userId;
-        API.ajax(`/user/${userid}`, '', function (userres) {
+        API.ajax('/answer', '', function (userres) {
             //这里既可以获取模拟的res
-            console.log(userres.data.topicId)
-            const topic = userres.data.topicId;
             const arr =[];
-            console.log(topic,topic.length)
-            if(topic&&topic.length>0){
-                topic.forEach((item)=>{
-                    API.ajax(`/topic/${item}`, '', function (res) {
-                        //这里既可以获取模拟的res
-                        console.log(res)
-                        arr.push(res.data)
-                        that.setData({
-                            list: arr,
-                            condition:true
+            console.log(userres)
+          if(userres.statusCode===200){
+                let isAnswer = false;
+                userres.data.forEach((resanswer)=>{
+                    console.log(resanswer)
+                    resanswer.stars.forEach((i)=>{
+                        console.log(i.id)
+                         if(i.id===app.globalData.userId){
+                            isAnswer = true
+                         }
+                    })
+                    // if(resanswer.stars.id===app.globalData.userId){
+                    if(isAnswer){
+                        arr.push(resanswer.topic)
+                    }
+                    //     isAnswer = true
+                    //     arr.push(resanswer.stars)
+                    // }
+                    console.log(arr,isAnswer)
+                })
+                if(isAnswer){
+                    that.setData({
+                        list: arr,
+                        condition:true
+                        })  
+                }else{
+                    that.setData({
+                        condition:false
                         })
-                        console.log(that.data.list)
-                    }); 
-                    console.log(item)
-                })
-            }else{
-                that.setData({
-                    condition:fasle
-                })
-            }
-            console.log(that.data.condition)
+                    }
+            //   if(userres.user.id===app.globalData.userId){
+            //     arr.push(userres.topic,)
+            //     that.setData({
+            //         list: arr,
+            //         condition:true
+            //     })
+            //   }else{
+            //     that.setData({
+            //         condition:fasle
+            //     })
+            // }
+          }
         });
-       
     }
 })

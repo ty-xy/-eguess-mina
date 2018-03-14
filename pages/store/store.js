@@ -35,28 +35,36 @@ Page({
     const userid = app.globalData.userId;
     console.log(userid)
     // 使用 Mock
-    API.ajax(`/user/${userid}`, '', function (userres) {
-        const topic = userres.data.topic;
-        console.log(userres.data.topic)
-        const answer = userres.data.comment;
-        // const arr = [];
+    API.ajax('/topic', '', function (userres) {
+        const topic = userres.data.stars;
+        // console.log(userres.data.topic)
+        // const answer = userres.data.comment;
+        let isUserId = false;
+        const arr = [];
         const next= [];
         if(topic&&topic.length !==0){
             topic.forEach((i)=>{
-                i.txtStyle="left:0px";
+                 if(i.id===userid){
+                     isUserId = true
+                }
             })
-              that.setData({
-                  list:topic,
-                  showTopic:true
-              })
-        }else{
-            // 假如没有数据的处理逻辑
-            that.setData({
-                showTopic:false
-            })
+        //     topic.forEach((i)=>{
+        //         i.txtStyle="left:0px";
+        //     })
+        //       that.setData({
+        //           list:topic,
+        //           showTopic:true
+        //       })
+        // }else{
+        //     // 假如没有数据的处理逻辑
+        //     that.setData({
+        //         showTopic:false
+        //     })
             // console.log(that.data.showTopic)
         }
-
+        if(isUserId){
+            console.log()
+        }
         if(answer&&answer.length !==0){
             answer.forEach((item)=>{
                 API.ajax(`/message/${item}`,'',function(commentres){

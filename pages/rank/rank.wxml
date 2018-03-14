@@ -32,7 +32,7 @@
                 </text>
              </view>
              <view class="rank-card-right">
-                 <text class="iconfont  icon-dianzan1 icon-right"></text>
+                 <!-- <text class="iconfont  icon-dianzan1 icon-right"></text> -->
                  <text class="rank-common">
                      {{item.read}}
                  </text>

@@ -10,6 +10,19 @@ const API= require("utils/api.js")
 
 App({
     MyToast,
+    // onShareAppMessage: function (res) {
+    //     console.log('share', getCurrentPages()); 
+    //     return {
+    //         title: '自定义转发标题',
+    //         path: '/pages/index/index?id=123',
+    //         success: function(res) {
+    //           // 转发成功
+    //         },
+    //         fail: function(res) {
+    //           // 转发失败
+    //         }
+    //     };
+    // },
     onLaunch: function () {
         // 展示本地存储能力
         var logs = wx.getStorageSync('logs') || []
@@ -30,6 +43,7 @@ App({
                                     // 可以将 res 发送给后台解码出 unionId
                                     // UPNrb/+climLJBbA6PyzwQ==
                                     that.globalData.userInfo = result.userInfo
+                                    const userinfo = result.userInfo
                                     console.log("getSetting", result)
                                     // this.setData({
                                     //     userInfo:res.userInfo
@@ -60,38 +74,49 @@ App({
                                             // API.ajax('/usermessage','',function(umres){
                                             //      console.log("/usermessage",umres.data)
                                             // })
-                                            API.ajax('/wxuserinfo', '', function (userRes) {
-                                                //这里既可以获取模拟的res
-                                                console.log('API--openid', userRes,that.globalData.openid)
-                                                const updateData = {
-                                                    openid: that.globalData.openid,
-                                                    ...that.globalData.userInfo,
-                                                    username:that.globalData.openid,
-                                                    email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
-                                                };
-                                                let isOpenid = false;
-                                                let itemId='';         
-                                                (userRes.data || []).forEach((item)=>{
-                                                    if (item.openid === that.globalData.openid) {
-                                                        isOpenid = true;
-                                                        itemId = item.id;
-                                                        that.globalData.userId= item.id; 
-                                                    }
-                                                })
-                                                if(!isOpenid){
-                                                    console.log(that.globalData)
-                                                    API.ajax('/wxuserinfo',JSON.stringify(updateData),function(res){
-                                                        console.log(res)
-                                                        that.globalData.userId= res.data.id; 
-                                                    },'post')
-                                                } 
-                                                // else {
-                                                //     API.ajax(`/user/${itemId}`,JSON.stringify(updateData),function(opres){
+                                            const userInfos= {
+                                                openid: OPEN_ID,
+                                                ...that.globalData.userInfo,
+                                            }
+                                     
+                                            API.ajax('/wxuserinfo', (userInfos), function (userRes) {
+                                                console.log(userRes)
+                                                // if(userRes.statusCode===204){
+                                                //     // if(userRes.data===""){
+                                                //     const updataUser={
+                                                //     username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                                                //     email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                                                //     }
+                                                //     API.ajax('/user',JSON.stringify(updataUser),function(res){
+                                                //     console.log(res)
+                                                //     that.globalData.userId= res.data.id; 
+                                                //     const updateData = {
+                                                //         openid: that.globalData.openid,
+                                                //         ...that.globalData.userInfo,
+                                                //         wxUser: res.data.id,
+    
+                                                //     };
+                                                //         API.ajax("/wxuserinfo",JSON.stringify(updateData),function(reswx){
+                                                //             console.log(reswx)
+                                                //             // that.globalData.userId=reswx.data.id;
+                                                //             API.ajax(`/user/${res.data.id}`,JSON.stringify({...updataUser,wxUserInfo:reswx.data.id }),function(ress){
+                                                //                 console.log(ress)
+                                                //             },"put") 
+                                                //         }, 'post')
+                                                //     }, "post")
+                                                // }else{
+                                                //     const updateData = {
+                                                //         openid: that.globalData.openid,
+                                                //         ...that.globalData.userInfo,
+                                                //     };
+                                                //     API.ajax(`/wxuserinfo/${userRes.data.id}`,JSON.stringify(updateData),function(opres){
                                                 //         console.log('rtrt', opres)
-                                                //     },'PUT')
+                                                //         that.globalData.userId=opres.wxUser
+                                                //     },"PUT")
+                                                //     }
                                                 // }
-                                            });
-                                        
+                                            
+                                            })
                                         }
                                     })  
                                 }

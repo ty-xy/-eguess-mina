@@ -46,9 +46,9 @@ Page({
         console.log('share', getCurrentPages()); 
         return {
             title: '自定义转发标题',
-            path: '/pages/index/index?id=123',
-            success: function(res) {
-              // 转发成功
+            path: `/pages/index/index?id=${app.globalData.userId}`,
+            success: function(sres) {
+              console.log("res",sres) 
             },
             fail: function(res) {
               // 转发失败
@@ -62,6 +62,7 @@ Page({
         })
     },
     onLoad: function (option) {
+        console.log("option",option)
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
