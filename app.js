@@ -57,33 +57,14 @@ App({
                                             // API.ajax('/usermessage','',function(umres){
                                             //      console.log("/usermessage",umres.data)
                                             // })
-                                            API.ajax('/user', '', function (userRes) {
-                                                //这里既可以获取模拟的res
-                                                const updateData = {
-                                                    openid: that.globalData.openid,
-                                                    ...that.globalData.userInfo,
-                                                    username:that.globalData.openid,
-                                                    email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
-                                                };
-                                                let isOpenid = false;
-                                                let itemId='';         
-                                                (userRes.data || []).forEach((item)=>{
-                                                    if (item.openid === that.globalData.openid) {
-                                                        isOpenid = true;
-                                                        itemId = item.id;
-                                                        that.globalData.userId= item.id; 
-                                                    }
-                                                })
-                                                if(!isOpenid){
-                                                    API.ajax('/user',JSON.stringify(updateData),function(res){
-                                                        that.globalData.userId= res.data.id; 
-                                                    },'post')
-                                                } else {
-                                                    API.ajax(`/user/${itemId}`,JSON.stringify(updateData),function(opres){
-                                                        // console.log('rtrt', opres)
-                                                    },'PUT')
-                                                }
-                                            });
+                                            const userInfos= {
+                                                openid: OPEN_ID,
+                                                ...that.globalData.userInfo,
+                                            }
+                                     
+                                            API.ajax('/wxuserinfo', (userInfos), function (userRes) {
+                                                that.globalData.userId=userRes.data
+                                            })
                                         
                                         }
                                     })  

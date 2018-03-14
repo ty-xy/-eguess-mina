@@ -11,7 +11,7 @@ const loadMore = function(that){
         isLoading: true,
         noMore: false,
     })
-    API.ajax('/topic', { page, size }, function (res) {
+    API.ajax('/topic', { limit: page * size }, function (res) {
         //这里既可以获取模拟的res
         console.log('topic', res.data)
         if (res.statusCode === 200) {
@@ -158,7 +158,6 @@ Page({
     bindDownLoad() {   
         const that = this;
         loadMore(that);
-        console.log("lower", page);
     },
 
 })

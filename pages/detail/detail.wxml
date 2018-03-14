@@ -36,8 +36,8 @@
             <view class="cardlist cardlist-detail">
                 <view class="card-title-detail card-avatar">
                     <view class="avatar-name">
-                        <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.user.avatarUrl}}"></image>
-                        <text class="name">{{msg.user.nickName}}</text>
+                        <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.createdBy && msg.createdBy.avatar}}"></image>
+                        <text class="name">{{msg.createdBy && msg.createdBy.username}}</text>
                         <view class="tip">{{index + 1}}</view>
                     </view>
                     <view class="share-icon">
@@ -52,7 +52,7 @@
                         </button>
                     </view>
                 </view>
-                <navigator url="/pages/m2m/m2m?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.body}}&answerid={{msg.id}}&star2={{msg.upVotes.length}}&messageNum2={{msg.commments.length}}&createdAt={{msg.createdAt}}"
+                <navigator url="/pages/m2m/m2m?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.body}}&answerid={{msg.id}}&star2={{msg.upVotes.length}}&messageNum2={{msg.comments.length}}&createdAt={{msg.createdAt}}"
                     class="detail-comment" hover-class="navigator-hover">
                     {{msg.body}}
                 </navigator>
@@ -70,7 +70,7 @@
                             </block>
                             <text>{{(msg.upVotes && msg.upVotes.length) || 0}}</text>
                         </view>
-                        <navigator url="/pages/m2m/m2m?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.body}}&answerid={{msg.id}}&star2={{msg.upVotes.length}}&messageNum2={{msg.commments.length}}&createdAt={{msg.createdAt}}"
+                        <navigator url="/pages/m2m/m2m?title={{option.title}}&readNum={{option.readNum}}&messageNum={{option.messageNum}}&avatarUrl={{msg.avatarUrl}}&index={{index+1}}&comment={{msg.body}}&answerid={{msg.id}}&star2={{msg.upVotes.length}}&messageNum2={{msg.coments.length}}&createdAt={{msg.createdAt}}"
                             style="margin-left: 30rpx" hover-class="navigator-hover">
                             <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
                             <text>{{(msg.comments && msg.comments.length) || 0}}</text>
@@ -78,6 +78,10 @@
                     </view>
                 </view>
             </view>
+        </view>
+        <view class="loading" style="margin-top: 10px">
+            <text wx:if="{{isLoading}}">正在加载...</text>
+            <text wx:if="{{noMore}}">已加载全部</text>
         </view>
         <!-- 排行榜 -->
         <view class="message-range">

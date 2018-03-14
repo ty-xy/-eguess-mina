@@ -73,11 +73,11 @@
             <block wx:for="{{list}}" wx:key="*this" wx:for-item="m2m">
                 <view class="message-to-message">
                     <view class="m2m-avatar">
-                        <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatarUrl}}"></image>
+                        <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.createdBy && m2m.createdBy.avatar}}"></image>
                     </view>
                     <view class="m2m-info">
                         <view class="m2m-name">
-                            <view>{{m2m.nickName}}</view>
+                            <view>{{m2m.createdBy && m2m.createdBy.username}}</view>
                             <view class="grey" style="font-size: 26rpx">{{m2m.createdAt}}</view>
                         </view>
                         <view class="m2m-content">{{m2m.body}}</view>
