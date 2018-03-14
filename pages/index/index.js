@@ -158,7 +158,6 @@ Page({
     bindDownLoad() {   
         const that = this;
         loadMore(that);
-        console.log("lower", page);
     },
 
 })

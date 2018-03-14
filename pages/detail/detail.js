@@ -3,15 +3,39 @@ const app = getApp();
 const size = 5;
 let page = 1;
 const loadMore = function(that, option){
-    API.ajax('/answer', { topicid: option.id }, function (res) {
-        console.log('answer', res)
+    // API.ajax('/answer', { topicid: option.id,  }, function (res) {
+    //     console.log('answer', res)
+    //     //这里既可以获取模拟的res
+    //     if (res.statusCode === 200) {
+    //         that.setData({
+    //             list: res.data,
+    //             userid: app.globalData.userid,
+    //         })
+    //     }
+    // });
+    that.setData({
+        isLoading: true,
+        noMore: false,
+    })
+    API.ajax('/answer', { limit: page * size, topicid: option.id, userid: '5aa369c76b05d06032f381c5' }, function (res) {
         //这里既可以获取模拟的res
         if (res.statusCode === 200) {
-            that.setData({
-                list: res.data,
-                userid: app.globalData.userid,
-                option,
-            })
+            if (res.data.length === that.data.list.length) {
+                that.setData({
+                    list: res.data,
+                    userid: app.globalData.userid,
+                    isLoading: false,
+                    noMore: true,
+                })
+            } else {
+                page++;
+                that.setData({
+                    list: res.data,
+                    userid: app.globalData.userid,
+                    noMore: false,
+                    isLoading: false,
+                })
+            }
         }
     });
 };
@@ -35,6 +59,7 @@ Page({
         wx.setNavigationBarTitle({
             title: '答题详情'
         });
+        this.setData({ option });
         const that = this;
         wx.getSystemInfo({
             success: function (res) {
@@ -125,6 +150,7 @@ Page({
     //页面滑动到底部
     bindDownLoad() {   
         const that = this;
+        loadMore(that, this.data.option);
         console.log("lower");
     },
 })

@@ -244,3 +244,9 @@ text{
     letter-spacing: 0;
     margin-top:4px;
 }
+.loading{
+    text-align: center;
+    color: #666;
+    font-size: 20rpx;
+    margin-bottom: 3px;
+}
