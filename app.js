@@ -80,42 +80,7 @@ App({
                                             }
                                      
                                             API.ajax('/wxuserinfo', (userInfos), function (userRes) {
-                                                console.log(userRes)
-                                                // if(userRes.statusCode===204){
-                                                //     // if(userRes.data===""){
-                                                //     const updataUser={
-                                                //     username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
-                                                //     email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
-                                                //     }
-                                                //     API.ajax('/user',JSON.stringify(updataUser),function(res){
-                                                //     console.log(res)
-                                                //     that.globalData.userId= res.data.id; 
-                                                //     const updateData = {
-                                                //         openid: that.globalData.openid,
-                                                //         ...that.globalData.userInfo,
-                                                //         wxUser: res.data.id,
-    
-                                                //     };
-                                                //         API.ajax("/wxuserinfo",JSON.stringify(updateData),function(reswx){
-                                                //             console.log(reswx)
-                                                //             // that.globalData.userId=reswx.data.id;
-                                                //             API.ajax(`/user/${res.data.id}`,JSON.stringify({...updataUser,wxUserInfo:reswx.data.id }),function(ress){
-                                                //                 console.log(ress)
-                                                //             },"put") 
-                                                //         }, 'post')
-                                                //     }, "post")
-                                                // }else{
-                                                //     const updateData = {
-                                                //         openid: that.globalData.openid,
-                                                //         ...that.globalData.userInfo,
-                                                //     };
-                                                //     API.ajax(`/wxuserinfo/${userRes.data.id}`,JSON.stringify(updateData),function(opres){
-                                                //         console.log('rtrt', opres)
-                                                //         that.globalData.userId=opres.wxUser
-                                                //     },"PUT")
-                                                //     }
-                                                // }
-                                            
+                                                that.globalData.userId=userRes.data
                                             })
                                         }
                                     })  
