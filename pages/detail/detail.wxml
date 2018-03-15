@@ -41,7 +41,7 @@
                         <view class="tip">{{index + 1}}</view>
                     </view>
                     <view class="share-icon">
-                        <view wx:if="{{msg.isBookMark}}">
+                        <view wx:if="{{msg.isStar}}">
                             <text class="iconfont icon-shoucang" data-message="{{msg}}" bindtap="handleMark" style="font-size: 36rpx; color: #FDD545"></text>
                         </view>
                         <view wx:else>
@@ -62,7 +62,7 @@
                     </view>
                     <view class="card-detail-message">
                         <view class="" data-message="{{msg}}" bindtap="handlelike">
-                            <block wx:if="{{msg.isLikeArr}}">
+                            <block wx:if="{{msg.upVote}}">
                                 <text class="iconfont icon-dianzan1" style="margin-right: 10rpx; font-size: 24rpx; color: #FDD545"></text>
                             </block>
                             <block wx:else>
