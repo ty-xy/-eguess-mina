@@ -36,7 +36,7 @@
             <view class="cardlist cardlist-detail">
                 <view class="card-title-detail card-avatar">
                     <view class="avatar-name">
-                        <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.createdBy && msg.createdBy.avatar}}"></image>
+                        <image class="card-detail-avatar" mode="scaleToFill" src="{{msg.createdBy && msg.createdBy.avatarUrl}}"></image>
                         <text class="name">{{msg.createdBy && msg.createdBy.username}}</text>
                         <view class="tip">{{index + 1}}</view>
                     </view>

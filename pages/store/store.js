@@ -33,7 +33,6 @@ Page({
     
     const that = this
     const userid = app.globalData.userId;
-    console.log(userid)
     // 使用 Mock
     API.ajax(`/user/${userid}`, '', function (userres) {
         const topic = userres.data.collection;
@@ -44,31 +43,26 @@ Page({
             topic.forEach((item)=>{
                 API.ajax(`/topic/${item}`, '', function (res) {
                     //这里既可以获取模拟的res
-                    console.log(res)
                     arr.push(res.data)
                     arr.forEach((i)=>{
                           i.txtStyle="left:0px";
                     })
-                    console.log(arr)
                     that.setData({
                         list: arr,
                         showTopic:true
                     })
                 });
             })
-          console.log(that.data.showTopic)
         }else{
             // 假如没有数据的处理逻辑
             that.setData({
                 showTopic:false
             })
-            console.log(that.data.showTopic)
         }
 
         if(answer&&answer.length !==0){
             answer.forEach((item)=>{
                 API.ajax(`/message/${item}`,'',function(commentres){
-                      console.log("321213",commentres)
                       next.push(commentres.data)
                       that.setData({
                         commentList: next,
@@ -80,7 +74,6 @@ Page({
             that.setData({
                 showComment:false
             })
-            console.log(that.data.showTopic)
         }
     })
     
@@ -177,7 +170,6 @@ drawStart (e){
  delItem(e){  
     let dataId = e.currentTarget.dataset.id;  
     const userid = app.globalData.userId;
-   console.log("删除"+dataId);  
    var cardTeams = this.data.list;  
    var newCardTeams = []; 
      
@@ -201,7 +193,7 @@ drawStart (e){
               email:userres.data.email
            } 
            API.ajax(`/user/${userid}`,JSON.stringify(topicdata),function(gres){
-                 console.log(gres)
+                //  console.log(gres)
            },'put')
         }
     })

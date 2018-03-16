@@ -1,11 +1,5 @@
 import { MyToast } from './components/my-toast/my-toast'
 
-//app.js
-
-const APP_ID ='wx9e3ef944fc45397f';//输入小程序appid  
-const APP_SECRET ='251df6805548256e564f66a4063a916f';//输入小程序app_secret  
-let OPEN_ID=''//储存获取到openid  
-let SESSION_KEY=''//储存获取到session_key
 const API= require("utils/api.js")
 
 App({
@@ -20,6 +14,7 @@ App({
          wx.login({
             success: res => {
                 // 获取用户信息
+                that.globalData.code = res.code;
                 wx.getSetting({
                     success: () => {
                         // if (!res.authSetting['scope.userInfo']) {
@@ -38,36 +33,6 @@ App({
                                     if (this.userInfoReadyCallback) {
                                         this.userInfoReadyCallback(result)
                                     }
-                                    wx.request({  
-                                        //获取openid接口  
-                                        url: 'https://api.weixin.qq.com/sns/jscode2session',  
-                                        data:{  
-                                            appid:APP_ID,  
-                                            secret:APP_SECRET,  
-                                            js_code:res.code,  
-                                            grant_type:'authorization_code'  
-                                        },
-                                        method:'GET', 
-                                        success: function(appid){  
-                                            OPEN_ID = appid.data.openid;//获取到的openid
-                                            that.globalData.openid= appid.data.openid; 
-                                        
-                                            SESSION_KEY = appid.data.session_key;//获取到session_key  
-                                            // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                                            // API.ajax('/usermessage','',function(umres){
-                                            //      console.log("/usermessage",umres.data)
-                                            // })
-                                            const userInfos= {
-                                                openid: OPEN_ID,
-                                                ...that.globalData.userInfo,
-                                            }
-                                     
-                                            API.ajax('/wxuserinfo', (userInfos), function (userRes) {
-                                                that.globalData.userId=userRes.data
-                                            })
-                                        
-                                        }
-                                    })  
                                 }
                             })
                         // }
