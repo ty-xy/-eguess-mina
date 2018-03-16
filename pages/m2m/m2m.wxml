@@ -30,12 +30,12 @@
     <view class="cardlist cardlist-detail">
         <view class="card-title-detail card-avatar">
             <view class="avatar-name">
-                <image class="card-detail-avatar" mode="scaleToFill" src="{{option.avatarUrl}}"></image>
-                <text class="name">{{option.nickName}}</text>
+                <image class="card-detail-avatar" mode="scaleToFill" src="{{select.createdBy.avatarUrl}}"></image>
+                <text class="name">{{select.createdBy.username}}</text>
                 <view class="tip">{{option.index}}</view>
             </view>
             <view class="">
-                <block wx:if="{{option.isBookMark}}">
+                <block wx:if="{{select.isStar}}">
                     <text class="iconfont icon-shoucang" bindtap="handleMark" style="font-size: 36rpx; color: #FDD545"></text>
                 </block>
                 <block wx:else>
@@ -45,26 +45,26 @@
             </view>
         </view>
         <view class="detail-comment">
-            {{option.comment}}
+            {{select.body}}
         </view>
         <view class="message-info">
             <view class="message-info-time">
-                <text>{{option.createdAt}}</text>
+                <text>{{select.createdAt}}</text>
             </view>
             <view class="card-detail-message">
                 <view class="">
-                    <block wx:if="{{option.isLikeArr}}">
+                    <block wx:if="{{select.upVote}}">
                         <text class="iconfont icon-dianzan1" bindtap="handlelike" style="margin-right: 10rpx; font-size: 24rpx; color: #FDD545"></text>
                     </block>
                     <block wx:else>
                         <text class="iconfont icon-dianzan" bindtap="handlelike" style="margin-right: 10rpx; font-size: 24rpx; color: #FDD545"></text>
                     </block>
                     <!-- <text class="iconfont icon-dianzan" bindtap="handlelike" style="margin-right: 10rpx; font-size: 24rpx"></text> -->
-                    <text>{{option.star2 || 0}}</text>
+                    <text>{{select.upVotes.length}}</text>
                 </view>
                 <view style="margin-left: 30rpx">
                     <text class="iconfont icon-pinglun" style="margin-right: 10rpx; font-size: 24rpx"></text>
-                    <text>{{option.messageNum2 || 0}}</text>
+                    <text>{{select.comments.length}}</text>
                 </view>
             </view>
         </view>
@@ -73,11 +73,11 @@
             <block wx:for="{{list}}" wx:key="*this" wx:for-item="m2m">
                 <view class="message-to-message">
                     <view class="m2m-avatar">
-                        <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.avatarUrl}}"></image>
+                        <image class="card-detail-avatar" mode="scaleToFill" src="{{m2m.createdBy && m2m.createdBy.avatarUrl}}"></image>
                     </view>
                     <view class="m2m-info">
                         <view class="m2m-name">
-                            <view>{{m2m.nickName}}</view>
+                            <view>{{m2m.createdBy && m2m.createdBy.username}}</view>
                             <view class="grey" style="font-size: 26rpx">{{m2m.createdAt}}</view>
                         </view>
                         <view class="m2m-content">{{m2m.body}}</view>

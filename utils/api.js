@@ -82,6 +82,28 @@ function ajax(url = '/', data = '', fn, method = "get", header = {}) {
         fn(Mock.mock(url_data));
     }
 }
+function post(url, data){
+    return new Promise((resolve, reject) => {
+       //网络请求
+       wx.request({
+          url: url,
+          data,
+          method: 'GET',
+          header: { 'content-type': 'application/json' },
+          success: function (res) { //返回取得的数据
+             if (res.statusCode == 200) {
+                resolve(res);
+             } else { //返回错误提示信息
+                reject(res);
+             }
+          },
+          error: function (e) {
+             reject('网络出错');
+          }
+       })
+    });
+}
 module.exports = {
-    ajax: ajax
+    ajax,
+    post,
 }

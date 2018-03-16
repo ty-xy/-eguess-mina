@@ -1,5 +1,40 @@
 const API = require('../../utils/api.js')
 const app = getApp()
+const userid = app.globalData.userid || '5a9a46834aff491a7530becd';
+
+const getAnswer = (that, option) => {
+    API.ajax(`/answer/${option.answerid}`, '', function (res) {
+        //这里既可以获取模拟的res
+        if (res.statusCode === 200) {
+            const select = res.data;
+            let _res = select.upVotes.filter((item) => (item.id === userid));
+            let shoucang = select.stars.filter((item) => (item.id === userid));
+            if (_res.length) {
+                select.upVote = true;
+            }
+            if (shoucang.length) {
+                select.isStar = true;
+            }
+            that.setData({
+                select,
+            })
+        }
+    });
+}
+
+
+const getComment = (that, option) => {
+    API.ajax('/comment', { search: { answer: option.answerid } }, function (res) {
+        //这里既可以获取模拟的res
+        if (res.statusCode === 200) {
+            // const list = res.data.answers.filter((item) => (item.messageId === option.id))
+            that.setData({
+                list: res.data,
+                textarea: null,
+            })
+        }
+    });
+}
 
 Page({
     data: {
@@ -7,6 +42,11 @@ Page({
         item: {},
         m2m: {},
         textarea: null,
+        select: {
+            comments: [],
+            stars: [],
+            createdBy: {},
+        },
     },
     onShareAppMessage: function (res) {},
     onLoad: function(option) {
@@ -14,21 +54,14 @@ Page({
         wx.setNavigationBarTitle({
             title: '答题详情'
         })
+        // const userid = app.globalData.userid || '5a9a46834aff491a7530becd';
         this.setData({
             userInfo: app.globalData.userInfo,
             option,
         })
-        console.log('答题详情', option);
         const that = this;
-        API.ajax('/comment', { answerid: option.answerid }, function (res) {
-            //这里既可以获取模拟的res
-            if (res.statusCode === 200) {
-                // const list = res.data.answers.filter((item) => (item.messageId === option.id))
-                that.setData({
-                    list: res.data,
-                })
-            }
-        });
+        getComment(this, option);
+        getAnswer(this, option);
     },
     bindFormSubmit: function(e) {
         const { avatarUrl, gender } = this.data.userInfo;
@@ -39,7 +72,6 @@ Page({
             createdAt: app.globalData.userid,
         };
         const that = this;
-        console.log('newMsg', newMsg)
         API.ajax('/comment', JSON.stringify(newMsg), function (res) {
             if (res.statusCode === 200 || res.statusCode === 201) {
                 wx.showToast({
@@ -47,16 +79,7 @@ Page({
                     icon: 'success',
                     duration: 1500
                 })
-                API.ajax('/comment', { answerid: option.answerid }, function (res) {
-                    //这里既可以获取模拟的res
-                    if (res.statusCode === 200) {
-                        // const list = res.data.answers.filter((item) => (item.messageId === option.id))
-                        that.setData({
-                            list: res.data,
-                            textarea: null,
-                        })
-                    }
-                });
+                getComment(that, option);
             }
         }, 'POST');
     },
@@ -66,82 +89,67 @@ Page({
         that.setData({ textarea });
     },
     // 点赞
-    handlelike(e) {
-        const { m2m } = this.data;
-        const openid = app.globalData.openid;
-        const likeArr = m2m.likeArr || [];
-        if (likeArr.indexOf(openid) === -1) {
-            likeArr.push(openid);
-        } else {
-            likeArr.splice(likeArr.indexOf(openid), 1);
-        }
+    handlelike() {
+        // const userid = app.globalData.userid || '5a9a46834aff491a7530becd';
         const that = this;
-        const { option } = this.data;
-        API.ajax(`/message/${m2m.id}`, JSON.stringify({ likeArr }), function (res) {
-            if (res.statusCode == 200) {
-                API.ajax(`/topic/${m2m.topicId}`, '', function (res) {
-                    //这里既可以获取模拟的res
-                    if (res.statusCode === 200) {
-                        // const list = res.data.filter((item) => item.from === '');
-                        m2m.title = decodeURIComponent(m2m.title);
-                        const list = res.data.answers.filter((item) => (item.messageId === m2m.id));
-                        m2m.isLikeArr = !m2m.isLikeArr;
-                        if (m2m.isLikeArr) {
-                            that.show('点赞成功', 'dianzan1', '#FFD62D');
-                        } else {
-                            that.show('取消点赞', 'dianzan', '#666');
-                        }
-                        that.setData({
-                            list,
-                            item: res.data,
-                            m2m,
-                        });
-                        that.setPrevPage(res);
-                    }
-                });
+        const { option, select } = this.data;
+        const { upVote, id } = select;
+        const resData = [];
+        if (upVote) {
+            for (let i = 0; i < select.upVotes.length; i++) {
+                if (userid !== select.upVotes[i].id) {
+                    resData.push(select.upVotes[i].id);
+                }
+            }
+        } else {
+            for (let i = 0; i < select.upVotes.length; i++) {
+                resData.push(select.upVotes[i].id);
+            }
+            resData.push(userid);
+        }
+        API.ajax(`/answer/${id}`, JSON.stringify({ upVotes: resData }), function (res) {
+            if (res.statusCode == 200 || res.statusCode == 201) {
+                if (upVote) {
+                    that.show('点赞已取消', 'dianzan1', '#666');
+                } else {
+                    that.show('点赞成功', 'dianzan1', '#FFD62D');
+                }
+                getAnswer(that, option);
             } else {
                 that.show('点赞失败', 'cuowu', '#F45353');
             }
-        }, 'PUT');
+        }, 'put');
     },
     // 收藏
-    handleMark(e) {
-        const { m2m } = this.data;
-        const openid = app.globalData.openid;
-        const bookMarks = m2m.bookMarks || [];
-        if (bookMarks.indexOf(openid) === -1) {
-            bookMarks.push(openid);
-        } else {
-            bookMarks.splice(bookMarks.indexOf(openid), 1);
-        }
+    handleMark() {
         const that = this;
-        API.ajax(`/message/${m2m.id}`, JSON.stringify({ bookMarks }), function (res) {
-            if (res.statusCode == 200) {
-                console.log('isLike', m2m.isBookMark);
-                API.ajax(`/topic/${m2m.topicId}`, '', function (res) {
-                    //这里既可以获取模拟的res
-                    if (res.statusCode === 200) {
-                        // const list = res.data.filter((item) => item.from === '');
-                        m2m.title = decodeURIComponent(m2m.title);
-                        const list = res.data.answers.filter((item) => (item.messageId === m2m.id));
-                        m2m.isBookMark = !m2m.isBookMark;
-                        if (m2m.isBookMark) {
-                            that.show('收藏成功', 'shoucang', '#FFD62D');
-                        } else {
-                            that.show('取消收藏', 'shoucang1', '#666');
-                        }
-                        that.setData({
-                            list,
-                            item: res.data,
-                            m2m,
-                        });
-                        that.setPrevPage(res);
-                    }
-                });
+        const { option, select } = this.data;
+        const { isStar, id } = select;
+        const resData = [];
+        if (isStar) {
+            for (let i = 0; i < select.stars.length; i++) {
+                if (userid !== select.stars[i].id) {
+                    resData.push(select.stars[i].id);
+                }
+            }
+        } else {
+            for (let i = 0; i < select.stars.length; i++) {
+                resData.push(select.stars[i].id);
+            }
+            resData.push(userid);
+        }
+        API.ajax(`/answer/${id}`, JSON.stringify({ stars: resData }), function (res) {
+            if (res.statusCode == 200 || res.statusCode == 201) {
+                if (isStar) {
+                    that.show('收藏已取消', 'shoucang', '#666');
+                } else {
+                    that.show('收藏成功', 'shoucang', '#FFD62D');
+                }
+                getAnswer(that, option);
             } else {
                 that.show('收藏失败', 'cuowu', '#F45353');
             }
-        }, 'PUT');
+        }, 'put');
     },
     setPrevPage(res) {
         const pages = getCurrentPages();

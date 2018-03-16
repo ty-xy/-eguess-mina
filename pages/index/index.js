@@ -5,15 +5,16 @@ import format from '../../utils/util';
 const app = getApp()
 const size = 5;
 let page = 1;
+const APP_ID ='wx9e3ef944fc45397f';//输入小程序appid  
+const APP_SECRET ='251df6805548256e564f66a4063a916f';//输入小程序app_secret 
 
 const loadMore = function(that){
     that.setData({
         isLoading: true,
         noMore: false,
     })
-    API.ajax('/topic', { page, size }, function (res) {
+    API.ajax('/topic', { limit: page * size, sort: { createdAt: 0 } }, function (res) {
         //这里既可以获取模拟的res
-        console.log('topic', res.data)
         if (res.statusCode === 200) {
             if (res.data.length === that.data.list.length) {
                 that.setData({
@@ -32,6 +33,14 @@ const loadMore = function(that){
         }
     });
 };
+const findElem = (arrayToSearch, attr, val) => {
+    for (let i = 0;i < arrayToSearch.length; i++){
+        if(arrayToSearch[i][attr] === val){
+            return i;
+        }
+    }
+    return -1;
+};
 
 const totalTime = 15 * 60 * 1000;
 
@@ -49,12 +58,12 @@ Page({
         timer: '00: 00',
     },
     onShareAppMessage: function (res) {
-        console.log('share', getCurrentPages()); 
+        const { userId } = app.globalData;
         return {
             title: '自定义转发标题',
-            path: `/pages/index/index?id=${app.globalData.userId}`,
-            success: function(sres) {
-              console.log("res",sres) 
+            path: `/pages/index/friend?=${userId}`,
+            success: function(res) {
+              // 转发成功
             },
             fail: function(res) {
               // 转发失败
@@ -68,7 +77,9 @@ Page({
         })
     },
     onLoad: function (option) {
-        console.log("option",option)
+        const { friend = '5aa7ed3f638f59bd1d52fc4d' } = option;
+        const { userId } = app.globalData;
+        app.globalData.hh = 'ppppp';
         if (app.globalData.userInfo) {
             this.setData({
                 userInfo: app.globalData.userInfo,
@@ -103,6 +114,46 @@ Page({
               })
             }
         })
+        wx.request({  
+            //获取openid接口  
+            url: 'https://api.weixin.qq.com/sns/jscode2session',  
+            data:{  
+                appid: APP_ID,  
+                secret: APP_SECRET,  
+                js_code: app.globalData.code,  
+                grant_type:'authorization_code'  
+            },
+            method:'GET', 
+            success: function(appid){  
+                const OPEN_ID = appid.data.openid;//获取到的openid
+                app.globalData.openid = appid.data.openid; 
+                const SESSION_KEY = appid.data.session_key;//获取到session_key  
+                const userInfos= {
+                    openid: OPEN_ID,
+                    ...app.globalData.userInfo,
+                }
+                API.ajax('/wxuserinfo', (userInfos), function (userRes) {
+                    app.globalData.userId = userRes.data;
+                    
+                    if (friend) {
+                        const putData = {
+                            username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                            email:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,
+                        }
+                        API.ajax(`/user/${userRes.data}`, '', function(res){
+                            const { beFriends = [] } = res.data;
+                            const isHas = findElem(beFriends, 'id', friend);
+                            if (isHas === -1) {
+                                beFriends.push(friend);
+                                putData.beFriends = beFriends;
+                                API.ajax(`/user/${userRes.data}`, JSON.stringify(putData), function(res){}, 'put');
+                            }
+                        });
+                    }
+                })
+            
+            }
+        }) 
         // 获取首页数据
         loadMore(that);
         // const tim = format.countdown(this, totalTime)
@@ -144,7 +195,7 @@ Page({
                 wx.navigateTo({
                     url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${readNum}&messageNum=${(msg.toAnswer && msg.toAnswer.length) || 0}`,
                 })
-                API.ajax('/topic', '', function (res) {
+                API.ajax('/topic', { limit: page * size, sort: { createdAt: 0 } }, function (res) {
                     //这里既可以获取模拟的res
                     if (res.statusCode === 200) {
                         that.setData({
@@ -159,7 +210,6 @@ Page({
     bindDownLoad() {   
         const that = this;
         loadMore(that);
-        console.log("lower", page);
     },
 
 })

@@ -33,7 +33,6 @@ Page({
     
     const that = this
     const userid = app.globalData.userId;
-    console.log(userid)
     // 使用 Mock
     API.ajax('/topic',{userid}, function (userres) {
         const topic = userres.data;
@@ -214,7 +213,6 @@ drawStart (e){
  delItem(e){  
     let dataId = e.currentTarget.dataset.id;  
     const userid = app.globalData.userId;
-   console.log("删除"+dataId);  
    var cardTeams = this.data.list;  
    var newCardTeams = []; 
      
@@ -238,7 +236,7 @@ drawStart (e){
               email:userres.data.email
            } 
            API.ajax(`/user/${userid}`,JSON.stringify(topicdata),function(gres){
-                 console.log(gres)
+                //  console.log(gres)
            },'put')
         }
     })
