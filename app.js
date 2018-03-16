@@ -79,6 +79,7 @@ App({
                                      
                                             API.ajax('/wxuserinfo', (userInfos), function (userRes) {
                                                 that.globalData.userId=userRes.data
+                                                console.log(userRes.data)
                                             })
                                         }
                                     })  

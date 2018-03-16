@@ -35,58 +35,70 @@ Page({
     const userid = app.globalData.userId;
     console.log(userid)
     // 使用 Mock
-    API.ajax('/topic', '', function (userres) {
-        const topic = userres.data.stars;
-        // console.log(userres.data.topic)
-        // const answer = userres.data.comment;
-        let isUserId = false;
-        const arr = [];
-        const next= [];
+    API.ajax('/topic',{userid}, function (userres) {
+        const topic = userres.data;
+        console.log(topic)
         if(topic&&topic.length !==0){
             topic.forEach((i)=>{
-                 if(i.id===userid){
-                     isUserId = true
-                }
+                i.txtStyle="left:0px";
             })
-        //     topic.forEach((i)=>{
-        //         i.txtStyle="left:0px";
-        //     })
-        //       that.setData({
-        //           list:topic,
-        //           showTopic:true
-        //       })
+            that.setData({
+                list:topic,
+                showTopic:true
+            })
+        }else{
+            that.setData({
+                showTopic:false
+            }) 
+        }
+    })
+    API.ajax("/answer",{userid},function(res){
+        const answer =res.data
+        console.log("answer",answer)
+        if(answer&&answer.length !==0){
+            answer.forEach((i)=>{
+                i.txtStyle="left:0px";
+            })
+            that.setData({
+                list:answer,
+                showComment:true
+            })
+        }else{
+            that.setData({
+                showComment:false
+            }) 
+        }
+    })
         // }else{
         //     // 假如没有数据的处理逻辑
         //     that.setData({
         //         showTopic:false
         //     })
             // console.log(that.data.showTopic)
-        }
-        if(isUserId){
-            console.log()
-        }
-        if(answer&&answer.length !==0){
-            answer.forEach((item)=>{
-                API.ajax(`/message/${item}`,'',function(commentres){
-                      console.log("321213",commentres)
-                      next.push(commentres.data)
-                      next.forEach((i)=>{
-                        i.txtStyle="left:0px";
-                        })
-                      that.setData({
-                        commentList: next,
-                        showComment:true
-                    })
-                })
-            })
-        }else{
-            that.setData({
-                showComment:false
-            })
-            console.log(that.data.showTopic)
-        }
-    })
-    
+        // if(isUserId){
+        //     console.log()
+        // }
+        // if(answer&&answer.length !==0){
+        //     answer.forEach((item)=>{
+        //         API.ajax(`/message/${item}`,'',function(commentres){
+        //               console.log("321213",commentres)
+        //               next.push(commentres.data)
+        //               next.forEach((i)=>{
+        //                 i.txtStyle="left:0px";
+        //                 })
+        //               that.setData({
+        //                 commentList: next,
+        //                 showComment:true
+        //             })
+        //         })
+        //     })
+        // }else{
+        //     that.setData({
+        //         showComment:false
+        //     })
+        //     console.log(that.data.showTopic)
+        // }
+  
   },
   changeView(e){
     //  console.log(e.target.id)

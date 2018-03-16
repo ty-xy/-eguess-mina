@@ -6,8 +6,9 @@ const app = getApp()
 Page({
   data: {
     list: [],
-    worldlist:[],
+    ownlist:[],
     frienlist:[],
+    wordList:[],
     title:"切换好友榜",
     src: '../../images/world@2x.png',
   },
@@ -45,12 +46,24 @@ Page({
     const that = this
 
     // 使用 Mock
-    API.ajax('/ranklist', '', function (res) {
+    const userId = app.globalData.userId
+    
+    API.ajax('/rank',"", function (res) {
         //这里既可以获取模拟的res
-        console.log(res)
+        console.log(res.data)
         that.setData({
-            worldlist: res.data,
             list:res.data,
+            wordList:res.data
+        })
+        const lisy = []
+        res.data.forEach((item,index)=>{
+             if(item.user.id===userId){
+                 item.index = index+1
+                 lisy.push(item)
+             }
+        })
+        that.setData({
+            ownlist:lisy,
         })
     });
     API.ajax('/friendRanklist', '', function (res) {
@@ -73,7 +86,7 @@ Page({
            this.setData({
                title:"切换好友榜",
                src:'../../images/world@2x.png',
-               list:that.data.worldlist
+               list:that.data.wordList
             })   
            
        }
