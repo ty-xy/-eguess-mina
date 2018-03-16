@@ -11,9 +11,8 @@ const loadMore = function(that){
         isLoading: true,
         noMore: false,
     })
-    API.ajax('/topic', { limit: page * size }, function (res) {
+    API.ajax('/topic', { limit: page * size, sort: { createdAt: 0 } }, function (res) {
         //这里既可以获取模拟的res
-        console.log('topic', res.data)
         if (res.statusCode === 200) {
             if (res.data.length === that.data.list.length) {
                 that.setData({
@@ -143,7 +142,7 @@ Page({
                 wx.navigateTo({
                     url: `/pages/detail/detail?id=${msg.id}&title=${msg.title}&status=${msg.status}&readNum=${readNum}&messageNum=${(msg.toAnswer && msg.toAnswer.length) || 0}`,
                 })
-                API.ajax('/topic', '', function (res) {
+                API.ajax('/topic', { limit: page * size, sort: { createdAt: 0 } }, function (res) {
                     //这里既可以获取模拟的res
                     if (res.statusCode === 200) {
                         that.setData({
