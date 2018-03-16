@@ -12,7 +12,7 @@ Page({
     src: '../../images/world@2x.png',
   },
   canvasIdErrorCallback: function (e) {
-    console.error(e.detail.errMsg)
+    // console.error(e.detail.errMsg)
   },
   onShareAppMessage: function (res) {},
   onLoad: function () {
@@ -47,7 +47,6 @@ Page({
     // 使用 Mock
     API.ajax('/ranklist', '', function (res) {
         //这里既可以获取模拟的res
-        console.log(res)
         that.setData({
             worldlist: res.data,
             list:res.data,
@@ -59,7 +58,6 @@ Page({
             friendlist: res.data
         })
     });
-    console.log(this.data.list,this.data.friendlist)
   },
   changeRank(){
     const that = this

@@ -58,7 +58,6 @@ Page({
             }
         })
         loadMore(that, option);
-        console.log('detail', option);
     },
     onShow() {
         loadMore(this, this.data.option);
@@ -83,9 +82,8 @@ Page({
             }
             resData.push(userid);
         }
-        API.ajax(`/answer/${message.id}`, JSON.stringify({ userid, upVote }), function (res) {
+        API.ajax(`/answer/${message.id}`, JSON.stringify({ upVotes: resData }), function (res) {
             if (res.statusCode == 200 || res.statusCode == 201) {
-                console.log('answerres', res)
                 loadMore(that, option)
                 if (upVote) {
                     that.show('点赞已取消', 'dianzan', '#666');
@@ -119,7 +117,7 @@ Page({
             }
             resData.push(userid);
         }
-        API.ajax(`/answer/${option.id}`, JSON.stringify({ stars: resData }), function (res) {
+        API.ajax(`/answer/${message.id}`, JSON.stringify({ stars: resData }), function (res) {
             if (res.statusCode == 200 || res.statusCode == 201) {
                 if (isStar) {
                     that.show('收藏已取消', 'shoucang', '#666');
@@ -169,7 +167,6 @@ Page({
     bindDownLoad() {   
         const that = this;
         loadMore(that, this.data.option);
-        console.log("lower");
     },
 })
   

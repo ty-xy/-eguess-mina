@@ -22,6 +22,20 @@ const getAnswer = (that, option) => {
     });
 }
 
+
+const getComment = (that, option) => {
+    API.ajax('/comment', { search: { answer: option.answerid } }, function (res) {
+        //这里既可以获取模拟的res
+        if (res.statusCode === 200) {
+            // const list = res.data.answers.filter((item) => (item.messageId === option.id))
+            that.setData({
+                list: res.data,
+                textarea: null,
+            })
+        }
+    });
+}
+
 Page({
     data: {
         list: [],
@@ -45,17 +59,8 @@ Page({
             userInfo: app.globalData.userInfo,
             option,
         })
-        console.log('答题详情', option);
         const that = this;
-        API.ajax('/comment', { answerid: option.answerid }, function (res) {
-            //这里既可以获取模拟的res
-            if (res.statusCode === 200) {
-                // const list = res.data.answers.filter((item) => (item.messageId === option.id))
-                that.setData({
-                    list: res.data,
-                })
-            }
-        });
+        getComment(this, option);
         getAnswer(this, option);
     },
     bindFormSubmit: function(e) {
@@ -67,7 +72,6 @@ Page({
             createdAt: app.globalData.userid,
         };
         const that = this;
-        console.log('newMsg', newMsg)
         API.ajax('/comment', JSON.stringify(newMsg), function (res) {
             if (res.statusCode === 200 || res.statusCode === 201) {
                 wx.showToast({
@@ -75,16 +79,7 @@ Page({
                     icon: 'success',
                     duration: 1500
                 })
-                API.ajax('/comment', { answerid: option.answerid }, function (res) {
-                    //这里既可以获取模拟的res
-                    if (res.statusCode === 200) {
-                        // const list = res.data.answers.filter((item) => (item.messageId === option.id))
-                        that.setData({
-                            list: res.data,
-                            textarea: null,
-                        })
-                    }
-                });
+                getComment(that, option);
             }
         }, 'POST');
     },

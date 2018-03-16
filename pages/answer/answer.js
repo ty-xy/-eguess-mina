@@ -13,7 +13,6 @@ Page({
         wx.setNavigationBarTitle({
             title: '答题'
         })
-        console.log('answer', option, app.globalData.userInfo)
         this.setData({
             item: option,
             userInfo: app.globalData.userInfo,
@@ -27,7 +26,6 @@ Page({
         };
         const that = this;
         API.ajax('/answer', JSON.stringify(newMsg), function (res) {
-            console.log('answer', res);
             if (res.statusCode === 200 || res.statusCode === 201) {
                 API.ajax('/answer', { topicid: that.data.item.topicid }, function (result) {
                     //这里既可以获取模拟的res
