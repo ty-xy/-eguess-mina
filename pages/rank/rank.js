@@ -43,7 +43,7 @@ Page({
         })
       }
     const that = this
-
+    const id = app.globalData.userId;
     // 使用 Mock
     API.ajax('/ranklist', '', function (res) {
         //这里既可以获取模拟的res
@@ -52,10 +52,10 @@ Page({
             list:res.data,
         })
     });
-    API.ajax('/friendRanklist', '', function (res) {
+    API.ajax('/friend', { search: { id } }, function (res) {
         //这里既可以获取模拟的res
-        that.setData({
-            friendlist: res.data
+        API.ajax('/answerRank', res.allFriendIds, function (answers) {
+            console.log('answers', answers)
         })
     });
   },
