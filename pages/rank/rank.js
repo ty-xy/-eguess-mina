@@ -44,7 +44,7 @@ Page({
         })
       }
     const that = this
-
+    const id = app.globalData.userId;
     // 使用 Mock
     const userId = app.globalData.userId
     
@@ -58,14 +58,21 @@ Page({
         const lisy = []
         if(res&&res.data.length>0){
             res.data.forEach((item,index)=>{
-                        if(item.id===userId){
-                            item.index = index+1
-                            lisy.push(item)
-                        }
+                if(item.id===userId){
+                    item.index = index+1
+                    lisy.push(item)
+                }
            })
-         }
-        that.setData({
+           that.setData({
             ownlist:lisy,
+            });
+         }
+       
+});
+    API.ajax('/friend', { search: { id } }, function (res) {
+        //这里既可以获取模拟的res
+        API.ajax('/answerRank', res.allFriendIds, function (answers) {
+            console.log('answers', answers)
         })
     });
     // API.ajax('/friendRanklist', '', function (res) {
