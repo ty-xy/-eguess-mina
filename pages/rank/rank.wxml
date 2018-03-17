@@ -26,15 +26,15 @@
                             {{index+1}}
                     </text>
                </block>   
-                  <image  class="rank-avatar" src="{{item.user.avatarUrl}}"></image>
+                  <image  class="rank-avatar" src="{{item.avatarUrl}}"></image>
                 <text class="rank-common" style="width:100rpx; text-align:left">
-                 {{item.user.nickName}}
+                 {{item.nickName}}
                 </text>
              </view>
              <view class="rank-card-right">
                  <text class="iconfont  icon-dianzan1 icon-right"></text>
                  <text class="rank-common">
-                     {{item.good}}
+                     {{item.upVotes}}
                  </text>
              </view>
          </view>
@@ -48,7 +48,7 @@
             </view>
             <view class="rank-card-right">
                 <text class="iconfont  icon-dianzan1 icon-right1"></text>
-                <text>{{item.good}}</text>
+                <text>{{item.upVotes}}</text>
             </view>
         </block>
     </view>

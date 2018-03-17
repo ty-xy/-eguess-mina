@@ -50,27 +50,30 @@ Page({
     
     API.ajax('/rank',"", function (res) {
         //这里既可以获取模拟的res
+        console.log(res)
         that.setData({
             list:res.data,
             wordList:res.data
         })
         const lisy = []
-        res.data.forEach((item,index)=>{
-             if(item.user.id===userId){
-                 item.index = index+1
-                 lisy.push(item)
-             }
-        })
+        if(res&&res.data.length>0){
+            res.data.forEach((item,index)=>{
+                        if(item.id===userId){
+                            item.index = index+1
+                            lisy.push(item)
+                        }
+           })
+         }
         that.setData({
             ownlist:lisy,
         })
     });
-    API.ajax('/friendRanklist', '', function (res) {
-        //这里既可以获取模拟的res
-        that.setData({
-            friendlist: res.data
-        })
-    });
+    // API.ajax('/friendRanklist', '', function (res) {
+    //     //这里既可以获取模拟的res
+    //     that.setData({
+    //         friendlist: res.data
+    //     })
+    // });
   },
   changeRank(){
     const that = this

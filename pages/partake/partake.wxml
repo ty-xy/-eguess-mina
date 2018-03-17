@@ -2,8 +2,8 @@
 
 <import src="../templates/card.wxml" />
 <scroll-view scroll-y="true" scroll-with-animation="true" bindscrolltolower="bindDownLoad" style="height: {{ viewHeight }}px;"
-class="container cardlist-container">
-    <view wx:if="{{condition}}">
+ class="container cardlist-container">
+    <view wx:if="{{list.length>0}}">
         <block wx:for="{{list}}" wx:key="item">
             <template is="card" data="{{item}}" />
         </block> 

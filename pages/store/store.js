@@ -14,7 +14,6 @@ let  initdata = function (that) {
 Page({
   data: {
     userInfo: {},
-    // text: initData,
     left:'rank-color',
     right:"",
     list: [],
@@ -34,7 +33,7 @@ Page({
     const that = this
     const userid = app.globalData.userId;
     // 使用 Mock
-    API.ajax('/topic',{userid}, function (userres) {
+    API.ajax('/topics',{userid}, function (userres) {
         const topic = userres.data;
         console.log(topic)
         if(topic&&topic.length !==0){
@@ -59,7 +58,7 @@ Page({
                 i.txtStyle="left:0px";
             })
             that.setData({
-                list:answer,
+                commentList:answer,
                 showComment:true
             })
         }else{
@@ -68,36 +67,6 @@ Page({
             }) 
         }
     })
-        // }else{
-        //     // 假如没有数据的处理逻辑
-        //     that.setData({
-        //         showTopic:false
-        //     })
-            // console.log(that.data.showTopic)
-        // if(isUserId){
-        //     console.log()
-        // }
-        // if(answer&&answer.length !==0){
-        //     answer.forEach((item)=>{
-        //         API.ajax(`/message/${item}`,'',function(commentres){
-        //               console.log("321213",commentres)
-        //               next.push(commentres.data)
-        //               next.forEach((i)=>{
-        //                 i.txtStyle="left:0px";
-        //                 })
-        //               that.setData({
-        //                 commentList: next,
-        //                 showComment:true
-        //             })
-        //         })
-        //     })
-        // }else{
-        //     that.setData({
-        //         showComment:false
-        //     })
-        //     console.log(that.data.showTopic)
-        // }
-  
   },
   changeView(e){
     //  console.log(e.target.id)

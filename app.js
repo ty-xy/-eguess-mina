@@ -4,19 +4,6 @@ const API= require("utils/api.js")
 
 App({
     MyToast,
-    // onShareAppMessage: function (res) {
-    //     console.log('share', getCurrentPages()); 
-    //     return {
-    //         title: '自定义转发标题',
-    //         path: '/pages/index/index?id=123',
-    //         success: function(res) {
-    //           // 转发成功
-    //         },
-    //         fail: function(res) {
-    //           // 转发失败
-    //         }
-    //     };
-    // },
     onLaunch: function () {
         // 展示本地存储能力
         var logs = wx.getStorageSync('logs') || []
@@ -28,6 +15,7 @@ App({
             success: res => {
                 // 获取用户信息
                 that.globalData.code = res.code;
+                console.log(res.code,"")
                 wx.getSetting({
                     success: () => {
                         // if (!res.authSetting['scope.userInfo']) {
@@ -60,7 +48,5 @@ App({
     },
     globalData: {
         userInfo: {},
-        openid:null,
-        userId:null,
     }
 })

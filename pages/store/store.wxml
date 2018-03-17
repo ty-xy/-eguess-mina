@@ -63,7 +63,7 @@
                             {{item.topicInfo.title}}
                     </navigator>
                     <view class="card-comment" style="margin-top:-10rpx">
-                            {{item.comment}}
+                            {{item.body}}
                     </view>
                     <view class="card-bottom" style="margin-top:20rpx">
                         <view class="card-rankc no-border card-left-commark">

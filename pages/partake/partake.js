@@ -32,14 +32,14 @@ const loadMore = function(that){
 Page({
     data: {
        list:[],
-       condition:false,
+    //    condition:false,
        noMore: false,
        isLoading: true,
     },
     onLoad(){
         const that = this;
         const userid = app.globalData.userId;
-        loadMore(that);
+        console.log(userid)
         //获得前端传过来的userid
         wx.getSystemInfo({
             success: function (res) {
@@ -48,19 +48,20 @@ Page({
               })
             }
         })
-        API.ajax('/answers',{ limit: page * size, sort: { createdAt: 0 },search: { createdBy:userid } }, function (userres) {
-            //这里既可以获取模拟的res
-            if(userres.data !== ""){
-                that.setData({
-                 list : userres.data,
-                 condition:true,
-                })  
-            } else {
-                that.setData({
-                 condition:false
-                })
-            }
-        });
+        // API.ajax('/answers',{ limit: page * size, sort: { createdAt: 0 },search: { createdBy:userid } }, function (userres) {
+        //     //这里既可以获取模拟的res
+        //     if(userres.data !== ""){
+        //         that.setData({
+        //          list : userres.data,
+        //          condition:true,
+        //         })  
+        //     } else {
+        //         that.setData({
+        //          condition:false
+        //         })
+        //     }
+        // });
+        loadMore(that);
     },
     bindDownLoad() {   
         const that = this;
