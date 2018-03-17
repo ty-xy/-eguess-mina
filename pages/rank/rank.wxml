@@ -12,43 +12,45 @@
     <block wx:for="{{list}}" wx:key="item">
          <view class="rank-card">
              <view class="rank-card-left">
-               <block wx:if="{{item.id===1}}">
+               <block wx:if="{{index+1===1}}">
                    <image style="height:64rpx;width:40rpx" src="../../images/gold-medal-1@2x.png"></image>
                </block>
-               <block wx:elif="{{item.id===2}}">
+               <block wx:elif="{{index+1===2}}">
                     <image style="height:64rpx;width:40rpx" src="../../images/silver-medal-1@2x.png"></image>
                </block>
-               <block wx:elif="{{item.id===3}}">
+               <block wx:elif="{{index+1===3}}">
                     <image style="height:64rpx;width:40rpx" src="../../images/bronze-medal-1@2x.png"></image>
                </block>
                <block wx:else>
                     <text class="rank-common">
-                            {{item.id}}
+                            {{index+1}}
                     </text>
                </block>   
-                  <image  class="rank-avatar" src="{{item.image}}"></image>
+                  <image  class="rank-avatar" src="{{item.avatarUrl}}"></image>
                 <text class="rank-common" style="width:100rpx; text-align:left">
-                 {{item.name}}
+                 {{item.nickName}}
                 </text>
              </view>
              <view class="rank-card-right">
                  <text class="iconfont  icon-dianzan1 icon-right"></text>
                  <text class="rank-common">
-                     {{item.read}}
+                     {{item.upVotes}}
                  </text>
              </view>
          </view>
     </block>
     <view  class="myown-rank">
+        <block wx:for="{{ownlist}}" wx:key="item">
             <view class="rank-card-left">
-                <text class="rank-common">7</text>
+                <text class="rank-common">{{item.index}}</text>
                 <image class="rank-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
                 <text class="rank-common" style="width:100rpx; text-align:left">我的排名</text>
             </view>
             <view class="rank-card-right">
                 <text class="iconfont  icon-dianzan1 icon-right1"></text>
-                <text>12</text>
+                <text>{{item.upVotes}}</text>
             </view>
+        </block>
     </view>
     <!-- <text class="tuoyuan"></text>   -->
 </view>

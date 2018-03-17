@@ -14,7 +14,6 @@ let  initdata = function (that) {
 Page({
   data: {
     userInfo: {},
-    // text: initData,
     left:'rank-color',
     right:"",
     list: [],
@@ -34,64 +33,63 @@ Page({
     const that = this
     const userid = app.globalData.userId;
     // 使用 Mock
-    API.ajax(`/user/${userid}`, '', function (userres) {
-        const topic = userres.data.collection;
-        const answer = userres.data.comment;
-        const arr = [];
-        const next= [];
+    API.ajax('/topics',{userid}, function (userres) {
+        const topic = userres.data;
+        console.log(topic)
         if(topic&&topic.length !==0){
-            topic.forEach((item)=>{
-                API.ajax(`/topic/${item}`, '', function (res) {
-                    //这里既可以获取模拟的res
-                    arr.push(res.data)
-                    arr.forEach((i)=>{
-                          i.txtStyle="left:0px";
-                    })
-                    that.setData({
-                        list: arr,
-                        showTopic:true
-                    })
-                });
+            topic.forEach((i)=>{
+                i.txtStyle="left:0px";
+            })
+            that.setData({
+                list:topic,
+                showTopic:true
             })
         }else{
-            // 假如没有数据的处理逻辑
             that.setData({
                 showTopic:false
-            })
+            }) 
         }
-
+    })
+    API.ajax("/answer",{userid},function(res){
+        const answer =res.data
+        console.log("answer",answer)
         if(answer&&answer.length !==0){
-            answer.forEach((item)=>{
-                API.ajax(`/message/${item}`,'',function(commentres){
-                      next.push(commentres.data)
-                      that.setData({
-                        commentList: next,
-                        showComment:true
-                    })
-                })
+            answer.forEach((i)=>{
+                i.txtStyle="left:0px";
+            })
+            that.setData({
+                commentList:answer,
+                showComment:true
             })
         }else{
             that.setData({
                 showComment:false
-            })
+            }) 
         }
     })
-    
   },
   changeView(e){
     //  console.log(e.target.id)
      const that = this
      if(e.target.id==="qusetion"){
+        this.data.commentList.forEach((i)=>{
+            i.txtStyle="left:0px";
+        })
         that.setData({
             change:true,
             left:'rank-color',
-            right:''
+            right:'',
+            commentList:that.data.commentList
         })  
      }else{
+        this.data.list.forEach((i)=>{
+            i.txtStyle="left:0px";
+        })
         that.setData({
             change:false,
             left:'',
-            right:'rank-color'
+            right:'rank-color',
+            list:that.data.list
         })  
      }
    },
@@ -104,17 +102,31 @@ drawStart (e){
     }
  },  
  drawEnd (e){  
+    const that = this;
    if(e.changedTouches.length===1){
         var endX = e.changedTouches[0].clientX;
         var disX = this.data.startX-endX;
         var delBtnWidth = this.data.delBtnWidth;
         var txtStyle = disX > delBtnWidth/2?"left:-"+delBtnWidth+"px":"left:0px";
         const index=e.currentTarget.dataset.index
-          this.data.list[index].txtStyle=txtStyle;
-        this.setData({
-            list:this.data.list
-        })
+        if(this.data.change===true){
+            console.log(that.data.list[index],txtStyle)
+            that.data.list[index].txtStyle=txtStyle;
+            that.data.commentList.txtStyle=0;
+            that.setData({
+                list:that.data.list,
+                commentList:that.data.commentList
+            })
+        }else{
+            that.data.commentList[index].txtStyle=txtStyle;
+            that.data.list.txtStyle=0
+            that.setData({
+                commentList:that.data.commentList,
+                list:that.data.list
+            })
+        }
    }
+
  },  
  drawMove (e){  
     let that = this
@@ -139,9 +151,9 @@ drawStart (e){
             }
           }  
           const index=e.currentTarget.dataset.index
-          this.data.list[index].txtStyle=txtStyle;
-          this.setData({
-            list:this.data.list
+          that.data.list[index].txtStyle=txtStyle;
+          that.setData({
+            list:that.data.list
         })
     }
  

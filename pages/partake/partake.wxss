@@ -1,3 +1,6 @@
 page{
     height:100%;
 }
+.loading{
+ margin-top:15px
+}

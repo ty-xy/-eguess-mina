@@ -77,7 +77,7 @@ Page({
         })
     },
     onLoad: function (option) {
-        const { friend = '5aa36f1cf449007d37514e8a' } = option;
+        const { friend = '5aa7ed3f638f59bd1d52fc4d' } = option;
         const { userId } = app.globalData;
         app.globalData.hh = 'ppppp';
         if (app.globalData.userInfo) {
@@ -134,6 +134,7 @@ Page({
                 }
                 API.ajax('/wxuserinfo', (userInfos), function (userRes) {
                     app.globalData.userId = userRes.data;
+                    
                     if (friend) {
                         const putData = {
                             username:`zg-ty@1${Math.ceil(Math.random()*10000)}3.com`,

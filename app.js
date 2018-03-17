@@ -15,6 +15,7 @@ App({
             success: res => {
                 // 获取用户信息
                 that.globalData.code = res.code;
+                console.log(res.code,"")
                 wx.getSetting({
                     success: () => {
                         // if (!res.authSetting['scope.userInfo']) {
@@ -24,6 +25,8 @@ App({
                                     // 可以将 res 发送给后台解码出 unionId
                                     // UPNrb/+climLJBbA6PyzwQ==
                                     that.globalData.userInfo = result.userInfo
+                                    const userinfo = result.userInfo
+                                    console.log("getSetting", result)
                                     // this.setData({
                                     //     userInfo:res.userInfo
                                     // })
@@ -45,7 +48,5 @@ App({
     },
     globalData: {
         userInfo: {},
-        openid:null,
-        userId:null,
     }
 })

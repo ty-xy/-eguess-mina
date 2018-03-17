@@ -6,8 +6,9 @@ const app = getApp()
 Page({
   data: {
     list: [],
-    worldlist:[],
+    ownlist:[],
     frienlist:[],
+    wordList:[],
     title:"切换好友榜",
     src: '../../images/world@2x.png',
   },
@@ -45,19 +46,41 @@ Page({
     const that = this
     const id = app.globalData.userId;
     // 使用 Mock
-    API.ajax('/ranklist', '', function (res) {
+    const userId = app.globalData.userId
+    
+    API.ajax('/rank',"", function (res) {
         //这里既可以获取模拟的res
+        console.log(res)
         that.setData({
-            worldlist: res.data,
             list:res.data,
+            wordList:res.data
         })
-    });
+        const lisy = []
+        if(res&&res.data.length>0){
+            res.data.forEach((item,index)=>{
+                if(item.id===userId){
+                    item.index = index+1
+                    lisy.push(item)
+                }
+           })
+           that.setData({
+            ownlist:lisy,
+            });
+         }
+       
+});
     API.ajax('/friend', { search: { id } }, function (res) {
         //这里既可以获取模拟的res
         API.ajax('/answerRank', res.allFriendIds, function (answers) {
             console.log('answers', answers)
         })
     });
+    // API.ajax('/friendRanklist', '', function (res) {
+    //     //这里既可以获取模拟的res
+    //     that.setData({
+    //         friendlist: res.data
+    //     })
+    // });
   },
   changeRank(){
     const that = this
@@ -71,7 +94,7 @@ Page({
            this.setData({
                title:"切换好友榜",
                src:'../../images/world@2x.png',
-               list:that.data.worldlist
+               list:that.data.wordList
             })   
            
        }
