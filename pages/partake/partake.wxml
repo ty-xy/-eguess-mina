@@ -1,12 +1,16 @@
 <!-- <import src="../templates/card.wxml" /> -->
 
 <import src="../templates/card.wxml" />
-
-<view class="container cardlist-container">
+<scroll-view scroll-y="true" scroll-with-animation="true" bindscrolltolower="bindDownLoad" style="height: {{ viewHeight }}px;"
+class="container cardlist-container">
     <view wx:if="{{condition}}">
         <block wx:for="{{list}}" wx:key="item">
             <template is="card" data="{{item}}" />
-        </block>
+        </block> 
+        <view class="loading">
+            <text wx:if="{{isLoading}}">正在加载...</text>
+            <text wx:if="{{noMore}}">已加载全部</text>
+        </view>
     </view>
     <view wx:else class="empty-topic">
         <image style="height:176rpx;width:322rpx" src="../../images/canyuchang@2x.png"></image>
@@ -15,4 +19,5 @@
             <view class="go-play">去逛逛</view>
         </navigator>
     </view>
-</view>
+
+</scroll-view>
