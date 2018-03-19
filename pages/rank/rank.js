@@ -68,12 +68,15 @@ Page({
             });
          }
        
-});
+    });
     API.ajax('/friend', { search: { id } }, function (res) {
         //这里既可以获取模拟的res
-        API.ajax('/answerRank', res.allFriendIds, function (answers) {
-            console.log('answers', answers)
-        })
+        console.log('res', res)
+        if (res.statusCode === 200) {
+            API.ajax('/answerRank', { allFriendIds: res.data.allFriendIds }, function (answers) {
+                console.log('answers', answers)
+            })
+        }
     });
     // API.ajax('/friendRanklist', '', function (res) {
     //     //这里既可以获取模拟的res
